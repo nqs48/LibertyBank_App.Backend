@@ -1,4 +1,8 @@
-﻿namespace DrivenAdapters.Mongo
+﻿using Domain.Model.Entities.Usuarios;
+using DrivenAdapters.Mongo.entities;
+using MongoDB.Driver;
+
+namespace DrivenAdapters.Mongo
 {
     /// <summary>
     /// Interfaz Mongo context contract.
@@ -6,8 +10,8 @@
     public interface IContext
     {
         /// <summary>
-        /// Colleccion de Tipo Contrato
+        /// Colección de tipo <see cref="Usuario"/>
         /// </summary>
-       // public IMongoCollection<Entity> TipoContrato { get; }
+        public IMongoCollection<UsuarioEntity> Usuarios { get; }
     }
 }

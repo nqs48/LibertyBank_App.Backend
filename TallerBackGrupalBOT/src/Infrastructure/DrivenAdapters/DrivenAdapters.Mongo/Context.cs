@@ -1,5 +1,7 @@
 using MongoDB.Driver;
 using System.Diagnostics.CodeAnalysis;
+using Domain.Model.Entities.Usuarios;
+using DrivenAdapters.Mongo.entities;
 
 namespace DrivenAdapters.Mongo
 {
@@ -22,9 +24,10 @@ namespace DrivenAdapters.Mongo
             _database = _mongoClient.GetDatabase(databaseName);
         }
 
+
         /// <summary>
-        /// Tipo Contrato Entity
+        /// Tipo de contrato <see cref="Usuario"/>
         /// </summary>
-        //public IMongoCollection<Entity> TipoContrato => _database.GetCollection<Entity>("TipoContrato");
+        public IMongoCollection<UsuarioEntity> Usuarios => _database.GetCollection<UsuarioEntity>("Usuarios");
     }
 }

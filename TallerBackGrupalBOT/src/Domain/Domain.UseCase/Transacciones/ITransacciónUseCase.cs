@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Domain.Model.Entities.Transacciones;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Transacciones
 {
-    internal interface ITransacciónUseCase
+    public interface ITransacciónUseCase
     {
+        Task<Transacción> RealizarConsignación(Transacción transacción);
+
+        Task<Transacción> RealizarRetiro(Transacción transacción);
+
+        Task<Transacción> RealizarTransferencia(Transacción transacción, string idCuentaReceptor);
     }
 }

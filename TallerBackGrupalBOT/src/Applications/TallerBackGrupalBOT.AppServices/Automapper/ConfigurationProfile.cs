@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using Domain.Model.Entities.Usuarios;
+using DrivenAdapters.Mongo.entities;
+using EntryPoints.ReactiveWeb.Entities.Commands;
+using EntryPoints.ReactiveWeb.Entities.Handlers;
 
 namespace TallerBackGrupalBOT.AppServices.Automapper
 {
@@ -12,6 +16,11 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
         /// </summary>
         public ConfigurationProfile()
         {
+            CreateMap<Usuario, UsuarioEntity>().ReverseMap();
+
+            CreateMap<Usuario, UsuarioResponse>();
+
+            CreateMap<CrearUsuario, Usuario>();
         }
     }
 }

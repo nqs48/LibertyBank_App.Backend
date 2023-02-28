@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Model.Entities.Usuarios;
+using System;
 
 namespace Domain.Model.Entities.Clientes
 {

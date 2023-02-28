@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Model.Entities.Cuentas;
+using System;
 using System.Collections.Generic;
 
 namespace Domain.Model.Entities.Clientes

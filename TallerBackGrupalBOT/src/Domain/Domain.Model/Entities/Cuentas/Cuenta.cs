@@ -1,4 +1,5 @@
 ﻿using Domain.Model.Entities.Clientes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 
@@ -93,6 +94,32 @@ namespace Domain.Model.Entities.Cuentas
         {
             HistorialModificaciones.Add(nuevaModificación);
         }
+
+        /// <summary>
+        /// Actualizar Saldo
+        /// </summary>
+        /// <param name="nuevoSaldo"></param>
+        public void ActualizarSaldo(decimal nuevoSaldo)
+        {
+            Saldo = nuevoSaldo;
+        }
+
+        /// <summary>
+        /// Validar si Esta Activa
+        /// </summary>
+        public bool EstaActiva() => EstadoCuenta.Equals(EstadoCuenta.Activa);
+
+        /// <summary>
+        /// Validar si Esta Inactiva
+        /// </summary>
+        public bool EstaInactiva() => EstadoCuenta.Equals(EstadoCuenta.Inactiva);
+
+
+        /// <summary>
+        /// Validar si Esta Cancelada.
+        /// </summary>
+        public bool EstaCancelada() => EstadoCuenta.Equals(EstadoCuenta.Cancelada);
+
 
         /// <summary>
         /// Habilitar una Cuenta.

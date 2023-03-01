@@ -11,6 +11,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\$(NetCoreTargetVersion)\DrivenAdapters.Mongo.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Entities\**" />
+    <Compile Include="Entities\Base\EntityBase.cs" />
+    <Compile Include="Entities\UsuarioEntity.cs" />
+    <EmbeddedResource Remove="Entities\**" />
+    <None Remove="Entities\**" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="$(AutoMapper)" />
     <PackageReference Include="AutoMapper.Data" Version="$(AutoMapperData)" />
@@ -31,8 +39,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Context.cs"></None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\" />
   </ItemGroup>
 </Project>

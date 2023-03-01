@@ -27,5 +27,8 @@
     <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="$(OpenTelemetryInstrumentationAspNetCore)" />
     <PackageReference Include="WindowsAzure.Storage" Version="$(WindowsAzureStorage)" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Gateway\" />
+  </ItemGroup>
 
 </Project>

@@ -12,5 +12,11 @@ namespace Helpers.Commons.Exceptions
         /// </summary>
         [Description("Excepción de negocio no controlada")]
         ExceptionNoControlada = 555,
+
+        /// <summary>
+        /// Excepción entidad no encontrada
+        /// </summary>
+        [Description("Excepción entidad no encontrada")]
+        EntidadNoEncontrada = 562,
     }
 }

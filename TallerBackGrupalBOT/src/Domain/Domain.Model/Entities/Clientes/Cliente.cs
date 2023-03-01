@@ -1,22 +1,165 @@
-﻿using Domain.Model.Entities.Cuentas;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Domain.Model.Entities.Clientes
 {
+    /// <summary>
+    /// Entidad de cliente
+    /// </summary>
     public class Cliente
     {
+        /// <summary>
+        /// Fecha actual
+        /// </summary>
+        private readonly DateTime FechaActual = DateTime.Now;
+
+        /// <summary>
+        /// Id de cliente
+        /// </summary>
         public string Id { get; private set; }
+
+        /// <summary>
+        /// Tipo de identificación
+        /// </summary>
         public TipoIdentificación TipoIdentificación { get; private set; }
+
+        /// <summary>
+        /// Numero de identificación
+        /// </summary>
         public string NumeroIdentificación { get; private set; }
+
+        /// <summary>
+        /// Nombres del cliente
+        /// </summary>
         public string Nombres { get; private set; }
+
+        /// <summary>
+        /// Apellidos del cliente
+        /// </summary>
         public string Apellidos { get; private set; }
+
+        /// <summary>
+        /// Correo electrónico
+        /// </summary>
         public string CorreoElectronico { get; private set; }
+
+        /// <summary>
+        /// Fecha de nacimiento
+        /// </summary>
         public DateOnly FechaNacimiento { get; private set; }
+
+        /// <summary>
+        /// Fecha en que se creo el cliente
+        /// </summary>
         public DateTime FechaCreación { get; private set; }
+
+        /// <summary>
+        /// Historial de actualizaciones de datos del cliente
+        /// </summary>
         public List<Actualización> HistorialActualizaciones { get; private set; }
+
+        /// <summary>
+        /// Estado del cliente
+        /// </summary>
         public bool EstaHabilitado { get; private set; }
+
+        /// <summary>
+        /// si el cliente tiene deudas activas
+        /// </summary>
         public bool TieneDeudasActivas { get; private set; }
-        public List<Cuenta> Productos { get; private set; }
+
+        /// <summary>
+        /// Cuentas del cliente
+        /// </summary>
+        public List<string> Productos { get; private set; }
+
+        /// <summary>
+        /// Constructor cliente
+        /// </summary>
+        /// <param name="tipoIdentificación"></param>
+        /// <param name="numeroIdentificación"></param>
+        /// <param name="nombres"></param>
+        /// <param name="apellidos"></param>
+        /// <param name="correoElectronico"></param>
+        /// <param name="fechaNacimiento"></param>
+        public Cliente(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
+            string apellidos, string correoElectronico, DateOnly fechaNacimiento)
+        {
+            TipoIdentificación = tipoIdentificación;
+            NumeroIdentificación = numeroIdentificación;
+            Nombres = nombres;
+            Apellidos = apellidos;
+            CorreoElectronico = correoElectronico;
+            FechaNacimiento = fechaNacimiento;
+            FechaCreación = this.FechaActual;
+            HistorialActualizaciones = null;
+            EstaHabilitado = true;
+            TieneDeudasActivas = false;
+            Productos = null;
+        }
+
+        /// <summary>
+        /// Verifica si el cliente ingreso un correo valido
+        /// </summary>
+        /// <returns></returns>
+        public bool VerificarCampoCorreo() =>
+            Regex.IsMatch(CorreoElectronico, @"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase);
+
+        /// <summary>
+        /// Verifica si el cliente es mayor de edad
+        /// </summary>
+        /// <returns></returns>
+        public bool VerificarEdadCliente(EdadLegal edadLegal)
+        {
+            var sumaDeAños = (FechaNacimiento.AddYears((int)edadLegal)).Year;
+            return sumaDeAños <= FechaActual.Year;
+        }
+
+        /// <summary>
+        /// Deshabilita cliente
+        /// </summary>
+        public void Deshabilitar() => EstaHabilitado = false;
+
+        /// <summary>
+        /// Habilita cliente
+        /// </summary>
+        public void Habilitar() => EstaHabilitado = true;
+
+        /// <summary>
+        /// Habilita deuda
+        /// </summary>
+        public void HabilitarDeuda() => TieneDeudasActivas = true;
+
+        /// <summary>
+        /// Deshabilita deuda
+        /// </summary>
+        public void DeshabilitarDeuda() => TieneDeudasActivas = false;
+
+        /// <summary>
+        /// Cambia el correo electronico actual del cliente
+        /// </summary>
+        /// <param name="nuevoCorreo"></param>
+        public void CambiarCorreoElectronico(string nuevoCorreo) => CorreoElectronico = nuevoCorreo;
+
+        /// <summary>
+        /// Agrega el id de un producto al cliente
+        /// </summary>
+        /// <param name="cuenta"></param>
+        public void AgregarIdProducto(string cuenta)
+        {
+            Productos ??= new List<string>();
+            Productos.Add(cuenta);
+        }
+
+        /// <summary>
+        /// Se agrega nueva actualizacion al cliente
+        /// </summary>
+        /// <param name="nuevaActualizacion"></param>
+        public void AgregarActualizacion(Actualización nuevaActualizacion)
+        {
+            HistorialActualizaciones ??= new List<Actualización>();
+            HistorialActualizaciones.Add(nuevaActualizacion);
+        }
     }
 }

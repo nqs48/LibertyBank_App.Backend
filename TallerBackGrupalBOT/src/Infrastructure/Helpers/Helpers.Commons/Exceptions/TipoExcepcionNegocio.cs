@@ -35,7 +35,7 @@ namespace Helpers.Commons.Exceptions
         /// Correo electrónico no es valido
         /// </summary>
         [Description("Correo electrónico no es valido")]
-        CorreoElectronicoNoValido = 566
+        CorreoElectronicoNoValido = 566,
 
         /// <summary>
         /// Excepción entidad no encontrada

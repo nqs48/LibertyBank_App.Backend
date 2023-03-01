@@ -76,19 +76,19 @@ namespace Domain.Model.Entities.Cuentas
         public void AsignarSaldoInicial(decimal saldoInicial) => Saldo = saldoInicial;
 
         /// <summary>
-        /// Calculo Saldo Disponible
+        /// Calcular Saldo Disponible
         /// </summary>
         public void CalcularSaldoDisponible(decimal GMF) => SaldoDisponible =  Saldo - (Saldo * GMF) ;
 
         /// <summary>
-        /// Marcar como Cuenta Exenta.
+        /// Marcar como Cuenta Exenta GMF
         /// </summary>
         public void MarcarCuentaExenta() => Exenta = true;
 
         /// <summary>
-        /// Se agrega nueva actualizacion al cliente
+        /// Se agrega nueva modificacion
         /// </summary>
-        /// <param name="nuevaActualizacion"></param>
+        /// <param name="nuevaModificación"></param>
         public void AgregarModificacion(Modificación nuevaModificación)
         {
             HistorialModificaciones.Add(nuevaModificación);

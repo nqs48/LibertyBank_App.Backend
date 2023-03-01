@@ -48,5 +48,23 @@ namespace Helpers.Commons.Exceptions
         /// </summary>
         [Description("El valor de retiro excede el saldo disponible de la cuenta")]
         ValorRetiroNoPermitido = 567,
+
+        /// <summary>
+        /// Excepción cuenta no encontrada
+        /// </summary>
+        [Description("La cuenta no fue encontrada")]
+        CuentaNoEncontrada = 570,
+
+        /// <summary>
+        /// Excepción usuario no encontrado
+        /// </summary>
+        [Description("El usuario no fue encontrada")]
+        UsuarioNoEncontrado = 571,
+
+        /// <summary>
+        /// Usuario sin Permisos
+        /// </summary>
+        [Description("El usuario no tiene permisos para esta accion")]
+        UsuarioSinPermisos = 572,
     }
 }

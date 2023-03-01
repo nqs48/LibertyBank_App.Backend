@@ -1,8 +1,11 @@
-﻿namespace Helpers.ObjectsUtils.ResponseObjects
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Helpers.ObjectsUtils.ResponseObjects
 {
     /// <summary>
     /// ResponseContent
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ResponseContent
     {
         /// <summary>

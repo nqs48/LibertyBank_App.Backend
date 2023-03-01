@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Model.Entities.Clientes;
+using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 
 namespace Domain.Model.Entities.Cuentas
@@ -69,6 +70,29 @@ namespace Domain.Model.Entities.Cuentas
             HistorialModificaciones = new List<Modificación>();
         }
 
+        /// <summary>
+        /// Asignar saldo Inicial
+        /// </summary>
+        public void AsignarSaldoInicial(decimal saldoInicial) => Saldo = saldoInicial;
+
+        /// <summary>
+        /// Calculo Saldo Disponible
+        /// </summary>
+        public void CalcularSaldoDisponible(decimal GMF) => SaldoDisponible =  Saldo - (Saldo * GMF) ;
+
+        /// <summary>
+        /// Marcar como Cuenta Exenta.
+        /// </summary>
+        public void MarcarCuentaExenta() => Exenta = true;
+
+        /// <summary>
+        /// Se agrega nueva actualizacion al cliente
+        /// </summary>
+        /// <param name="nuevaActualizacion"></param>
+        public void AgregarModificacion(Modificación nuevaModificación)
+        {
+            HistorialModificaciones.Add(nuevaModificación);
+        }
 
         /// <summary>
         /// Habilitar una Cuenta.
@@ -80,6 +104,11 @@ namespace Domain.Model.Entities.Cuentas
         /// </summary>
         public void DeshabilitarCuenta() => EstadoCuenta = EstadoCuenta.Inactiva;
 
+        /// <summary>
+        /// Cancelar una Cuenta.
+        /// </summary>
+        public void CancelarCuenta() => EstadoCuenta = EstadoCuenta.Cancelada;
 
+        
     }
 }

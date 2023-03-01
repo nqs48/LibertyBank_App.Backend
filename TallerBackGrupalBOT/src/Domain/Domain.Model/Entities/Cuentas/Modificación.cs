@@ -20,5 +20,17 @@ namespace Domain.Model.Entities.Cuentas
         /// FechaModificación
         /// </summary>
         public DateTime FechaModificación { get; set; }
+
+        /// <summary>
+        /// Constructor de Modificacion
+        /// </summary>
+        /// <param name="tipoModificación"></param>
+        /// <param name="usuarioModificación"></param>
+        public Modificación(TipoModificación tipoModificación, Usuario usuarioModificación)
+        {
+            TipoModificación = tipoModificación;
+            UsuarioModificación = usuarioModificación;
+            FechaModificación = DateTime.Now;
+        }
     }
 }

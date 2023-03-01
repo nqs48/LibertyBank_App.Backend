@@ -62,7 +62,7 @@ namespace Helpers.Commons.Exceptions
         UsuarioNoEncontrado = 571,
 
         /// <summary>
-        /// Usuario sin Permisos
+        /// Excepcion Usuario sin Permisos
         /// </summary>
         [Description("El usuario no tiene permisos para esta accion")]
         UsuarioSinPermisos = 572,

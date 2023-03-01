@@ -94,7 +94,7 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> HabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
-            var tipoModificacion = TipoModificación.Inhabilitación;
+            var tipoModificacion = TipoModificación.Habilitación;
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
             if (usuario == null || cuentaEncontrada == null)

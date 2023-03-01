@@ -7,6 +7,7 @@ using Helpers.ObjectsUtils;
 using Helpers.ObjectsUtils.Extensions;
 using Microsoft.Extensions.Options;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Transacciones
@@ -25,6 +26,12 @@ namespace Domain.UseCase.Transacciones
             _transacciónRepository = transacciónRepository;
             _options = options;
         }
+
+        public async Task<Transacción> ObtenerTransacciónPorId(string idTransacción) =>
+                        await _transacciónRepository.ObtenerPorId(idTransacción);
+
+        public async Task<List<Transacción>> ObtenerTransaccionesPorIdCuenta(string idCuenta) =>
+                        await _transacciónRepository.ObtenerPorIdCuenta(idCuenta);
 
         public async Task<Transacción> RealizarConsignación(Transacción transacción)
         {

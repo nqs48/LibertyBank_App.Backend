@@ -6,11 +6,9 @@ namespace Domain.Model.Entities.Gateway
 {
     public interface ITransacciónRepository
     {
-        Task<List<Transacción>> ObtenerTodos();
-
         Task<Transacción> ObtenerPorId(string IdTransacción);
 
-        Task<Transacción> ObtenerPorIdCuenta(string IdCuenta);
+        Task<List<Transacción>> ObtenerPorIdCuenta(string IdCuenta);
 
         Task<Transacción> Crear(Transacción transacción);
     }

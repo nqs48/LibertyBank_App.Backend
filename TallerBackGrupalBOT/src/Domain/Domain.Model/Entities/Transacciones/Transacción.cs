@@ -36,6 +36,20 @@ namespace Domain.Model.Entities.Transacciones
             Descripción = descripción;
         }
 
+        public Transacción(string id, string idCuenta, DateTime fechaMovimiento,
+            TipoTransacción tipoTransacción, decimal valor, decimal saldoInicial,
+            decimal saldoFinal, string descripción)
+        {
+            Id = id;
+            IdCuenta = idCuenta;
+            FechaMovimiento = fechaMovimiento;
+            TipoTransacción = tipoTransacción;
+            Valor = valor;
+            SaldoInicial = saldoInicial;
+            SaldoFinal = saldoFinal;
+            Descripción = descripción;
+        }
+
         public void AsignarTipoTransacción(TipoTransacción tipo) => TipoTransacción = tipo;
 
         public void AsignarFechaMovimiento() => FechaMovimiento = DateTime.Now;

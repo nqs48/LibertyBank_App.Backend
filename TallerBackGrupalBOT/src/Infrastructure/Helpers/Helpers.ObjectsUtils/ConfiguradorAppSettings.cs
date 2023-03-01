@@ -67,5 +67,17 @@ namespace Helpers.ObjectsUtils
         /// </summary>
         /// <value>The instancias redis.</value>
         public SettingInstanciaRedis InstanciasRedis { get; set; }
+
+        /// <summary>
+        /// Gravamen al movimiento financiero Colombia
+        /// </summary>
+        /// <value>The instancias redis.</value>
+        public decimal GMF { get; set; }
+
+        /// <summary>
+        /// Valor Máximo permitido sobregiro
+        /// </summary>
+        /// <value>The instancias redis.</value>
+        public decimal ValorSobregiro { get; set; }
     }
 }

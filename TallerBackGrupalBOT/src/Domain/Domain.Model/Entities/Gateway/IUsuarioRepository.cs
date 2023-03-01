@@ -4,12 +4,29 @@ using System.Threading.Tasks;
 
 namespace Domain.Model.Entities.Gateway
 {
+    /// <summary>
+    /// Interfaz de repositorio de entidad <see cref="Usuario"/>
+    /// </summary>
     public interface IUsuarioRepository
     {
-        Task<List<Usuario>> ObtenerTodos();
+        /// <summary>
+        /// Método para obtener todos los usuarios
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Usuario>> ObtenerTodosAsync();
 
-        Task<Usuario> ObtenerPorId(string IdUsuario);
+        /// <summary>
+        /// Método para obtener un usuario por Id
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        Task<Usuario> ObtenerPorIdAsync(string idUsuario);
 
-        Task<Usuario> Crear(Usuario usuario);
+        /// <summary>
+        /// Método para crear un usuario
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
+        Task<Usuario> CrearAsync(Usuario usuario);
     }
 }

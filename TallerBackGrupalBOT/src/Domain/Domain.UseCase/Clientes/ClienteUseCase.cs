@@ -83,7 +83,7 @@ namespace Domain.UseCase.Clientes
         {
             var clienteVerificacion = await _gatewayCliente.ObtenerPorNumeroIdentificacion(nuevoCliente.NumeroIdentificación);
 
-            Usuario usuarioSeleccionado = await _gatewayUsuario.ObtenerPorId(idUsuarioCreacion);
+            Usuario usuarioSeleccionado = await _gatewayUsuario.ObtenerPorIdAsync(idUsuarioCreacion);
 
             // HACK: Descomentar despues de hacer pull de las excepciones creadas por los compañeros, la cual
             // ya contendra el tipo de excepcion de usuario no valido

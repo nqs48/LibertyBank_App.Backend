@@ -35,6 +35,18 @@ namespace Helpers.Commons.Exceptions
         /// Correo electrónico no es valido
         /// </summary>
         [Description("Correo electrónico no es valido")]
-        CorreoElectronicoNoValido = 566
+        CorreoElectronicoNoValido = 566,
+
+        /// <summary>
+        /// Excepción entidad no encontrada
+        /// </summary>
+        [Description("Excepción entidad no encontrada")]
+        EntidadNoEncontrada = 562,
+
+        /// <summary>
+        /// Valor Retiro No Permitido
+        /// </summary>
+        [Description("El valor de retiro excede el saldo disponible de la cuenta")]
+        ValorRetiroNoPermitido = 567,
     }
 }

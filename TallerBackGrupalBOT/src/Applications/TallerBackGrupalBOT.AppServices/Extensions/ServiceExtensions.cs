@@ -5,6 +5,9 @@ using DrivenAdapters.Mongo;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using System;
+using Domain.Model.Entities.Gateway;
+using Domain.UseCase.Usuarios;
+using DrivenAdapters.Mongo.Adapters;
 using TallerBackGrupalBOT.AppServices.Automapper;
 
 namespace TallerBackGrupalBOT.AppServices.Extensions
@@ -24,8 +27,8 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
             services.AddCors(o => o.AddPolicy(policyName, builder =>
             {
                 builder.AllowAnyOrigin()
-                       .AllowAnyMethod()
-                       .AllowAnyHeader();
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             }));
 
         /// <summary>
@@ -34,10 +37,7 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
         /// <param name="services">The services.</param>
         /// <returns></returns>
         public static IServiceCollection RegisterAutoMapper(this IServiceCollection services) =>
-            services.AddAutoMapper(cfg =>
-            {
-                cfg.AddDataReaderMapping();
-            }, typeof(ConfigurationProfile));
+            services.AddAutoMapper(cfg => { cfg.AddDataReaderMapping(); }, typeof(ConfigurationProfile));
 
         /// <summary>
         /// Método para registrar Mongo
@@ -46,8 +46,9 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
         /// <param name="connectionString">connection string.</param>
         /// <param name="db">database.</param>
         /// <returns></returns>
-        public static IServiceCollection RegisterMongo(this IServiceCollection services, string connectionString, string db) =>
-                                    services.AddSingleton<IContext>(provider => new Context(connectionString, db));
+        public static IServiceCollection RegisterMongo(this IServiceCollection services, string connectionString,
+            string db) =>
+            services.AddSingleton<IContext>(provider => new Context(connectionString, db));
 
         /// <summary>
         /// Método para registrar Redis Cache
@@ -56,7 +57,8 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
         /// <param name="connectionString">connection string.</param>
         /// <param name="dbNumber">database number.</param>
         /// <returns></returns>
-        public static IServiceCollection RegisterRedis(this IServiceCollection services, string connectionString, int dbNumber)
+        public static IServiceCollection RegisterRedis(this IServiceCollection services, string connectionString,
+            int dbNumber)
         {
             services.AddSingleton(s => LazyConnection(connectionString).Value.GetDatabase(dbNumber));
 
@@ -80,9 +82,16 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
 
             #endregion Helpers
 
+            #region Adaptadores
+
+            services.AddScoped<IUsuarioRepository, UsuarioRepositoryAdapter>();
+
+            #endregion
+
             #region UseCases
 
             services.AddScoped<IManageEventsUseCase, ManageEventsUseCase>();
+            services.AddScoped<IUsuarioUseCase, UsuarioUseCase>();
 
             #endregion UseCases
 
@@ -95,9 +104,6 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
         /// <param name="connectionString">connection string.</param>
         /// <returns></returns>
         private static Lazy<ConnectionMultiplexer> LazyConnection(string connectionString) =>
-            new(() =>
-            {
-                return ConnectionMultiplexer.Connect(connectionString);
-            });
+            new(() => { return ConnectionMultiplexer.Connect(connectionString); });
     }
 }

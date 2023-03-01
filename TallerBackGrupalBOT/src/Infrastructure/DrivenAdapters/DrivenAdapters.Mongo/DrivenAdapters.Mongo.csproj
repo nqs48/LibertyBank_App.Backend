@@ -14,6 +14,8 @@
 
   <ItemGroup>
     <Compile Remove="Entities\**" />
+    <Compile Include="Entities\Base\EntityBase.cs" />
+    <Compile Include="Entities\UsuarioEntity.cs" />
     <EmbeddedResource Remove="Entities\**" />
     <None Remove="Entities\**" />
   </ItemGroup>

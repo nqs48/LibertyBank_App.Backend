@@ -55,8 +55,8 @@ namespace Domain.UseCase.Transacciones
             var cuenta = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuenta);
 
-            //TODO: Validar Cuenta Cancelada
-            //TODO: Validar Cuenta Inhabilitada
+            //TODO: Validar Cuenta Cancelada con método clase cuenta
+            //TODO: Validar Cuenta Inhabilitada con método clase cuenta
 
             transacción.AsignarTipoTransacción(TipoTransacción.Retiro);
             transacción.AsignarFechaMovimiento();
@@ -64,7 +64,7 @@ namespace Domain.UseCase.Transacciones
             transacción.AsignarSaldoFinalDebito(valorRetiro);
             transacción.GenerarDescripción();
 
-            //TODO: Actualizar Saldo de la cuenta
+            //TODO: Actualizar Saldo de la cuenta con método clase cuenta
             await _cuentaRepository.Actualizar(transacción.Id, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
@@ -73,6 +73,10 @@ namespace Domain.UseCase.Transacciones
         {
             var cuentaOrigen = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var cuentaDestino = await _cuentaRepository.ObtenerPorId(idCuentaReceptor);
+
+            //TODO: Validar Cuenta Origen no este Cancelada con método clase cuenta
+            //TODO: Validar Cuenta Destino no este Cancelada con método clase cuenta
+            //TODO: Validar Cuenta Origen no este Inhabilitada con método clase cuenta
 
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuentaOrigen);
 
@@ -84,7 +88,10 @@ namespace Domain.UseCase.Transacciones
 
             var transacciónReceptor = CrearTransacciónReceptor(transacción, cuentaDestino);
 
-            //TODO: Actualizar Saldo de las 2 cuentas
+            //TODO: Actualizar Saldo de las 2 cuentas con método clase cuenta
+
+            await _cuentaRepository.Actualizar(transacción.Id, cuentaOrigen);
+            await _cuentaRepository.Actualizar(idCuentaReceptor, cuentaDestino);
 
             await _transacciónRepository.Crear(transacciónReceptor);
             return await _transacciónRepository.Crear(transacción);

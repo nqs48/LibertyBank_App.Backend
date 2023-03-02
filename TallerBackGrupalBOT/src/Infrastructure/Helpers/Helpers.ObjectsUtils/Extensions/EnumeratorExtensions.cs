@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 
@@ -8,6 +9,7 @@ namespace Helpers.ObjectsUtils.Extensions
     /// <summary>
     /// EnumeratorExtensions
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class EnumeratorExtensions
     {
         /// <summary>

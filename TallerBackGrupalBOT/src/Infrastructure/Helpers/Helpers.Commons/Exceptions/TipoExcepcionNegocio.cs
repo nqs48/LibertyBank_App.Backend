@@ -14,6 +14,12 @@ namespace Helpers.Commons.Exceptions
         ExceptionNoControlada = 555,
 
         /// <summary>
+        /// Excepción entidad no encontrada
+        /// </summary>
+        [Description("Excepción entidad no encontrada")]
+        EntidadNoEncontrada = 562,
+
+        /// <summary>
         /// Identificación del cliente ya existe
         /// </summary>
         [Description("Identificación del cliente ya existe")]
@@ -28,8 +34,7 @@ namespace Helpers.Commons.Exceptions
         /// <summary>
         /// Cliente no existe
         /// </summary>
-        [Description("Cliente no existe")]
-        ClienteNoExiste = 565,
+        [Description("Cliente no existe")] ClienteNoExiste = 565,
 
         /// <summary>
         /// Correo electrónico no es valido
@@ -37,16 +42,23 @@ namespace Helpers.Commons.Exceptions
         [Description("Correo electrónico no es valido")]
         CorreoElectronicoNoValido = 566,
 
-        /// <summary>
-        /// Excepción entidad no encontrada
-        /// </summary>
-        [Description("Excepción entidad no encontrada")]
-        EntidadNoEncontrada = 562,
 
         /// <summary>
         /// Valor Retiro No Permitido
         /// </summary>
         [Description("El valor de retiro excede el saldo disponible de la cuenta")]
         ValorRetiroNoPermitido = 567,
+
+        /// <summary>
+        /// La cuenta esta cancelada
+        /// </summary>
+        [Description("La cuenta se encuentra cancelada")]
+        EstadoCuentaCancelada = 568,
+
+        /// <summary>
+        /// La cuenta esta inactiva
+        /// </summary>
+        [Description("La cuenta se encuentra inactiva")]
+        EstadoCuentaInactiva = 569
     }
 }

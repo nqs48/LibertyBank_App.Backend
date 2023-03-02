@@ -47,7 +47,7 @@ public class UsuarioController : AppControllerBase<UsuarioController>
         HandleRequest(async () =>
         {
             IEnumerable<Usuario> usuarios = await _usuarioUseCase.ObtenerTodos();
-            return _mapper.Map<IEnumerable<UsuarioResponse>>(usuarios);
+            return _mapper.Map<IEnumerable<UsuarioHandler>>(usuarios);
         }, "");
 
     /// <summary>
@@ -61,7 +61,7 @@ public class UsuarioController : AppControllerBase<UsuarioController>
         HandleRequest(async () =>
         {
             Usuario usuario = await _usuarioUseCase.ObtenerPorId(id);
-            return _mapper.Map<UsuarioResponse>(usuario);
+            return _mapper.Map<UsuarioHandler>(usuario);
         }, "");
 
     /// <summary>
@@ -74,6 +74,6 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     {
         Usuario usuarioCreado = await _usuarioUseCase.Crear(_mapper.Map<Usuario>(crearUsuario));
 
-        return _mapper.Map<UsuarioResponse>(usuarioCreado);
+        return _mapper.Map<UsuarioHandler>(usuarioCreado);
     }, "");
 }

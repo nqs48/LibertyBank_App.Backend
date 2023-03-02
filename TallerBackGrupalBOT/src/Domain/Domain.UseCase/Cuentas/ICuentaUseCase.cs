@@ -14,23 +14,26 @@ namespace Domain.UseCase.Cuentas
     {
         /// <summary>
         /// Cancelar una Cuenta.
+        /// <param name="idUsuarioModificacion"></param> 
         /// <param name="cuenta"></param> 
         /// </summary>
         /// <returns></returns>
-        Task<Cuenta> CancelarCuenta(Cuenta cuenta);
+        Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta);
 
         /// <summary>
-        /// Habilitar una Cuenta.
+        /// Habilitar una Cuenta
+        /// <param name="idUsuarioModificacion"></param> 
         /// <param name="cuenta"></param>
         /// </summary>
         /// <returns></returns>
-        Task<Cuenta> HabilitarCuenta(Cuenta cuenta);
+        Task<Cuenta> HabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta);
 
         /// <summary>
-        /// Deshabilitar una Cuenta.
+        /// Deshabilitar una Cuenta
+        /// <param name="idUsuarioModificacion"></param> 
         /// <param name="cuenta"></param>
         /// </summary>
         /// <returns></returns>
-        Task<Cuenta> DeshabilitarCuenta(Cuenta cuenta);
+        Task<Cuenta> DeshabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta);
     }
 }

@@ -56,6 +56,24 @@ namespace Helpers.Commons.Exceptions
         ValorRetiroNoPermitido = 567,
 
         /// <summary>
+        /// Excepción cuenta no encontrada
+        /// </summary>
+        [Description("La cuenta no fue encontrada")]
+        CuentaNoEncontrada = 570,
+
+        /// <summary>
+        /// Excepción usuario no encontrado
+        /// </summary>
+        [Description("El usuario no fue encontrada")]
+        UsuarioNoEncontrado = 571,
+
+        /// <summary>
+        /// Excepcion Usuario sin Permisos
+        /// </summary>
+        [Description("El usuario no tiene permisos para esta accion")]
+        UsuarioSinPermisos = 572,
+
+        /// <summary>
         /// La cuenta esta cancelada
         /// </summary>
         [Description("La cuenta se encuentra cancelada")]

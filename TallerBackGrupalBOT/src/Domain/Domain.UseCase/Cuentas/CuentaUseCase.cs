@@ -1,6 +1,9 @@
 ﻿using credinet.exception.middleware.models;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
+using Helpers.Commons.Exceptions;
+using Helpers.ObjectsUtils.Extensions;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading.Tasks;
 
@@ -14,63 +17,99 @@ namespace Domain.UseCase.Cuentas
 
         private readonly ICuentaRepository _repositoryCuenta;
         private readonly IClienteRepository _clienteRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CuentaUseCase"/> class.
         /// </summary>
         /// <param name="repositoryCuenta">The logger.</param>
-        public CuentaUseCase( ICuentaRepository repositoryCuenta, IClienteRepository clienteRepository)
+        /// <param name="clienteRepository">The logger.</param>
+        /// <param name="usuarioRepository">The logger.</param>
+        public CuentaUseCase( ICuentaRepository repositoryCuenta, IClienteRepository clienteRepository, IUsuarioRepository usuarioRepository)
         {
             _repositoryCuenta = repositoryCuenta;
             _clienteRepository = clienteRepository;
+            _usuarioRepository = usuarioRepository;
         }
 
         /// <summary>
-        /// <see cref="ICuentaUseCase.CancelarCuenta(Cuenta)"/>
+        /// <see cref="ICuentaUseCase.CancelarCuenta(string,Cuenta)"/>
         /// </summary>
+        /// <param name="idUsuarioModificacion"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> CancelarCuenta(Cuenta cuenta)
+        public async Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
+            var tipoModificacion= TipoModificación.Cancelación;
+            var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (cuentaEncontrada == null)
+            if (usuario == null || cuentaEncontrada == null)
             {
-                throw new Exception("No se encontró la cuenta");
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+            }else if (usuario.Rol.Equals(0))
+            {
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
+                                (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
+            Modificación nuevaModificacion = new Modificación(tipoModificacion, usuario);
             cuentaEncontrada.CancelarCuenta();
+            cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return cuentaEncontrada;
 
         }
 
         /// <summary>
-        /// <see cref="ICuentaUseCase.DeshabilitarCuenta(Cuenta)"/>
+        /// <see cref="ICuentaUseCase.DeshabilitarCuenta(string,Cuenta)"/>
         /// </summary>
+        /// <param name="idUsuarioModificacion"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> DeshabilitarCuenta(Cuenta cuenta)
+        public async Task<Cuenta> DeshabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
+            var tipoModificacion = TipoModificación.Inhabilitación;
+            var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (cuentaEncontrada == null)
+            if (usuario == null || cuentaEncontrada == null)
             {
-                throw new Exception("No se encontró la cuenta");
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
             }
+            else if (usuario.Rol.Equals(0))
+            {
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
+                                (int)TipoExcepcionNegocio.UsuarioSinPermisos);
+            }
+            Modificación nuevaModificacion = new Modificación(tipoModificacion, usuario);
             cuentaEncontrada.DeshabilitarCuenta();
+            cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return cuentaEncontrada;
         }
 
         /// <summary>
-        /// <see cref="ICuentaUseCase.HabilitarCuenta(Cuenta)"/>
+        /// <see cref="ICuentaUseCase.HabilitarCuenta(string,Cuenta)"/>
         /// </summary>
+        /// <param name="idUsuarioModificacion"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> HabilitarCuenta(Cuenta cuenta)
+        public async Task<Cuenta> HabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
+            var tipoModificacion = TipoModificación.Habilitación;
+            var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (cuentaEncontrada == null)
+            if (usuario == null || cuentaEncontrada == null)
             {
-                throw new Exception("No se encontró la cuenta");
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
             }
+            else if (usuario.Rol.Equals(0))
+            {
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
+                                (int)TipoExcepcionNegocio.UsuarioSinPermisos);
+            }
+            Modificación nuevaModificacion = new Modificación(tipoModificacion, usuario);
             cuentaEncontrada.HabilitarCuenta();
+            cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return cuentaEncontrada;
         }
 

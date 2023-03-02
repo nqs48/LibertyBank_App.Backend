@@ -9,6 +9,8 @@ using Domain.Model.Entities.Gateway;
 using Domain.UseCase.Usuarios;
 using DrivenAdapters.Mongo.Adapters;
 using TallerBackGrupalBOT.AppServices.Automapper;
+using Domain.UseCase.Clientes;
+using Domain.UseCase.Cuentas;
 
 namespace TallerBackGrupalBOT.AppServices.Extensions
 {
@@ -86,12 +88,16 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
 
             services.AddScoped<IUsuarioRepository, UsuarioRepositoryAdapter>();
 
-            #endregion
+            services.AddScoped<IClienteRepository, ClienteRepositoryAdapter>();
+
+            #endregion Adaptadores
 
             #region UseCases
 
             services.AddScoped<IManageEventsUseCase, ManageEventsUseCase>();
             services.AddScoped<IUsuarioUseCase, UsuarioUseCase>();
+            services.AddScoped<ICuentaUseCase, CuentaUseCase>();
+            services.AddScoped<IClienteUseCase, ClienteUseCase>();
 
             #endregion UseCases
 

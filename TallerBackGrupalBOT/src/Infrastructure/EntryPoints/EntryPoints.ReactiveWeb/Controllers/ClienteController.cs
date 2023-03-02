@@ -1,6 +1,121 @@
-﻿namespace EntryPoints.ReactiveWeb.Controllers
+﻿using AutoMapper;
+using Domain.Model.Entities.Clientes;
+using Domain.Model.Entities.Cuentas;
+using Domain.UseCase.Clientes;
+using Domain.UseCase.Common;
+using EntryPoints.ReactiveWeb.Base;
+using EntryPoints.ReactiveWeb.Entities.Commands;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+
+namespace EntryPoints.ReactiveWeb.Controllers
 {
-    public class ClienteController
+    /// <summary>
+    /// Controlador de <see cref="Cliente"/> implementando <see cref="ClienteUseCase"/>
+    /// </summary>
+    [Produces("application/json")]
+    [ApiVersion("1.0")]
+    [Route("api/clientes")]
+    public class ClienteController : AppControllerBase<ClienteController>
     {
+        private readonly IClienteUseCase _useCase;
+
+        private readonly IMapper _mapper;
+
+        /// <summary>
+        /// Constructor de <see cref="ClienteController"/>
+        /// </summary>
+        /// <param name="eventsUseCase"></param>
+        /// <param name="useCase"></param>
+        /// <param name="mapper"></param>
+        public ClienteController(IManageEventsUseCase eventsUseCase, IClienteUseCase useCase, IMapper mapper) :
+            base(eventsUseCase)
+        {
+            _useCase = useCase;
+            _mapper = mapper;
+        }
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.ActualizarCorreoElectronico(string, string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <param name="nuevoCorreo"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("update/email/{idCliente}")]
+        public Task<IActionResult> ActualizarCorreoCliente(string idCliente, [FromBody] string nuevoCorreo) =>
+            HandleRequest(async () => await _useCase.ActualizarCorreoElectronico(idCliente, nuevoCorreo), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.AgregarProductosCliente(string, Cuenta)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <param name="nuevaCuenta"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("add/products/{idCliente}/{idUsuario}")]
+        public Task<IActionResult> AgregarProductosACliente(string idCliente, [FromBody] Cuenta nuevaCuenta) =>
+            HandleRequest(async () => await _useCase.AgregarProductosCliente(idCliente, nuevaCuenta), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.CrearCliente(string, Cliente)"/>
+        /// </summary>
+        /// <param name="idUsuario"></param>
+        /// <param name="nuevoCliente"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("add/cliente/{idUsuario}")]
+        public Task<IActionResult> AgregarCliente(string idUsuario, CrearCliente nuevoCliente) =>
+            HandleRequest(async () => _useCase.CrearCliente(idUsuario, _mapper.Map<Cliente>(nuevoCliente)), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.DeshabilitarCliente(string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("del/{idCliente}")]
+        public Task<IActionResult> DeshabilitarCliente(string idCliente) =>
+            HandleRequest(async () => _useCase.DeshabilitarCliente(idCliente), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.DeshabilitarDeudaCliente(string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [Route("del/deuda/{idCliente}")]
+        public Task<IActionResult> DeshabilitarDeudaCliente(string idCliente) =>
+            HandleRequest(async () => _useCase.DeshabilitarDeudaCliente(idCliente), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.HabilitarCliente(string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("enable/{idCliente}")]
+        public Task<IActionResult> HabilitarCliente(string idCliente) =>
+            HandleRequest(async () => _useCase.HabilitarCliente(idCliente), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.HabilitarDeudaCliente(string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("enable/deuda/{idCliente}")]
+        public Task<IActionResult> HabilitarDeudaCliente(string idCliente) =>
+            HandleRequest(async () => _useCase.HabilitarDeudaCliente(idCliente), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.ObtenerClientePorId(string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{idCliente}")]
+        public Task<IActionResult> ObtenerClientePorId(string idCliente) =>
+                HandleRequest(async () => _useCase.ObtenerClientePorId(idCliente), "");
     }
 }

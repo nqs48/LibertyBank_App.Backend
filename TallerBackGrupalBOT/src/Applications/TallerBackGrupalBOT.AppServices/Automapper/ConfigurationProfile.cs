@@ -24,6 +24,8 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
             CreateMap<CrearUsuario, Usuario>();
 
             CreateMap<ClienteEntity, Cliente>().ReverseMap();
+
+            CreateMap<CrearCliente, Cliente>();
         }
     }
 }

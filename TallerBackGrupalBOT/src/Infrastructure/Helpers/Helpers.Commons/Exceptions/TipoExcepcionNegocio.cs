@@ -14,6 +14,12 @@ namespace Helpers.Commons.Exceptions
         ExceptionNoControlada = 555,
 
         /// <summary>
+        /// Usuario no valido para realizar operación
+        /// </summary>
+        [Description("Usuario no valido para realizar operación")]
+        UsuarioNoValido = 561,
+
+        /// <summary>
         /// Identificación del cliente ya existe
         /// </summary>
         [Description("Identificación del cliente ya existe")]

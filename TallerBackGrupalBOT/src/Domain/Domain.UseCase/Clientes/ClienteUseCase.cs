@@ -85,11 +85,9 @@ namespace Domain.UseCase.Clientes
 
             Usuario usuarioSeleccionado = await _gatewayUsuario.ObtenerPorIdAsync(idUsuarioCreacion);
 
-            // HACK: Descomentar despues de hacer pull de las excepciones creadas por los compañeros, la cual
-            // ya contendra el tipo de excepcion de usuario no valido
-            //if (usuarioSeleccionado.Rol != Roles.Admin)
-            //    throw new BusinessException($"El usuario {usuarioSeleccionado.NombreCompleto} no puede crear nuevos clientes",
-            //        (int)TipoExcepcionNegocio.UsuarioNoValido);
+            if (usuarioSeleccionado.Rol != Roles.Admin)
+                throw new BusinessException($"El usuario {usuarioSeleccionado.NombreCompleto} no puede crear nuevos clientes",
+                    (int)TipoExcepcionNegocio.UsuarioNoValido);
 
             if (clienteVerificacion is not null)
                 throw new BusinessException($"Cliente con numero de identificación {nuevoCliente.NumeroIdentificación} ya existe",
@@ -103,7 +101,7 @@ namespace Domain.UseCase.Clientes
                 throw new BusinessException($"El correo electrónico {nuevoCliente.CorreoElectronico} no es valido",
                     (int)TipoExcepcionNegocio.ClienteNoEsMayorDeEdad);
 
-            Actualización nuevaActualizacion = new Actualización(TipoActualización.Creación, usuarioSeleccionado);
+            Actualización nuevaActualizacion = new(TipoActualización.Creación, usuarioSeleccionado);
 
             nuevoCliente.AgregarActualizacion(nuevaActualizacion);
 

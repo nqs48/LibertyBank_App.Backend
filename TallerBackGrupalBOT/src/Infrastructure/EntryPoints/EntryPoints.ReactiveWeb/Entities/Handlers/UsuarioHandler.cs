@@ -3,9 +3,9 @@
 namespace EntryPoints.ReactiveWeb.Entities.Handlers;
 
 /// <summary>
-/// Request DTO de entidad <see cref="Usuario"/>
+/// Handler DTO de entidad <see cref="Usuario"/>
 /// </summary>
-public class UsuarioResponse
+public class UsuarioHandler
 {
     /// <summary>
     /// Id

@@ -12,12 +12,21 @@ using System.Threading.Tasks;
 
 namespace Domain.UseCase.Transacciones
 {
+    /// <summary>
+    /// Caso de uso de entidad <see cref="Transacción"/>
+    /// </summary>
     public class TransacciónUseCase : ITransacciónUseCase
     {
         private readonly ICuentaRepository _cuentaRepository;
         private readonly ITransacciónRepository _transacciónRepository;
         private readonly IOptions<ConfiguradorAppSettings> _options;
 
+        /// <summary>
+        /// Crea una instancia del caso de uso <see cref="TransacciónUseCase"/>
+        /// </summary>
+        /// <param name="cuentaRepository"></param>
+        /// <param name="transacciónRepository"></param>
+        /// <param name="options"></param>
         public TransacciónUseCase(ICuentaRepository cuentaRepository,
             ITransacciónRepository transacciónRepository,
             IOptions<ConfiguradorAppSettings> options)
@@ -27,17 +36,32 @@ namespace Domain.UseCase.Transacciones
             _options = options;
         }
 
+        /// <summary>
+        /// Retorna una entidad de tipo <see cref="Transacción"/> por su Id
+        /// </summary>
+        /// <param name="idTransacción"></param>
+        /// <returns></returns>
         public async Task<Transacción> ObtenerTransacciónPorId(string idTransacción) =>
-                        await _transacciónRepository.ObtenerPorId(idTransacción);
+            await _transacciónRepository.ObtenerPorId(idTransacción);
 
+        /// <summary>
+        /// Retorna las entidades de tipo <see cref="Transacción"/> asociadas por el Id de entidad de tipo <see cref="Cuenta"/>
+        /// </summary>
+        /// <param name="idCuenta"></param>
+        /// <returns></returns>
         public async Task<List<Transacción>> ObtenerTransaccionesPorIdCuenta(string idCuenta) =>
-                        await _transacciónRepository.ObtenerPorIdCuenta(idCuenta);
+            await _transacciónRepository.ObtenerPorIdCuenta(idCuenta);
 
+        /// <summary>
+        /// Método de tipo <see cref="Transacción"/> que realiza una consignación
+        /// </summary>
+        /// <param name="transacción"></param>
+        /// <returns></returns>
         public async Task<Transacción> RealizarConsignación(Transacción transacción)
         {
             var cuenta = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
 
-            //TODO: Validar Cuenta Cancelada
+            ValidarCuentaCancelada(cuenta);
 
             transacción.AsignarTipoTransacción(TipoTransacción.Consignación);
             transacción.AsignarFechaMovimiento();
@@ -50,13 +74,24 @@ namespace Domain.UseCase.Transacciones
             return await _transacciónRepository.Crear(transacción);
         }
 
+        /// <summary>
+        /// Método de tipo <see cref="Transacción"/> que realiza un retiro
+        /// </summary>
+        /// <param name="transacción"></param>
+        /// <returns></returns>
         public async Task<Transacción> RealizarRetiro(Transacción transacción)
         {
             var cuenta = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuenta);
 
-            //TODO: Validar Cuenta Cancelada con método clase cuenta
+            ValidarCuentaCancelada(cuenta);
+
             //TODO: Validar Cuenta Inhabilitada con método clase cuenta
+
+            // if (cuenta.EstadoCuenta == EstadoCuenta.Inactiva)
+            // {
+            //     
+            // }
 
             transacción.AsignarTipoTransacción(TipoTransacción.Retiro);
             transacción.AsignarFechaMovimiento();
@@ -69,13 +104,20 @@ namespace Domain.UseCase.Transacciones
             return await _transacciónRepository.Crear(transacción);
         }
 
+        /// <summary>
+        /// Método de tipo <see cref="Transacción"/> que realiza una transferencia
+        /// </summary>
+        /// <param name="transacción"></param>
+        /// <param name="idCuentaReceptor"></param>
+        /// <returns></returns>
         public async Task<Transacción> RealizarTransferencia(Transacción transacción, string idCuentaReceptor)
         {
             var cuentaOrigen = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var cuentaDestino = await _cuentaRepository.ObtenerPorId(idCuentaReceptor);
 
-            //TODO: Validar Cuenta Origen no este Cancelada con método clase cuenta
-            //TODO: Validar Cuenta Destino no este Cancelada con método clase cuenta
+            ValidarCuentaCancelada(cuentaOrigen);
+            ValidarCuentaCancelada(cuentaDestino);
+
             //TODO: Validar Cuenta Origen no este Inhabilitada con método clase cuenta
 
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuentaOrigen);
@@ -95,6 +137,15 @@ namespace Domain.UseCase.Transacciones
 
             await _transacciónRepository.Crear(transacciónReceptor);
             return await _transacciónRepository.Crear(transacción);
+        }
+
+        private static void ValidarCuentaCancelada(Cuenta cuenta)
+        {
+            if (cuenta.EstadoCuenta == EstadoCuenta.Cancelada)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaCancelada.GetDescription(),
+                    (int)TipoExcepcionNegocio.EstadoCuentaCancelada);
+            }
         }
 
         private decimal ValidarValorRetiro(decimal valor, Cuenta cuenta)
@@ -122,13 +173,13 @@ namespace Domain.UseCase.Transacciones
             if (cuenta.TipoCuenta == TipoCuenta.Ahorros && valorConGMF > cuenta.Saldo)
             {
                 throw new BusinessException(TipoExcepcionNegocio.ValorRetiroNoPermitido.GetDescription(),
-                            (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
+                    (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
             }
 
             if (cuenta.TipoCuenta == TipoCuenta.Corriente && valorConGMF > saldoConSobregiro)
             {
                 throw new BusinessException(TipoExcepcionNegocio.ValorRetiroNoPermitido.GetDescription(),
-                            (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
+                    (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
             }
 
             return valorConGMF;
@@ -146,7 +197,8 @@ namespace Domain.UseCase.Transacciones
 
         private decimal AsignarSaldoFinalReceptor(decimal saldoInicial, decimal valor) => saldoInicial + valor;
 
-        private String GenerarDescripciónTransferenciaReceptor(decimal valor, string idCuentaOrigen, string idCuentaDestino) =>
+        private String GenerarDescripciónTransferenciaReceptor(decimal valor, string idCuentaOrigen,
+            string idCuentaDestino) =>
             $"Se Recibió Transferencia por ${valor} desde la {idCuentaOrigen} a la cuenta {idCuentaDestino}";
     }
 }

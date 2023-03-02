@@ -1,5 +1,4 @@
 ﻿using Domain.Model.Entities.Usuarios;
-using DrivenAdapters.Mongo.entities;
 using DrivenAdapters.Mongo.Entities;
 using MongoDB.Driver;
 
@@ -15,6 +14,9 @@ namespace DrivenAdapters.Mongo
         /// </summary>
         public IMongoCollection<UsuarioEntity> Usuarios { get; }
 
+        /// <summary>
+        /// Colección de tipo <see cref="Clientes"/>
+        /// </summary>
         public IMongoCollection<ClienteEntity> Clientes { get; }
     }
 }

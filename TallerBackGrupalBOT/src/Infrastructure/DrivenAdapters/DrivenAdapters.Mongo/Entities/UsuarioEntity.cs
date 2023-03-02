@@ -4,7 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
 
-namespace DrivenAdapters.Mongo.entities;
+namespace DrivenAdapters.Mongo.Entities;
 
 /// <summary>
 /// DTO de entidad <see cref="Usuario"/>

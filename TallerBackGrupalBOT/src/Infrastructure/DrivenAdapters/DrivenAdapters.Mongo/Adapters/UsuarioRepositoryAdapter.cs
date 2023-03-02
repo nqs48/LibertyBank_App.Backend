@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
-using DrivenAdapters.Mongo.entities;
+using DrivenAdapters.Mongo.Entities;
 using MongoDB.Driver;
 
 namespace DrivenAdapters.Mongo.Adapters;
@@ -27,7 +27,6 @@ public class UsuarioRepositoryAdapter : IUsuarioRepository
         _mongoUsuarioCollection = mongoDb.Usuarios;
         _mapper = mapper;
     }
-
 
     /// <summary>
     /// <see cref="IUsuarioRepository.ObtenerTodosAsync"/>

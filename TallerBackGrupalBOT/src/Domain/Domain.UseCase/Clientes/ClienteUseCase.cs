@@ -48,6 +48,9 @@ namespace Domain.UseCase.Clientes
 
             clienteSeleccionado.CambiarCorreoElectronico(nuevoCorreo);
 
+            if (!clienteSeleccionado.VerificarCampoCorreo())
+                throw new BusinessException($"Correo electrónico nuevo no valido", (int)TipoExcepcionNegocio.CorreoElectronicoNoValido);
+
             return await _gatewayCliente.ActualizarAsync(idCliente, clienteSeleccionado);
         }
 

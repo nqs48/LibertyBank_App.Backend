@@ -5,6 +5,7 @@ using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
+using DrivenAdapters.Mongo.entities;
 
 namespace TallerBackGrupalBOT.AppServices.Automapper
 {

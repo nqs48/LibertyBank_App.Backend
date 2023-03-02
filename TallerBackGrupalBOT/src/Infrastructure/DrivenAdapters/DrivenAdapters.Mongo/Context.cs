@@ -4,6 +4,7 @@ using Domain.Model.Entities.Transacciones;
 using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
 using Domain.Model.Entities.Clientes;
+using DrivenAdapters.Mongo.entities;
 
 namespace DrivenAdapters.Mongo
 {

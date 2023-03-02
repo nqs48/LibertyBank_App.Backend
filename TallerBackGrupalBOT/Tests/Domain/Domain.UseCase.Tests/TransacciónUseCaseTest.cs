@@ -33,7 +33,8 @@ namespace Domain.UseCase.Tests
             _mockCuentaRepository = new();
             _mockTransacciónRepository = new();
 
-            _transacciónUseCase = new(_mockCuentaRepository.Object, _mockTransacciónRepository.Object, _mockOptions.Object);
+            _transacciónUseCase = new(_mockCuentaRepository.Object, _mockTransacciónRepository.Object,
+                _mockOptions.Object);
         }
 
         [Fact]
@@ -93,6 +94,27 @@ namespace Domain.UseCase.Tests
         }
 
         [Fact]
+        public async Task RealizarConsignación_EstadoCuentaCancelada_Retorna_Excepcion()
+        {
+            _mockCuentaRepository
+                .Setup(repository => repository.ObtenerPorId(It.IsAny<string>()))
+                .ReturnsAsync(ObtenerCuentaCanceladaTest);
+
+            _mockCuentaRepository
+                .Setup(repository => repository.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()))
+                .ReturnsAsync(ObtenerCuentaCanceladaTest);
+
+            _mockTransacciónRepository
+                .Setup(repository => repository.Crear(It.IsAny<Transacción>()))
+                .ReturnsAsync(ObtenerUnaTransacciónTest);
+
+            BusinessException businessException = await Assert.ThrowsAsync<BusinessException>(async () =>
+                await _transacciónUseCase.RealizarConsignación(ObtenerUnaTransacciónTest()));
+
+            Assert.Equal((int)TipoExcepcionNegocio.EstadoCuentaCancelada, businessException.code);
+        }
+
+        [Fact]
         public async Task RealizarRetiroCuentaExenta_Exitoso()
         {
             var transacciónTest = new TransacciónBuilderTest()
@@ -144,19 +166,22 @@ namespace Domain.UseCase.Tests
                 .Returns(_appSettings);
 
             var exception =
-                await Assert.ThrowsAsync<BusinessException>(async () => await _transacciónUseCase.RealizarRetiro(transacciónTest));
+                await Assert.ThrowsAsync<BusinessException>(async () =>
+                    await _transacciónUseCase.RealizarRetiro(transacciónTest));
 
             Assert.Equal((int)TipoExcepcionNegocio.ValorRetiroNoPermitido, exception.code);
 
             _mockCuentaRepository.Verify(mock => mock.ObtenerPorId((It.IsAny<string>())), Times.Once());
             _mockTransacciónRepository.Verify(mock => mock.Crear((It.IsAny<Transacción>())), Times.Never());
-            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()), Times.Never());
+            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()),
+                Times.Never());
         }
 
         [Fact]
         public async Task RealizarRetiroCuentaCorriente_Exenta_MontoARetiraMayorSaldoMasSobregiro_LanzaExcepción()
         {
-            var valorRetiroMayorASaldoMasSobregiro = ObtenerCuentaExentaCorrienteTest().Saldo + _appSettings.ValorSobregiro + 1;
+            var valorRetiroMayorASaldoMasSobregiro =
+                ObtenerCuentaExentaCorrienteTest().Saldo + _appSettings.ValorSobregiro + 1;
 
             var transacciónTest = new TransacciónBuilderTest()
                 .WithId("1")
@@ -172,13 +197,15 @@ namespace Domain.UseCase.Tests
                 .Returns(_appSettings);
 
             var exception =
-                await Assert.ThrowsAsync<BusinessException>(async () => await _transacciónUseCase.RealizarRetiro(transacciónTest));
+                await Assert.ThrowsAsync<BusinessException>(async () =>
+                    await _transacciónUseCase.RealizarRetiro(transacciónTest));
 
             Assert.Equal((int)TipoExcepcionNegocio.ValorRetiroNoPermitido, exception.code);
 
             _mockCuentaRepository.Verify(mock => mock.ObtenerPorId((It.IsAny<string>())), Times.Once());
             _mockTransacciónRepository.Verify(mock => mock.Crear((It.IsAny<Transacción>())), Times.Never());
-            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()), Times.Never());
+            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()),
+                Times.Never());
         }
 
         [Fact]
@@ -200,19 +227,22 @@ namespace Domain.UseCase.Tests
                 .Returns(_appSettings);
 
             var exception =
-                await Assert.ThrowsAsync<BusinessException>(async () => await _transacciónUseCase.RealizarRetiro(transacciónTest));
+                await Assert.ThrowsAsync<BusinessException>(async () =>
+                    await _transacciónUseCase.RealizarRetiro(transacciónTest));
 
             Assert.Equal((int)TipoExcepcionNegocio.ValorRetiroNoPermitido, exception.code);
 
             _mockCuentaRepository.Verify(mock => mock.ObtenerPorId((It.IsAny<string>())), Times.Once());
             _mockTransacciónRepository.Verify(mock => mock.Crear((It.IsAny<Transacción>())), Times.Never());
-            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()), Times.Never());
+            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()),
+                Times.Never());
         }
 
         [Fact]
         public async Task RealizarRetiroCuentaCorriente_NoExenta_MontoARetiraIgualSaldoMasSobregiro_LanzaExcepción()
         {
-            var valorRetiroIgualASaldoMasSobregiro = ObtenerCuentaNoExentaCorrienteTest().Saldo + _appSettings.ValorSobregiro + 1;
+            var valorRetiroIgualASaldoMasSobregiro =
+                ObtenerCuentaNoExentaCorrienteTest().Saldo + _appSettings.ValorSobregiro + 1;
 
             var transacciónTest = new TransacciónBuilderTest()
                 .WithId("1")
@@ -228,13 +258,15 @@ namespace Domain.UseCase.Tests
                 .Returns(_appSettings);
 
             var exception =
-                await Assert.ThrowsAsync<BusinessException>(async () => await _transacciónUseCase.RealizarRetiro(transacciónTest));
+                await Assert.ThrowsAsync<BusinessException>(async () =>
+                    await _transacciónUseCase.RealizarRetiro(transacciónTest));
 
             Assert.Equal((int)TipoExcepcionNegocio.ValorRetiroNoPermitido, exception.code);
 
             _mockCuentaRepository.Verify(mock => mock.ObtenerPorId((It.IsAny<string>())), Times.Once());
             _mockTransacciónRepository.Verify(mock => mock.Crear((It.IsAny<Transacción>())), Times.Never());
-            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()), Times.Never());
+            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()),
+                Times.Never());
         }
 
         [Fact]
@@ -268,21 +300,22 @@ namespace Domain.UseCase.Tests
 
             _mockTransacciónRepository.Verify(mock => mock.Crear((It.IsAny<Transacción>())), Times.Exactly(2));
             _mockCuentaRepository.Verify(mock => mock.ObtenerPorId((It.IsAny<string>())), Times.Exactly(2));
-            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()), Times.Exactly(2));
+            _mockCuentaRepository.Verify(mock => mock.Actualizar(It.IsAny<string>(), It.IsAny<Cuenta>()),
+                Times.Exactly(2));
         }
 
         #region Private Methods
 
         private Transacción ObtenerUnaTransacciónTest() =>
             new TransacciónBuilderTest()
-            .WithId("1")
-            .WithIdCuenta("4300000000")
-            .WithFechaMovimiento(DateTime.Now)
-            .WithTipoTransacción(TipoTransacción.Consignación)
-            .WithValor(100000)
-            .WithSaldoInicial(1000000)
-            .WithSaldoFinal(1100000)
-            .Build();
+                .WithId("1")
+                .WithIdCuenta("4300000000")
+                .WithFechaMovimiento(DateTime.Now)
+                .WithTipoTransacción(TipoTransacción.Consignación)
+                .WithValor(100000)
+                .WithSaldoInicial(1000000)
+                .WithSaldoFinal(1100000)
+                .Build();
 
         private List<Transacción> ObtenerListaTransacciónTest() => new()
         {
@@ -316,6 +349,16 @@ namespace Domain.UseCase.Tests
             EstadoCuenta.Activa,
             1000000,
             996000,
+            false);
+
+        private Cuenta ObtenerCuentaCanceladaTest() => new(
+            "1",
+            "123456789",
+            "4600000000",
+            TipoCuenta.Ahorros,
+            EstadoCuenta.Cancelada,
+            0,
+            0,
             false);
 
         //TODO: Reemplazar con Builder de Cuenta

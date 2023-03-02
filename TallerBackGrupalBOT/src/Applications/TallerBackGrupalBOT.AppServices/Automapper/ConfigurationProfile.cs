@@ -19,11 +19,13 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
         public ConfigurationProfile()
         {
             CreateMap<Usuario, UsuarioEntity>().ReverseMap();
+
             CreateMap<Transacción, TransacciónEntity>().ReverseMap();
 
             CreateMap<Usuario, UsuarioHandler>();
+
             CreateMap<Transacción, TransacciónHandler>();
-            
+
             CreateMap<CrearUsuario, Usuario>();
 
             CreateMap<ClienteEntity, Cliente>().ReverseMap();

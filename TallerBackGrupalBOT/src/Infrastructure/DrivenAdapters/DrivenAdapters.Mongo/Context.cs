@@ -1,5 +1,6 @@
 using MongoDB.Driver;
 using System.Diagnostics.CodeAnalysis;
+using Domain.Model.Entities.Transacciones;
 using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
 using Domain.Model.Entities.Clientes;
@@ -21,8 +22,8 @@ namespace DrivenAdapters.Mongo
         /// <param name="databaseName"></param>
         public Context(string connectionString, string databaseName)
         {
-            MongoClient _mongoClient = new MongoClient(connectionString);
-            _database = _mongoClient.GetDatabase(databaseName);
+            MongoClient mongoClient = new MongoClient(connectionString);
+            _database = mongoClient.GetDatabase(databaseName);
         }
 
         /// <summary>
@@ -31,7 +32,13 @@ namespace DrivenAdapters.Mongo
         public IMongoCollection<UsuarioEntity> Usuarios => _database.GetCollection<UsuarioEntity>("Usuarios");
 
         /// <summary>
-        /// Colecci髇 en DB de <see cref="Cliente"/>
+        /// Tipo de contrato <see cref="Transacci贸n"/>
+        /// </summary>
+        public IMongoCollection<Transacci贸nEntity> Transacciones =>
+            _database.GetCollection<Transacci贸nEntity>("Transacciones");
+
+        /// <summary>
+        /// Colecci贸n en DB de <see cref="Cliente"/>
         /// </summary>
         public IMongoCollection<ClienteEntity> Clientes => _database.GetCollection<ClienteEntity>("Clientes");
     }

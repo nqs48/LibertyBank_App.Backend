@@ -1,8 +1,4 @@
-﻿using credinet.exception.middleware.models;
-using Domain.Model.Entities.Cuentas;
-using Helpers.Commons.Exceptions;
-using Helpers.ObjectsUtils.Extensions;
-using System;
+﻿using System;
 
 namespace Domain.Model.Entities.Transacciones
 {
@@ -62,20 +58,17 @@ namespace Domain.Model.Entities.Transacciones
 
         public void GenerarDescripción(string cuentaDestinatario = "")
         {
-            switch (TipoTransacción)
+            Descripción = TipoTransacción switch
             {
-                case TipoTransacción.Consignación:
-                    Descripción = $"Se Realizo Consignación por ${Valor} a la cuenta {IdCuenta}";
-                    break;
+                TipoTransacción.Consignación => $"Se Realizo Consignación por ${Valor} a la cuenta con ID {IdCuenta}",
 
-                case TipoTransacción.Retiro:
-                    Descripción = $"Se Realizo Retiro por ${Valor} desde la cuenta {IdCuenta}";
-                    break;
+                TipoTransacción.Retiro => $"Se Realizo Retiro por ${Valor} desde la cuenta con ID {IdCuenta}",
 
-                case TipoTransacción.Transferencia:
-                    Descripción = $"Se Realizo Transferencia por ${Valor} desde la {IdCuenta} a la cuenta {cuentaDestinatario}";
-                    break;
-            }
+                TipoTransacción.Transferencia =>
+                    $"Se Realizo Transferencia por ${Valor} desde la cuenta con ID {IdCuenta} a la cuenta con ID {cuentaDestinatario}",
+
+                _ => Descripción
+            };
         }
     }
 }

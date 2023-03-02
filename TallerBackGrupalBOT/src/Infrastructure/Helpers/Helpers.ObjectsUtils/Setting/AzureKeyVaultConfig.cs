@@ -1,8 +1,11 @@
-﻿namespace Helpers.ObjectsUtils.Setting
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Helpers.ObjectsUtils.Setting
 {
     /// <summary>
     /// Configuration properties for azure key vault service
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class AzureKeyVaultConfig
     {
         /// <summary>

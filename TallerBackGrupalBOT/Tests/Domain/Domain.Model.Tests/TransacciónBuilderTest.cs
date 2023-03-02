@@ -2,7 +2,7 @@
 
 namespace Domain.Model.Tests
 {
-    public class TransacciónBuilder
+    public class TransacciónBuilderTest
     {
         private string _id = string.Empty;
         private string _idCuenta = string.Empty;
@@ -13,7 +13,7 @@ namespace Domain.Model.Tests
         private decimal _saldoFinal = 0M;
         private string _descripción = string.Empty;
 
-        public TransacciónBuilder()
+        public TransacciónBuilderTest()
         {
         }
 
@@ -22,49 +22,49 @@ namespace Domain.Model.Tests
                 _tipoTransacción, _valor,
                 _saldoInicial, _saldoFinal, _descripción);
 
-        public TransacciónBuilder WithId(string id)
+        public TransacciónBuilderTest WithId(string id)
         {
             _id = id;
             return this;
         }
 
-        public TransacciónBuilder WithIdCuenta(string idCuenta)
+        public TransacciónBuilderTest WithIdCuenta(string idCuenta)
         {
             _idCuenta = idCuenta;
             return this;
         }
 
-        public TransacciónBuilder WithFechaMovimiento(DateTime fecha)
+        public TransacciónBuilderTest WithFechaMovimiento(DateTime fecha)
         {
             _fechaMovimiento = fecha;
             return this;
         }
 
-        public TransacciónBuilder WithTipoTransacción(TipoTransacción tipoTransacción)
+        public TransacciónBuilderTest WithTipoTransacción(TipoTransacción tipoTransacción)
         {
             _tipoTransacción = tipoTransacción;
             return this;
         }
 
-        public TransacciónBuilder WithValor(decimal valor)
+        public TransacciónBuilderTest WithValor(decimal valor)
         {
             _valor = valor;
             return this;
         }
 
-        public TransacciónBuilder WithSaldoInicial(decimal saldoInicial)
+        public TransacciónBuilderTest WithSaldoInicial(decimal saldoInicial)
         {
             _saldoInicial = saldoInicial;
             return this;
         }
 
-        public TransacciónBuilder WithSaldoFinal(decimal saldoFinal)
+        public TransacciónBuilderTest WithSaldoFinal(decimal saldoFinal)
         {
             _saldoFinal = saldoFinal;
             return this;
         }
 
-        public TransacciónBuilder WithDescripción(string descripción)
+        public TransacciónBuilderTest WithDescripción(string descripción)
         {
             _descripción = descripción;
             return this;

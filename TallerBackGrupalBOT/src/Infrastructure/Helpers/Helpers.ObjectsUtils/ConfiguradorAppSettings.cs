@@ -1,10 +1,12 @@
 ﻿using Helpers.ObjectsUtils.ApplicationSettings;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Helpers.ObjectsUtils
 {
     /// <summary>
     /// ConfiguradorAppSettings
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ConfiguradorAppSettings
     {
         /// <summary>

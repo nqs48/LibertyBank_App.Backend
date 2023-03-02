@@ -1,8 +1,11 @@
-﻿namespace Helpers.ObjectsUtils.Setting
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Helpers.ObjectsUtils.Setting
 {
     /// <summary>
     /// Secrets
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class Secrets
     {
         /// <summary>

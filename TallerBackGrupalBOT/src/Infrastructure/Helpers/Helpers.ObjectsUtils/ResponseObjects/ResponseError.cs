@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Helpers.ObjectsUtils.ResponseObjects
 {
     /// <summary>
     /// ResponseError
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ResponseError
     {
         /// <summary>

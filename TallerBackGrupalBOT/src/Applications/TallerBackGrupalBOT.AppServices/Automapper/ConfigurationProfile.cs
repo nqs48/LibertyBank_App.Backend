@@ -6,6 +6,7 @@ using DrivenAdapters.Mongo.Entities;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
 using DrivenAdapters.Mongo.entities;
+using Domain.Model.Entities.Cuentas;
 
 namespace TallerBackGrupalBOT.AppServices.Automapper
 {
@@ -32,6 +33,10 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
             CreateMap<ClienteEntity, Cliente>().ReverseMap();
 
             CreateMap<CrearCliente, Cliente>();
+
+            CreateMap<Cuenta, CuentaEntity>().ReverseMap();
+
+            CreateMap<Cuenta, CuentaHandler>().ReverseMap();
         }
     }
 }

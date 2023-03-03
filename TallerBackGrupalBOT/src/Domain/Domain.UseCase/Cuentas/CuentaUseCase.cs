@@ -113,6 +113,20 @@ namespace Domain.UseCase.Cuentas
             return cuentaEncontrada;
         }
 
-        
+        /// <summary>
+        /// <see cref="ICuentaUseCase.ObtenerCuentaPorId(string)"/>
+        /// </summary>
+        /// <param name="idCuenta"></param>
+        /// <returns></returns>
+        public async Task<Cuenta> ObtenerCuentaPorId(string idCuenta)
+        {
+            var cuenta = await _repositoryCuenta.ObtenerPorId(idCuenta);
+            if (cuenta == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                                                  (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+            }
+            return cuenta;
+        }
     }
 }

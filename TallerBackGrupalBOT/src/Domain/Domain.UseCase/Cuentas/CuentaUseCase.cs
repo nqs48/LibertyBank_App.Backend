@@ -1,6 +1,7 @@
 ﻿using credinet.exception.middleware.models;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
+using Domain.Model.Entities.Usuarios;
 using Helpers.Commons.Exceptions;
 using Helpers.ObjectsUtils.Extensions;
 using Microsoft.AspNetCore.Identity;
@@ -67,7 +68,6 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> DeshabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
-            var tipoModificacion = TipoModificación.Inhabilitación;
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
             if (usuario == null || cuentaEncontrada == null)
@@ -80,7 +80,7 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
-            Modificación nuevaModificacion = new Modificación(tipoModificacion, usuario);
+            Modificación nuevaModificacion = new Modificación(TipoModificación.Inhabilitación, usuario);
             cuentaEncontrada.DeshabilitarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return cuentaEncontrada;
@@ -127,6 +127,29 @@ namespace Domain.UseCase.Cuentas
                                                   (int)TipoExcepcionNegocio.EntidadNoEncontrada);
             }
             return cuenta;
+        }
+
+        /// <summary>
+        /// Método para crear una Cuenta
+        /// </summary>
+        /// <param name="cuenta"></param>
+        /// <returns></returns>
+        public async Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta)
+        {
+            var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
+            if (usuario == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+            }
+            else if (usuario.Rol.Equals(Roles.Transaccional))
+            {
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
+                                (int)TipoExcepcionNegocio.UsuarioSinPermisos);
+            }
+            Modificación nuevaModificacion = new Modificación(TipoModificación.Creacion, usuario);
+            cuenta.AgregarModificacion(nuevaModificacion);
+            return await _repositoryCuenta.Crear(cuenta);
         }
     }
 }

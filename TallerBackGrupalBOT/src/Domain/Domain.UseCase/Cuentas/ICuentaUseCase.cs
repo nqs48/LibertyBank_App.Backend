@@ -1,5 +1,6 @@
 ﻿using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Transacciones;
+using Domain.Model.Entities.Usuarios;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,13 @@ namespace Domain.UseCase.Cuentas
         /// </summary>
         /// <returns></returns>
         Task<Cuenta> ObtenerCuentaPorId(string idCuenta);
+
+        /// <summary>
+        /// Método para crear una Cuenta
+        /// </summary>
+        /// <param name="cuenta"></param>
+        /// <returns></returns>
+        Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta);
 
     }
 }

@@ -1,7 +1,12 @@
 ﻿using AutoMapper;
+using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
+using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
+using Helpers.ObjectsUtils;
+using Microsoft.Azure.ServiceBus;
+using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -19,6 +24,8 @@ namespace DrivenAdapters.Mongo.Adapters
 
         private readonly IMongoCollection<CuentaEntity> _collectionCuenta;
 
+        private readonly IOptions<ConfiguradorAppSettings> _options;
+
         private readonly FilterDefinitionBuilder<CuentaEntity> filtro = Builders<CuentaEntity>.Filter;
 
         private readonly IMapper _mapper;
@@ -28,10 +35,11 @@ namespace DrivenAdapters.Mongo.Adapters
         /// </summary>
         /// <param name="context"></param>
         /// <param name="mapper"></param>
-        public CuentaRepositoryAdapter(IContext context, IMapper mapper)
+        public CuentaRepositoryAdapter(IContext context, IMapper mapper, IOptions<ConfiguradorAppSettings> options)
         {
             _collectionCuenta = context.Cuentas;
             _mapper = mapper;
+            _options = options;
         }
 
         /// <summary>
@@ -55,6 +63,10 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<Cuenta> Crear(Cuenta cuenta)
         {
+
+            cuenta.AsignarNumeroCuenta();
+            cuenta.CalcularSaldoDisponible(_options.Value.GMF);
+
             var nuevaCuenta = _mapper.Map<CuentaEntity>(cuenta);
             await _collectionCuenta.InsertOneAsync(nuevaCuenta);
             return _mapper.Map<Cuenta>(nuevaCuenta);
@@ -67,14 +79,9 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<Cuenta> ObtenerPorId(string IdCuenta)
         {
-            IAsyncCursor<CuentaEntity> cursor= await _collectionCuenta.FindAsync(x => x.Id == IdCuenta);
-            var cuentaEncontrada= cursor.FirstOrDefaultAsync();
-            if(cuentaEncontrada is null)
-            {
-                return null;
-            }
-            return _mapper.Map<Cuenta>(cuentaEncontrada);
-
+            var filter = Builders<CuentaEntity>.Filter.Eq(usuario => usuario.Id, IdCuenta);
+            var result = await _collectionCuenta.Find(filter).FirstOrDefaultAsync();
+            return result is null ? null : _mapper.Map<Cuenta>(result);
         }
 
         /// <summary>
@@ -83,13 +90,15 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<List<Cuenta>> ObtenerTodos()
         {
-            var cursor= await _collectionCuenta.FindAsync(x => true);
-            var cuentasEncontradas= cursor.ToListAsync();
-            if(cuentasEncontradas is null)
+
+            IAsyncCursor<CuentaEntity> cursorCuentas = await _collectionCuenta.FindAsync(Builders<CuentaEntity>.Filter.Empty);
+
+            List<Cuenta> cuentas = cursorCuentas.ToEnumerable().Select(cuentaEntity => _mapper.Map<Cuenta>(cuentaEntity)).ToList();
+            if(cuentas is null)
             {
                 return null;
             }
-            return _mapper.Map<List<Cuenta>>(cuentasEncontradas);
+            return cuentas;
         }
     }
 }

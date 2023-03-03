@@ -12,6 +12,10 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
     /// </summary>
     public class CrearCliente
     {
+        public CrearCliente()
+        {
+        }
+
         /// <summary>
         /// Tipo de identificación
         /// </summary>
@@ -41,5 +45,16 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// Fecha de nacimiento
         /// </summary>
         public DateOnly FechaNacimiento { get; private set; }
+
+        public CrearCliente(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
+            string apellidos, string correoElectronico, DateOnly fechaNacimiento)
+        {
+            TipoIdentificación = tipoIdentificación;
+            NumeroIdentificación = numeroIdentificación;
+            Nombres = nombres;
+            Apellidos = apellidos;
+            CorreoElectronico = correoElectronico;
+            FechaNacimiento = fechaNacimiento;
+        }
     }
 }

@@ -76,5 +76,22 @@ namespace DrivenAdapters.Mongo.Entities
         /// </summary>
         [BsonElement("productos")]
         public List<string> Productos { get; private set; }
+
+        public ClienteEntity(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres, string apellidos,
+            string correoElectronico, DateOnly fechaNacimiento, DateTime fechaCreación,
+            List<Actualización> historialActualizaciones, bool estaHabilitado, bool tieneDeudasActivas, List<string> productos)
+        {
+            TipoIdentificación = tipoIdentificación;
+            NumeroIdentificación = numeroIdentificación;
+            Nombres = nombres;
+            Apellidos = apellidos;
+            CorreoElectronico = correoElectronico;
+            FechaNacimiento = fechaNacimiento;
+            FechaCreación = fechaCreación;
+            HistorialActualizaciones = historialActualizaciones;
+            EstaHabilitado = estaHabilitado;
+            TieneDeudasActivas = tieneDeudasActivas;
+            Productos = productos;
+        }
     }
 }

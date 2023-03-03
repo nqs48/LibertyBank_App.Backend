@@ -102,7 +102,7 @@ namespace Domain.UseCase.Clientes
 
             if (!nuevoCliente.VerificarCampoCorreo())
                 throw new BusinessException($"El correo electrónico {nuevoCliente.CorreoElectronico} no es valido",
-                    (int)TipoExcepcionNegocio.ClienteNoEsMayorDeEdad);
+                    (int)TipoExcepcionNegocio.CorreoElectronicoNoValido);
 
             Actualización nuevaActualizacion = new(TipoActualización.Creación, usuarioSeleccionado);
 

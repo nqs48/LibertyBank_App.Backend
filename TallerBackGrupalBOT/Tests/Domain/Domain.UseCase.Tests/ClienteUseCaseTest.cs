@@ -28,7 +28,7 @@ namespace Domain.UseCase.Tests
         {
             // Arrange
             DateOnly fechaNacimiento = new(1993, 03, 23);
-            Cliente cliente = new(TipoIdentificación.CC, "1234iden", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario@gmail.com";
 
             _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
@@ -47,7 +47,7 @@ namespace Domain.UseCase.Tests
         {
             // Arrange
             DateOnly fechaNacimiento = new(1993, 03, 23);
-            Cliente cliente = new(TipoIdentificación.CC, "1234iden", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
             _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
@@ -66,7 +66,7 @@ namespace Domain.UseCase.Tests
         {
             // Arrange
             DateOnly fechaNacimiento = new(1993, 03, 23);
-            Cliente cliente = new(TipoIdentificación.CC, "1234iden", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
             _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente));
@@ -84,7 +84,7 @@ namespace Domain.UseCase.Tests
         {
             // Arrange
             DateOnly fechaNacimiento = new(1993, 03, 23);
-            Cliente cliente = new(TipoIdentificación.CC, "1234iden", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
             Cuenta nuevaCuenta = new("1234idcuenta", cliente.Id, "1234numerocuenta", TipoCuenta.Ahorros, 0, 1, true);
@@ -107,7 +107,7 @@ namespace Domain.UseCase.Tests
         {
             // Arrange
             DateOnly fechaNacimiento = new(1993, 03, 23);
-            Cliente cliente = new(TipoIdentificación.CC, "1234iden", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
             Cuenta nuevaCuenta = new("1234idcuenta", cliente.Id, "1234numerocuenta", TipoCuenta.Ahorros, 0, 1, true);
@@ -128,7 +128,7 @@ namespace Domain.UseCase.Tests
         {
             // Arrange
             DateOnly fechaNacimiento = new(1993, 03, 23);
-            Cliente cliente = new(TipoIdentificación.CC, "1234iden", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
 
             Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
 
@@ -141,6 +141,88 @@ namespace Domain.UseCase.Tests
 
             // Assert
             Assert.Equal(cliente.NumeroIdentificación, result.NumeroIdentificación);
+        }
+
+        [Fact]
+        public async Task CrearCliente_Error_UsuarioNovalido()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+
+            Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Transaccional);
+
+            _usuarioMock.Setup(repo => repo.ObtenerPorIdAsync(usuario.Id)).ReturnsAsync(usuario);
+            _clienteMock.Setup(repo => repo.CrearAsync(usuario.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.CrearCliente(usuario.Id, cliente));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.UsuarioNoValido, result.code);
+        }
+
+        [Fact]
+        public async Task CrearCliente_Error_ClienteYaExiste()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+
+            Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
+
+            _usuarioMock.Setup(repo => repo.ObtenerPorIdAsync(usuario.Id)).ReturnsAsync(usuario);
+
+            _clienteMock.Setup(repo => repo.ObtenerPorNumeroIdentificacion(cliente.NumeroIdentificación)).ReturnsAsync(cliente);
+            _clienteMock.Setup(repo => repo.CrearAsync(usuario.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.CrearCliente(usuario.Id, cliente));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.IdentificacionDeClienteYaExiste, result.code);
+        }
+
+        [Fact]
+        public async Task CrearCliente_Error_NoEsMayorDeEdad()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(2015, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
+
+            Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
+
+            _usuarioMock.Setup(repo => repo.ObtenerPorIdAsync(usuario.Id)).ReturnsAsync(usuario);
+            _clienteMock.Setup(repo => repo.CrearAsync(usuario.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.CrearCliente(usuario.Id, cliente));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.ClienteNoEsMayorDeEdad, result.code);
+        }
+
+        [Fact]
+        public async Task CrearCliente_Error_CorreoNoValido()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+
+            Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
+
+            _usuarioMock.Setup(repo => repo.ObtenerPorIdAsync(usuario.Id)).ReturnsAsync(usuario);
+            _clienteMock.Setup(repo => repo.CrearAsync(usuario.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.CrearCliente(usuario.Id, cliente));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.CorreoElectronicoNoValido, result.code);
         }
 
         #region Métodos privados

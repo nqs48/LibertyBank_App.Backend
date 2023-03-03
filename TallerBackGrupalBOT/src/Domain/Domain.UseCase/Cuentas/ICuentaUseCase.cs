@@ -52,5 +52,11 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta);
 
+        /// <summary>
+        /// Método para obtener todas las cuentas
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Cuenta>> ObtenerTodas();
+
     }
 }

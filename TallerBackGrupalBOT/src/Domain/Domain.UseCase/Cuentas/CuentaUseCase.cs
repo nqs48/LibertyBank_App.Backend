@@ -6,6 +6,7 @@ using Helpers.Commons.Exceptions;
 using Helpers.ObjectsUtils.Extensions;
 using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Cuentas
@@ -41,7 +42,6 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
-            var tipoModificacion= TipoModificación.Cancelación;
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
             if (usuario == null || cuentaEncontrada == null)
@@ -53,7 +53,7 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
-            Modificación nuevaModificacion = new Modificación(tipoModificacion, usuario);
+            Modificación nuevaModificacion = new Modificación(TipoModificación.Cancelación, usuario);
             cuentaEncontrada.CancelarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return cuentaEncontrada;
@@ -94,7 +94,6 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> HabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
-            var tipoModificacion = TipoModificación.Habilitación;
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
             if (usuario == null || cuentaEncontrada == null)
@@ -107,7 +106,7 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
-            Modificación nuevaModificacion = new Modificación(tipoModificacion, usuario);
+            Modificación nuevaModificacion = new Modificación(TipoModificación.Habilitación, usuario);
             cuentaEncontrada.HabilitarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return cuentaEncontrada;
@@ -132,24 +131,40 @@ namespace Domain.UseCase.Cuentas
         /// <summary>
         /// Método para crear una Cuenta
         /// </summary>
+        /// <param name="idUsuarioModificacion"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
         public async Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta)
         {
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
+            var cliente = await _usuarioRepository.ObtenerPorIdAsync(cuenta.Id);
             if (usuario == null)
             {
                 throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
                                (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+            }
+            else if (cliente == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.ClienteNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.ClienteNoExiste);
             }
             else if (usuario.Rol.Equals(Roles.Transaccional))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
-            Modificación nuevaModificacion = new Modificación(TipoModificación.Creacion, usuario);
+            var nuevaModificacion = new Modificación(TipoModificación.Creación, usuario);
             cuenta.AgregarModificacion(nuevaModificacion);
             return await _repositoryCuenta.Crear(cuenta);
+        }
+
+        /// <summary>
+        /// Método para obtener todas la cuentas
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Cuenta>> ObtenerTodas()
+        {
+            return await _repositoryCuenta.ObtenerTodos();
         }
     }
 }

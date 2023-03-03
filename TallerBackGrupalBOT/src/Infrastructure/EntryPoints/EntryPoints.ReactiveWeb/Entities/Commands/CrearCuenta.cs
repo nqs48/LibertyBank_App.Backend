@@ -16,12 +16,7 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// Id del cliente
         /// </summary>
         public string IdCliente { get; set; }
-        ///                      
-        /// <summary>
-        /// Numero de cuenta
-        /// </summary>
-        public string NumeroCuenta { get; set; }
-                   
+              
         /// <summary>
         /// Tipo de cuenta
         /// </summary>

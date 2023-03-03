@@ -83,6 +83,11 @@ namespace Domain.Model.Entities.Clientes
         /// <param name="apellidos"></param>
         /// <param name="correoElectronico"></param>
         /// <param name="fechaNacimiento"></param>
+
+        public Cliente()
+        {
+        }
+
         public Cliente(string id, TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
             string apellidos, string correoElectronico, DateOnly fechaNacimiento)
         {

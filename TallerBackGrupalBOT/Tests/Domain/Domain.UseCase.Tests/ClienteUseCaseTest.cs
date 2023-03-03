@@ -225,6 +225,167 @@ namespace Domain.UseCase.Tests
             Assert.Equal((int)TipoExcepcionNegocio.CorreoElectronicoNoValido, result.code);
         }
 
+        [Fact]
+        public async Task DeshabilitarCliente_Correcto()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+
+            _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await clienteUseCase.DeshabilitarCliente(cliente.Id);
+
+            // Assert
+            Assert.False(cliente.EstaHabilitado);
+        }
+
+        [Fact]
+        public async Task DeshabilitarCliente_Error_ClienteNoExiste()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.DeshabilitarCliente(cliente.Id));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.ClienteNoExiste, result.code);
+        }
+
+        [Fact]
+        public async Task DeshabilitarDeuda_Correcto()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+
+            _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await clienteUseCase.DeshabilitarDeudaCliente(cliente.Id);
+
+            // Assert
+            Assert.False(cliente.TieneDeudasActivas);
+        }
+
+        [Fact]
+        public async Task DeshabilitarDeuda_Error_ClienteNoExiste()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.DeshabilitarDeudaCliente(cliente.Id));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.ClienteNoExiste, result.code);
+        }
+
+        [Fact]
+        public async Task HabilitarCliente_Correcto()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+            cliente.Deshabilitar();
+
+            _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await clienteUseCase.HabilitarCliente(cliente.Id);
+
+            // Assert
+            Assert.True(cliente.EstaHabilitado);
+        }
+
+        [Fact]
+        public async Task HabilitarCliente_Error_ClienteNoExiste()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+            cliente.Deshabilitar();
+
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.HabilitarCliente(cliente.Id));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.ClienteNoExiste, result.code);
+        }
+
+        [Fact]
+        public async Task HabilitarDeuda_Correcto()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+            cliente.DeshabilitarDeuda();
+
+            _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await clienteUseCase.HabilitarDeudaCliente(cliente.Id);
+
+            // Assert
+            Assert.True(cliente.TieneDeudasActivas);
+        }
+
+        [Fact]
+        public async Task HabilitarDeuda_Error_ClienteNoExiste()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+            cliente.DeshabilitarDeuda();
+
+            _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await Assert.ThrowsAsync<BusinessException>(() => clienteUseCase.HabilitarDeudaCliente(cliente.Id));
+
+            // Assert
+            Assert.Equal((int)TipoExcepcionNegocio.ClienteNoExiste, result.code);
+        }
+
+        [Fact]
+        public async Task ObtenerClientePorId_Correcto()
+        {
+            // Arrange
+            DateOnly fechaNacimiento = new(1993, 03, 23);
+            Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
+
+            _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
+            var clienteUseCase = CrearCasoDeUso();
+
+            // Act
+            var result = await clienteUseCase.ObtenerClientePorId(cliente.Id);
+
+            // Arrange
+            Assert.Equal(cliente.Apellidos, result.Apellidos);
+        }
+
         #region Métodos privados
 
         private ClienteUseCase CrearCasoDeUso() =>

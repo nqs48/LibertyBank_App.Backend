@@ -1,4 +1,5 @@
 ﻿using Domain.Model.Entities.Cuentas;
+using Domain.Model.Entities.Transacciones;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,5 +36,13 @@ namespace Domain.UseCase.Cuentas
         /// </summary>
         /// <returns></returns>
         Task<Cuenta> DeshabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta);
+
+        /// <summary>
+        /// Obtener una Cuenta por Id
+        /// <param name="idCuenta"></param> 
+        /// </summary>
+        /// <returns></returns>
+        Task<Cuenta> ObtenerCuentaPorId(string idCuenta);
+
     }
 }

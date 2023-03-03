@@ -346,20 +346,17 @@ namespace Domain.UseCase.Tests
             "123456789",
             "4600000000",
             TipoCuenta.Ahorros,
-            EstadoCuenta.Activa,
             1000000,
             996000,
             false);
 
-        private Cuenta ObtenerCuentaCanceladaTest() => new(
-            "1",
-            "123456789",
-            "4600000000",
-            TipoCuenta.Ahorros,
-            EstadoCuenta.Cancelada,
-            0,
-            0,
-            false);
+        private Cuenta ObtenerCuentaCanceladaTest()
+        {
+            Cuenta cuenta = new("1", "123456789", "4600000000", TipoCuenta.Ahorros, 0, 0, false);
+            cuenta.CancelarCuenta();
+
+            return cuenta;
+        }
 
         //TODO: Reemplazar con Builder de Cuenta
         private Cuenta ObtenerCuentaExentaAhorrosTest() => new(
@@ -367,7 +364,6 @@ namespace Domain.UseCase.Tests
             "123456789",
             "4600000000",
             TipoCuenta.Ahorros,
-            EstadoCuenta.Activa,
             1000000,
             996000,
             true);
@@ -378,7 +374,6 @@ namespace Domain.UseCase.Tests
             "123456789",
             "4600000000",
             TipoCuenta.Corriente,
-            EstadoCuenta.Activa,
             1000000,
             996000,
             false);
@@ -389,7 +384,6 @@ namespace Domain.UseCase.Tests
             "123456789",
             "4600000000",
             TipoCuenta.Corriente,
-            EstadoCuenta.Activa,
             1000000,
             996000,
             true);

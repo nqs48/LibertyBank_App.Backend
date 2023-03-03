@@ -14,34 +14,42 @@ namespace Domain.Model.Entities.Cuentas
         /// Id
         /// </summary>
         public string Id { get; private set; }
+
         /// <summary>
         /// IdCliente
         /// </summary>
         public string IdCliente { get; private set; }
+
         /// <summary>
         /// NumeroCuenta
         /// </summary>
         public string NumeroCuenta { get; private set; }
+
         /// <summary>
         /// TipoCuenta
         /// </summary>
         public TipoCuenta TipoCuenta { get; private set; }
+
         /// <summary>
         /// EstadoCuenta
         /// </summary>
         public EstadoCuenta EstadoCuenta { get; private set; }
+
         /// <summary>
         /// Saldo
         /// </summary>
         public decimal Saldo { get; private set; }
+
         /// <summary>
         /// SaldoDisponible
         /// </summary>
         public decimal SaldoDisponible { get; set; }
+
         /// <summary>
         /// Exenta
         /// </summary>
         public bool Exenta { get; private set; }
+
         /// <summary>
         /// HistorialModificaciones
         /// </summary>
@@ -54,17 +62,16 @@ namespace Domain.Model.Entities.Cuentas
         /// <param name="idCliente"></param>
         /// <param name="numeroCuenta"></param>
         /// <param name="tipoCuenta"></param>
-        /// <param name="estadoCuenta"></param>
         /// <param name="saldo"></param>
         /// <param name="saldoDisponible"></param>
         /// <param name="exenta"></param>
-        public Cuenta(string id, string idCliente, string numeroCuenta, TipoCuenta tipoCuenta, EstadoCuenta estadoCuenta, decimal saldo, decimal saldoDisponible, bool exenta)
+        public Cuenta(string id, string idCliente, string numeroCuenta, TipoCuenta tipoCuenta, decimal saldo, decimal saldoDisponible, bool exenta)
         {
             Id = id;
             IdCliente = idCliente;
             NumeroCuenta = numeroCuenta;
             TipoCuenta = tipoCuenta;
-            EstadoCuenta = estadoCuenta;
+            EstadoCuenta = EstadoCuenta.Activa;
             Saldo = saldo;
             SaldoDisponible = saldoDisponible;
             Exenta = exenta;
@@ -79,7 +86,7 @@ namespace Domain.Model.Entities.Cuentas
         /// <summary>
         /// Calcular Saldo Disponible
         /// </summary>
-        public void CalcularSaldoDisponible(decimal GMF) => SaldoDisponible =  Saldo - (Saldo * GMF) ;
+        public void CalcularSaldoDisponible(decimal GMF) => SaldoDisponible = Saldo - (Saldo * GMF);
 
         /// <summary>
         /// Marcar como Cuenta Exenta GMF
@@ -114,12 +121,10 @@ namespace Domain.Model.Entities.Cuentas
         /// </summary>
         public bool EstaInactiva() => EstadoCuenta.Equals(EstadoCuenta.Inactiva);
 
-
         /// <summary>
         /// Validar si Esta Cancelada.
         /// </summary>
         public bool EstaCancelada() => EstadoCuenta.Equals(EstadoCuenta.Cancelada);
-
 
         /// <summary>
         /// Habilitar una Cuenta.
@@ -135,7 +140,5 @@ namespace Domain.Model.Entities.Cuentas
         /// Cancelar una Cuenta.
         /// </summary>
         public void CancelarCuenta() => EstadoCuenta = EstadoCuenta.Cancelada;
-
-        
     }
 }

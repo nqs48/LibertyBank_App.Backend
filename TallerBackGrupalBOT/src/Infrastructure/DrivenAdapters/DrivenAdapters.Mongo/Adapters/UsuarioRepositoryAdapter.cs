@@ -50,12 +50,9 @@ public class UsuarioRepositoryAdapter : IUsuarioRepository
     /// <returns></returns>
     public async Task<Usuario> ObtenerPorIdAsync(string idUsuario)
     {
-        IAsyncCursor<UsuarioEntity> usuarioCursor =
-            await _mongoUsuarioCollection.FindAsync(usuario => usuario.Id == idUsuario);
-
-        var usuarioSeleccionado = usuarioCursor.FirstOrDefaultAsync();
-
-        return usuarioSeleccionado is null ? null : _mapper.Map<Usuario>(usuarioSeleccionado);
+        var usuarioSeleccionado = Builders<UsuarioEntity>.Filter.Eq(usuario => usuario.Id, idUsuario);
+        var usuarioEntity = await _mongoUsuarioCollection.Find(usuarioSeleccionado).FirstOrDefaultAsync();
+        return usuarioEntity is null ? null : _mapper.Map<Usuario>(usuarioEntity);
     }
 
     /// <summary>

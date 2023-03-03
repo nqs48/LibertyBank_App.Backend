@@ -58,11 +58,7 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     [HttpGet("id")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public Task<IActionResult> ObtenerPorId([FromQuery] string id) =>
-        HandleRequest(async () =>
-        {
-            Usuario usuario = await _usuarioUseCase.ObtenerPorId(id);
-            return _mapper.Map<UsuarioHandler>(usuario);
-        }, "");
+        HandleRequest(async () => await _usuarioUseCase.ObtenerPorId(id), "");
 
     /// <summary>
     /// Endpoint para crear entidad de tipo <see cref="Usuario"/>

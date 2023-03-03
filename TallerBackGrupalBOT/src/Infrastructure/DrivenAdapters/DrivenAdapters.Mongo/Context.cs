@@ -47,6 +47,6 @@ namespace DrivenAdapters.Mongo
         /// <summary>
         /// Colección en DB de <see cref="Cuenta"/>
         /// </summary>
-        public IMongoCollection<CuentasEntity> Cuentas => _database.GetCollection<CuentasEntity>("Cuentas");
+        public IMongoCollection<CuentaEntity> Cuentas => _database.GetCollection<CuentaEntity>("Cuentas");
     }
 }

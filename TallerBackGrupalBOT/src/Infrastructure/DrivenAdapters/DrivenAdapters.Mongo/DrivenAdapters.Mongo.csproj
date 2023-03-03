@@ -15,6 +15,7 @@
   <ItemGroup>
     <Compile Remove="Entities\**" />
     <Compile Include="Entities\Base\EntityBase.cs" />
+    <Compile Include="Entities\CuentaEntity.cs" />
     <Compile Include="Entities\TransaccionEntity.cs" />
     <Compile Include="Entities\ClienteEntity.cs" />
     <Compile Include="Entities\UsuarioEntity.cs" />

@@ -29,6 +29,6 @@ namespace DrivenAdapters.Mongo
         /// <summary>
         /// Colección de tipo <see cref="Cuentas"/>
         /// </summary>
-        public IMongoCollection<CuentasEntity> Cuentas { get; }
+        public IMongoCollection<CuentaEntity> Cuentas { get; }
     }
 }

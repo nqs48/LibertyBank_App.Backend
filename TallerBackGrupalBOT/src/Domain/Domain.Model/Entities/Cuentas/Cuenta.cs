@@ -78,6 +78,25 @@ namespace Domain.Model.Entities.Cuentas
             HistorialModificaciones = new List<Modificación>();
         }
 
+        
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <param name="tipoCuenta"></param>
+        /// <param name="saldo"></param>
+        /// <param name="exenta"></param>
+        public Cuenta(string idCliente,TipoCuenta tipoCuenta, decimal saldo, bool exenta)
+        {
+            IdCliente = idCliente;
+            TipoCuenta = tipoCuenta;
+            EstadoCuenta = EstadoCuenta.Activa;
+            Saldo = saldo;
+            Exenta = exenta;
+            HistorialModificaciones = new List<Modificación>();
+        }
+
         /// <summary>
         /// Asignar saldo Inicial
         /// </summary>
@@ -87,6 +106,23 @@ namespace Domain.Model.Entities.Cuentas
         /// Calcular Saldo Disponible
         /// </summary>
         public void CalcularSaldoDisponible(decimal GMF) => SaldoDisponible = Saldo - (Saldo * GMF);
+
+        /// <summary>
+        /// Generar y Asigna Numero una Cuenta.
+        /// </summary>
+        public void AsignarNumeroCuenta()
+        {
+            var random = new Random();
+            int numeroAleatorio = random.Next(10000000, 99999999);
+            if (TipoCuenta.Equals(TipoCuenta.Corriente))
+            {
+                NumeroCuenta = $"23-{numeroAleatorio}";
+            }
+            else if (TipoCuenta.Equals(TipoCuenta.Ahorros))
+            {
+                NumeroCuenta = $"46-{numeroAleatorio}";
+            }
+        }
 
         /// <summary>
         /// Marcar como Cuenta Exenta GMF
@@ -140,5 +176,11 @@ namespace Domain.Model.Entities.Cuentas
         /// Cancelar una Cuenta.
         /// </summary>
         public void CancelarCuenta() => EstadoCuenta = EstadoCuenta.Cancelada;
+
+        
+            
+        
+
+
     }
 }

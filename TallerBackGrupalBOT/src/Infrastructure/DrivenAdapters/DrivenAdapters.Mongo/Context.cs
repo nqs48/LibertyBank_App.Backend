@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using System.Diagnostics.CodeAnalysis;
 using Domain.Model.Entities.Transacciones;
+using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
 using Domain.Model.Entities.Clientes;
@@ -42,5 +43,10 @@ namespace DrivenAdapters.Mongo
         /// Colección en DB de <see cref="Cliente"/>
         /// </summary>
         public IMongoCollection<ClienteEntity> Clientes => _database.GetCollection<ClienteEntity>("Clientes");
+
+        /// <summary>
+        /// Colección en DB de <see cref="Cuenta"/>
+        /// </summary>
+        public IMongoCollection<CuentasEntity> Cuentas => _database.GetCollection<CuentasEntity>("Cuentas");
     }
 }

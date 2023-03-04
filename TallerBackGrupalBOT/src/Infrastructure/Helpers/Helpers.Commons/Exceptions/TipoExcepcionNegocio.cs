@@ -58,20 +58,26 @@ namespace Helpers.Commons.Exceptions
         /// <summary>
         /// Excepción cuenta no encontrada
         /// </summary>
-        [Description("La cuenta no fue encontrada")]
+        [Description("La cuenta no fue encontrada en el sistema")]
         CuentaNoEncontrada = 570,
 
         /// <summary>
         /// Excepción usuario no encontrado
         /// </summary>
-        [Description("El usuario no fue encontrada")]
-        UsuarioNoEncontrado = 571,
+        [Description("El usuario no existe en el sistema")]
+        UsuarioNoExiste = 571,
 
         /// <summary>
         /// Excepcion Usuario sin Permisos
         /// </summary>
         [Description("El usuario no tiene permisos para esta accion")]
         UsuarioSinPermisos = 572,
+
+        /// <summary>
+        /// Excepcion Cuenta con saldo
+        /// </summary>
+        [Description("La cuenta aun tiene saldo, no es posible cancelarla")]
+        CuentaConSaldo = 573,
 
         /// <summary>
         /// La cuenta esta cancelada

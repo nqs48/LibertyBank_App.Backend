@@ -44,14 +44,24 @@ namespace Domain.UseCase.Cuentas
         {
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (usuario == null || cuentaEncontrada == null)
+            if (usuario == null)
             {
-                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
-                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
-            }else if (usuario.Rol.Equals(0))
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.UsuarioNoExiste);
+            }
+            else if (cuentaEncontrada == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.CuentaNoEncontrada);
+            }
+            else if (usuario.Rol.Equals(0))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
+            }else if (cuentaEncontrada.Saldo >= 1)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.CuentaConSaldo.GetDescription(),
+                                                   (int)TipoExcepcionNegocio.CuentaConSaldo);
             }
             Modificación nuevaModificacion = new Modificación(TipoModificación.Cancelación, usuario);
             cuentaEncontrada.CancelarCuenta();
@@ -70,10 +80,15 @@ namespace Domain.UseCase.Cuentas
         {
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (usuario == null || cuentaEncontrada == null)
+            if (usuario == null)
             {
-                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
-                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.UsuarioNoExiste);
+            }
+            else if (cuentaEncontrada == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.CuentaNoEncontrada);
             }
             else if (usuario.Rol.Equals(0))
             {
@@ -96,10 +111,15 @@ namespace Domain.UseCase.Cuentas
         {
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (usuario == null || cuentaEncontrada == null)
+            if (usuario == null)
             {
-                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
-                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.UsuarioNoExiste);
+            }
+            else if (cuentaEncontrada == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.CuentaNoEncontrada);
             }
             else if (usuario.Rol.Equals(0))
             {
@@ -122,8 +142,8 @@ namespace Domain.UseCase.Cuentas
             var cuenta = await _repositoryCuenta.ObtenerPorId(idCuenta);
             if (cuenta == null)
             {
-                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
-                                                  (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+                throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
+                               (int)TipoExcepcionNegocio.CuentaNoEncontrada);
             }
             return cuenta;
         }
@@ -140,8 +160,8 @@ namespace Domain.UseCase.Cuentas
             var cliente = await _usuarioRepository.ObtenerPorIdAsync(cuenta.Id);
             if (usuario == null)
             {
-                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
-                               (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+                throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.UsuarioNoExiste);
             }
             else if (cliente == null)
             {

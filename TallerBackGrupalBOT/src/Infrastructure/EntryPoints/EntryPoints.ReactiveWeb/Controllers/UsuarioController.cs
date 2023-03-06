@@ -66,7 +66,7 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     /// <param name="crearUsuario"></param>
     /// <returns></returns>
     [HttpPost]
-    public Task<IActionResult> Create([FromBody] CrearUsuario crearUsuario) => HandleRequest(async () =>
+    public Task<IActionResult> Crear([FromBody] CrearUsuario crearUsuario) => HandleRequest(async () =>
     {
         Usuario usuarioCreado = await _usuarioUseCase.Crear(_mapper.Map<Usuario>(crearUsuario));
 

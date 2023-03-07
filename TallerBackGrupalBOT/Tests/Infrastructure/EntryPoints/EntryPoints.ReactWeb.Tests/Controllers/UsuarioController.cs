@@ -49,7 +49,7 @@ public class UsuarioControllerTest
             Rol = rol
         };
 
-        Usuario usuario = new UsuarioBuilder()
+        Usuario usuario = new UsuarioBuilderTest()
             .WithId(id)
             .WithNombreCompleto(nombreCompleto)
             .WithRol(rol)
@@ -102,7 +102,7 @@ public class UsuarioControllerTest
     public async Task ObtenerPorId_Retorna_Status200(string id)
     {
         // Arrange
-        Usuario usuario = new UsuarioBuilder()
+        Usuario usuario = new UsuarioBuilderTest()
             .WithId(id)
             .Build();
 

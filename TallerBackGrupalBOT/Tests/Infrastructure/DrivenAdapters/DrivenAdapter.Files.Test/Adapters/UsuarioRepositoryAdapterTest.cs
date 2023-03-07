@@ -126,7 +126,7 @@ public class UsuarioRepositoryAdapterTest
     {
         // Arrange
 
-        Usuario usuario = new UsuarioBuilder()
+        Usuario usuario = new UsuarioBuilderTest()
             .WithId(id)
             .WithNombreCompleto(nombreCompleto)
             .Build();
@@ -164,7 +164,7 @@ public class UsuarioRepositoryAdapterTest
     public async Task CrearAsync_GuardaYRetornaUnUsuarioCreado_Exitoso(string id, string nombreCompleto, Roles rol)
     {
         // Arrange
-        Usuario usuario = new UsuarioBuilder()
+        Usuario usuario = new UsuarioBuilderTest()
             .WithId(id)
             .WithNombreCompleto(nombreCompleto)
             .WithRol(rol)

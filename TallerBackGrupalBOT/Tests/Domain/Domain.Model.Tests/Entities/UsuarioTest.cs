@@ -9,7 +9,7 @@ public class UsuarioTest
     [InlineData("32423", Roles.Admin)]
     public void ValidarEsAdmin_Verdadero(string id, Roles rol)
     {
-        var usuario = new UsuarioBuilder()
+        var usuario = new UsuarioBuilderTest()
             .WithId(id)
             .Build();
 
@@ -23,7 +23,7 @@ public class UsuarioTest
     [InlineData("32423", Roles.Transaccional)]
     public void ValidarEsAdmin_Falso(string id, Roles rol)
     {
-        var usuario = new UsuarioBuilder()
+        var usuario = new UsuarioBuilderTest()
             .WithId(id)
             .Build();
 

@@ -54,7 +54,7 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
                                (int)TipoExcepcionNegocio.CuentaNoEncontrada);
             }
-            else if (usuario.Rol.Equals(0))
+            else if (usuario.Rol.Equals(Roles.Transaccional))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
@@ -66,7 +66,7 @@ namespace Domain.UseCase.Cuentas
             Modificación nuevaModificacion = new Modificación(TipoModificación.Cancelación, usuario);
             cuentaEncontrada.CancelarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
-            return cuentaEncontrada;
+            return await _repositoryCuenta.Actualizar(cuentaEncontrada.Id, cuentaEncontrada);
 
         }
 
@@ -90,15 +90,20 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
                                (int)TipoExcepcionNegocio.CuentaNoEncontrada);
             }
-            else if (usuario.Rol.Equals(0))
+            else if (usuario.Rol.Equals(Roles.Transaccional))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
+            else if (cuentaEncontrada.EstadoCuenta.Equals(EstadoCuenta.Inactiva))
+            {
+                throw new BusinessException(TipoExcepcionNegocio.CuentaEstaInactiva.GetDescription(),
+                                (int)TipoExcepcionNegocio.CuentaEstaInactiva);
+            }
             Modificación nuevaModificacion = new Modificación(TipoModificación.Inhabilitación, usuario);
             cuentaEncontrada.DeshabilitarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
-            return cuentaEncontrada;
+            return await _repositoryCuenta.Actualizar(cuentaEncontrada.Id, cuentaEncontrada);
         }
 
         /// <summary>
@@ -121,15 +126,20 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
                                (int)TipoExcepcionNegocio.CuentaNoEncontrada);
             }
-            else if (usuario.Rol.Equals(0))
+            else if (usuario.Rol.Equals(Roles.Transaccional))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
+            else if (cuentaEncontrada.EstadoCuenta.Equals(EstadoCuenta.Activa))
+            {
+                throw new BusinessException(TipoExcepcionNegocio.CuentaEstaActiva.GetDescription(),
+                                (int)TipoExcepcionNegocio.CuentaEstaActiva);
+            }
             Modificación nuevaModificacion = new Modificación(TipoModificación.Habilitación, usuario);
             cuentaEncontrada.HabilitarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
-            return cuentaEncontrada;
+            return await _repositoryCuenta.Actualizar(cuentaEncontrada.Id, cuentaEncontrada);
         }
 
         /// <summary>
@@ -163,11 +173,11 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
                                (int)TipoExcepcionNegocio.UsuarioNoExiste);
             }
-            else if (cliente == null)
-            {
-                throw new BusinessException(TipoExcepcionNegocio.ClienteNoExiste.GetDescription(),
-                               (int)TipoExcepcionNegocio.ClienteNoExiste);
-            }
+            //else if (cliente == null)
+            //{
+            //    throw new BusinessException(TipoExcepcionNegocio.ClienteNoExiste.GetDescription(),
+            //                   (int)TipoExcepcionNegocio.ClienteNoExiste);
+            //}
             else if (usuario.Rol.Equals(Roles.Transaccional))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),

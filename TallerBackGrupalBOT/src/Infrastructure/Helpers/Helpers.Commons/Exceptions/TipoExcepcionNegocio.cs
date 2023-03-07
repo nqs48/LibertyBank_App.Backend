@@ -80,6 +80,18 @@ namespace Helpers.Commons.Exceptions
         CuentaConSaldo = 573,
 
         /// <summary>
+        /// Excepcion Cuenta ya inactiva
+        /// </summary>
+        [Description("La cuenta ya se encuentra inactiva")]
+        CuentaEstaInactiva = 574,
+
+        /// <summary>
+        /// Excepcion Cuenta ya activa
+        /// </summary>
+        [Description("La cuenta ya se encuentra activa")]
+        CuentaEstaActiva = 575,
+
+        /// <summary>
         /// La cuenta esta cancelada
         /// </summary>
         [Description("La cuenta se encuentra cancelada")]

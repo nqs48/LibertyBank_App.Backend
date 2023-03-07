@@ -45,8 +45,8 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <summary>
         /// <see cref="ICuentaRepository.Actualizar(string, Cuenta)"/>
         /// </summary>
-        /// <param name="IdCuenta"></param>
         /// <param name="cuenta"></param>
+        /// <param name="IdCuenta"></param>
         /// <returns></returns>
         public async Task<Cuenta> Actualizar(string IdCuenta, Cuenta cuenta)
         {
@@ -63,9 +63,9 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<Cuenta> Crear(Cuenta cuenta)
         {
-
+            if (!cuenta.Exenta) { cuenta.CalcularSaldoDisponible(_options.Value.GMF); }
+            else { cuenta.SaldoDisponible = cuenta.Saldo; }
             cuenta.AsignarNumeroCuenta();
-            cuenta.CalcularSaldoDisponible(_options.Value.GMF);
 
             var nuevaCuenta = _mapper.Map<CuentaEntity>(cuenta);
             await _collectionCuenta.InsertOneAsync(nuevaCuenta);

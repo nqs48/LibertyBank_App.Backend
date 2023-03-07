@@ -19,7 +19,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
     /// </summary>
     [Produces("application/json")]
     [ApiVersion("1.0")]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class CuentaController : AppControllerBase<CuentaController>
     {
 
@@ -45,7 +45,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("id")]
-        public Task<IActionResult> ObtenerCuentaPorId([FromQuery] string id) => HandleRequest(async () =>
+        public Task<IActionResult> ObtenerId([FromQuery] string id) => HandleRequest(async () =>
         {
             return await _cuentaUseCase.ObtenerCuentaPorId(id);   
         }, "");
@@ -58,7 +58,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("add/cuenta/Id")]
+        [Route("Id")]
         public Task<IActionResult> Crear(string idUsuario, CrearCuenta crearCuenta) => HandleRequest(async () =>
         {
 
@@ -74,7 +74,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("add/cancelar/Id")]
+        [Route("Id")]
         public Task<IActionResult> Cancelar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
         {
 
@@ -90,7 +90,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("add/habilitar/Id")]
+        [Route("Id")]
         public Task<IActionResult> Habilitar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
         {
 
@@ -106,7 +106,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("add/deshabilitar/Id")]
+        [Route("Id")]
         public Task<IActionResult> Deshabilitar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
         {
 
@@ -122,8 +122,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("todos")]
-        public async Task<IActionResult> ObtenerCuentas() => await HandleRequest(async () =>
+        public async Task<IActionResult> Obtener() => await HandleRequest(async () =>
         {
             return await _cuentaUseCase.ObtenerTodas();
         }, "");

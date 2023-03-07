@@ -55,9 +55,9 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("id")]
+    [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task<IActionResult> ObtenerPorId([FromQuery] string id) =>
+    public Task<IActionResult> ObtenerPorId([FromRoute] string id) =>
         HandleRequest(async () => await _usuarioUseCase.ObtenerPorId(id), "");
 
     /// <summary>

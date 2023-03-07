@@ -16,7 +16,6 @@ namespace DrivenAdapters.Mongo.Adapters
     /// </summary>
     public class CuentaRepositoryAdapter : ICuentaRepository
     {
-
         private readonly IMongoCollection<CuentaEntity> _collectionCuenta;
 
         private readonly FilterDefinitionBuilder<CuentaEntity> filtro = Builders<CuentaEntity>.Filter;
@@ -37,14 +36,14 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <summary>
         /// <see cref="ICuentaRepository.Actualizar(string, Cuenta)"/>
         /// </summary>
-        /// <param name="IdCuenta"></param>
+        /// <param name="idCuenta"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> Actualizar(string IdCuenta, Cuenta cuenta)
+        public async Task<Cuenta> Actualizar(string idCuenta, Cuenta cuenta)
         {
             await _collectionCuenta.ReplaceOneAsync(
-                               filtro.Eq(x => x.Id, IdCuenta),
-                                           _mapper.Map<CuentaEntity>(cuenta));
+                filtro.Eq(x => x.Id, idCuenta),
+                _mapper.Map<CuentaEntity>(cuenta));
             return cuenta;
         }
 
@@ -63,18 +62,18 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <summary>
         /// <see cref="ICuentaRepository.ObtenerPorId"/>
         /// </summary>
-        /// <param name="IdCuenta"></param>
+        /// <param name="idCuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> ObtenerPorId(string IdCuenta)
+        public async Task<Cuenta> ObtenerPorId(string idCuenta)
         {
-            IAsyncCursor<CuentaEntity> cursor= await _collectionCuenta.FindAsync(x => x.Id == IdCuenta);
-            var cuentaEncontrada= cursor.FirstOrDefaultAsync();
-            if(cuentaEncontrada is null)
+            IAsyncCursor<CuentaEntity> cursor = await _collectionCuenta.FindAsync(x => x.Id == idCuenta);
+            var cuentaEncontrada = cursor.FirstOrDefaultAsync();
+            if (cuentaEncontrada is null)
             {
                 return null;
             }
-            return _mapper.Map<Cuenta>(cuentaEncontrada);
 
+            return _mapper.Map<Cuenta>(cuentaEncontrada);
         }
 
         /// <summary>
@@ -83,12 +82,13 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<List<Cuenta>> ObtenerTodos()
         {
-            var cursor= await _collectionCuenta.FindAsync(x => true);
-            var cuentasEncontradas= cursor.ToListAsync();
-            if(cuentasEncontradas is null)
+            var cursor = await _collectionCuenta.FindAsync(x => true);
+            var cuentasEncontradas = cursor.ToListAsync();
+            if (cuentasEncontradas is null)
             {
                 return null;
             }
+
             return _mapper.Map<List<Cuenta>>(cuentasEncontradas);
         }
     }

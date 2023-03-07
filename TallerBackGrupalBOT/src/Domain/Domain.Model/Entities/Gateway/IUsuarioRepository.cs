@@ -10,20 +10,20 @@ namespace Domain.Model.Entities.Gateway
     public interface IUsuarioRepository
     {
         /// <summary>
-        /// Método para obtener todos los usuarios
+        /// Método para obtener entidades de tipo <see cref="Usuario"/>
         /// </summary>
         /// <returns></returns>
         Task<List<Usuario>> ObtenerTodosAsync();
 
         /// <summary>
-        /// Método para obtener un usuario por Id
+        /// Método para obtener una entidad de tipo <see cref="Usuario"/> por su Id
         /// </summary>
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         Task<Usuario> ObtenerPorIdAsync(string idUsuario);
 
         /// <summary>
-        /// Método para crear un usuario
+        /// Método para crear una entidad de tipo <see cref="Usuario"/>
         /// </summary>
         /// <param name="usuario"></param>
         /// <returns></returns>

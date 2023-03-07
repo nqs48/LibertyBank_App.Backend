@@ -79,7 +79,7 @@ public class UsuarioUseCaseTest
     [InlineData("4587", "Maicol Ferguson", Roles.Admin)]
     public async Task Crear_Usuario_Exitoso(string id, string nombreCompleto, Roles rol)
     {
-        Usuario usuario = new UsuarioBuilder()
+        Usuario usuario = new UsuarioBuilderTest()
             .WithId(id)
             .WithNombreCompleto(nombreCompleto)
             .WithRol(rol)
@@ -99,7 +99,7 @@ public class UsuarioUseCaseTest
 
     #region Private Methods
 
-    private Usuario ObtenerUsuarioTest() => new UsuarioBuilder()
+    private Usuario ObtenerUsuarioTest() => new UsuarioBuilderTest()
         .WithId("5262")
         .WithNombreCompleto("Juan Pablo Cano")
         .WithRol(Roles.Admin)
@@ -107,13 +107,13 @@ public class UsuarioUseCaseTest
 
     private List<Usuario> ObtenerListaUsuariosTest() => new()
     {
-        new UsuarioBuilder()
+        new UsuarioBuilderTest()
             .WithId("5463")
             .WithNombreCompleto("Pepito Perez")
             .WithRol(Roles.Transaccional)
             .Build(),
 
-        new UsuarioBuilder()
+        new UsuarioBuilderTest()
             .WithId("0870")
             .WithNombreCompleto("Lucas Montenegro")
             .WithRol(Roles.Transaccional)

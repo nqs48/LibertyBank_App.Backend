@@ -55,14 +55,10 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet("id")]
+    [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task<IActionResult> ObtenerPorId([FromQuery] string id) =>
-        HandleRequest(async () =>
-        {
-            Usuario usuario = await _usuarioUseCase.ObtenerPorId(id);
-            return _mapper.Map<UsuarioHandler>(usuario);
-        }, "");
+    public Task<IActionResult> ObtenerPorId([FromRoute] string id) =>
+        HandleRequest(async () => await _usuarioUseCase.ObtenerPorId(id), "");
 
     /// <summary>
     /// Endpoint para crear entidad de tipo <see cref="Usuario"/>
@@ -70,7 +66,7 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     /// <param name="crearUsuario"></param>
     /// <returns></returns>
     [HttpPost]
-    public Task<IActionResult> Create([FromBody] CrearUsuario crearUsuario) => HandleRequest(async () =>
+    public Task<IActionResult> Crear([FromBody] CrearUsuario crearUsuario) => HandleRequest(async () =>
     {
         Usuario usuarioCreado = await _usuarioUseCase.Crear(_mapper.Map<Usuario>(crearUsuario));
 

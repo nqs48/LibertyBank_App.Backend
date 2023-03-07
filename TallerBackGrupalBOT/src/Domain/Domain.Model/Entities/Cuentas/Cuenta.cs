@@ -59,6 +59,16 @@ namespace Domain.Model.Entities.Cuentas
         /// Constructor
         /// </summary>
         /// <param name="id"></param>
+        public Cuenta(string id)
+        {
+            Id = id;
+        }
+
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id"></param>
         /// <param name="idCliente"></param>
         /// <param name="numeroCuenta"></param>
         /// <param name="tipoCuenta"></param>

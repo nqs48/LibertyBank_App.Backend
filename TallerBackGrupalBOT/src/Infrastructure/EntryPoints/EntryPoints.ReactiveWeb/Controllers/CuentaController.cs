@@ -70,6 +70,54 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <summary>
         /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
         /// </summary>
+        /// <param name="estadoCuenta"></param>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("add/cancelar/Id")]
+        public Task<IActionResult> Cancelar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
+        {
+
+            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
+            Cuenta cuenta = await _cuentaUseCase.CancelarCuenta(idUsuario, cuentaMapeada);
+            return _mapper.Map<CuentaHandler>(cuenta);
+        }, "");
+
+        /// <summary>
+        /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
+        /// </summary>
+        /// <param name="estadoCuenta"></param>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("add/habilitar/Id")]
+        public Task<IActionResult> Habilitar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
+        {
+
+            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
+            Cuenta cuenta = await _cuentaUseCase.HabilitarCuenta(idUsuario, cuentaMapeada);
+            return _mapper.Map<CuentaHandler>(cuenta);
+        }, "");
+
+        /// <summary>
+        /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
+        /// </summary>
+        /// <param name="estadoCuenta"></param>
+        /// <param name="idUsuario"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [Route("add/deshabilitar/Id")]
+        public Task<IActionResult> Deshabilitar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
+        {
+
+            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
+            Cuenta cuenta = await _cuentaUseCase.DeshabilitarCuenta(idUsuario, cuentaMapeada);
+            return _mapper.Map<CuentaHandler>(cuenta);
+        }, "");
+
+        /// <summary>
+        /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
+        /// </summary>
         /// <param name="crearCuenta"></param>
         /// <param name="idUsuario"></param>
         /// <returns></returns>

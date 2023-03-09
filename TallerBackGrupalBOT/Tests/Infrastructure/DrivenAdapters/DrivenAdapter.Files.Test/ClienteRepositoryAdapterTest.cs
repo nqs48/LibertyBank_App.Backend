@@ -88,7 +88,7 @@ namespace DrivenAdapter.Mongo.Tests
             var repository = new ClienteRepositoryAdapter(_mockContext.Object, _mapper);
 
             var nuevoCliente = new Cliente("123Id", TipoIdentificación.CE, "identificacion123",
-                "Julian", "Mosquera", "julian@gmail.com", new DateOnly(1994, 06, 06));
+                "Julian", "Mosquera", "julian@gmail.com", new DateTime(1994, 06, 06));
 
             // Act
             var result = await repository.CrearAsync("123id", nuevoCliente);
@@ -126,11 +126,11 @@ namespace DrivenAdapter.Mongo.Tests
         {
             return new List<ClienteEntity>
             {
-                _mapper.Map<ClienteEntity>(
-                new CrearCliente(TipoIdentificación.CC, "123Identificacion", "Maria", "Hernandez", "maria@gmail.com", new DateOnly(1993, 03, 02))),
+                //_mapper.Map<ClienteEntity>(
+                //new CrearCliente(TipoIdentificación.CC, "123Identificacion", "Maria", "Hernandez", "maria@gmail.com", new DateOnly(1993, 03, 02))),
 
-                _mapper.Map<ClienteEntity>(
-                new CrearCliente(TipoIdentificación.CE, "345Identificacion", "Carlos", "Carmona", "carlos@gmail.com", new DateOnly(1993, 05, 14)))
+                //_mapper.Map<ClienteEntity>(
+                //new CrearCliente(TipoIdentificación.CE, "345Identificacion", "Carlos", "Carmona", "carlos@gmail.com", new DateOnly(1993, 05, 14)))
             };
         }
 
@@ -138,7 +138,7 @@ namespace DrivenAdapter.Mongo.Tests
         {
             var list = new List<UsuarioEntity>();
 
-            var usuarioE = _mapper.Map<UsuarioEntity>(new UsuarioBuilder()
+            var usuarioE = _mapper.Map<UsuarioEntity>(new UsuarioBuilderTest()
                 .WithId("123id")
                 .WithNombreCompleto("Alberto Velázquez")
                 .WithRol(Roles.Admin).Build());

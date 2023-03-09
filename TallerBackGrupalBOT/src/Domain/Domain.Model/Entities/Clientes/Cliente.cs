@@ -146,7 +146,7 @@ namespace Domain.Model.Entities.Clientes
         public void DeshabilitarDeuda() => TieneDeudasActivas = false;
 
         /// <summary>
-        /// Cambia el correo electronico actual del cliente
+        /// Cambia el correo electrónico actual del cliente
         /// </summary>
         /// <param name="nuevoCorreo"></param>
         public void CambiarCorreoElectronico(string nuevoCorreo) => CorreoElectronico = nuevoCorreo;
@@ -162,7 +162,7 @@ namespace Domain.Model.Entities.Clientes
         }
 
         /// <summary>
-        /// Se agrega nueva actualizacion al cliente
+        /// Se agrega nueva actualización al cliente
         /// </summary>
         /// <param name="nuevaActualizacion"></param>
         public void AgregarActualizacion(Actualización nuevaActualizacion)

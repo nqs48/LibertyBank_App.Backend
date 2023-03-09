@@ -20,6 +20,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\src\Applications\TallerBackGrupalBOT.AppServices\TallerBackGrupalBOT.AppServices.csproj" />
     <ProjectReference Include="..\..\..\..\src\Infrastructure\DrivenAdapters\DrivenAdapters.Mongo\DrivenAdapters.Mongo.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Infrastructure\EntryPoints\EntryPoints.ReactiveWeb\EntryPoints.ReactiveWeb.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Applications\TallerBackGrupalBOT.AppServices\TallerBackGrupalBOT.AppServices.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Infrastructure\DrivenAdapters\DrivenAdapters.Mongo\DrivenAdapters.Mongo.csproj" />
     <ProjectReference Include="..\..\..\Domain\Domain.Model.Tests\Domain.Model.Tests.csproj" />
   </ItemGroup>
 </Project>

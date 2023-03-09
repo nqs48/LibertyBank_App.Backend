@@ -68,7 +68,7 @@ namespace DrivenAdapters.Mongo.Entities
         public bool Exenta { get; private set; }
 
         /// <summary>
-        /// Historial de Modificaciones de la cuneta
+        /// Historial de Modificaciones de la cuenta
         /// </summary>
         [BsonElement("historial_modificaciones")]
         public List<Modificación> HistorialModificaciones { get; private set; }

@@ -9,7 +9,6 @@ using EntryPoints.GRPc.Dtos;
 using EntryPoints.GRPc.Protos;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
-using ClienteACrear = EntryPoints.GRPc.Protos.ClienteACrear;
 
 namespace TallerBackGrupalBOT.AppServices.Automapper
 {
@@ -50,37 +49,40 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
 
             CreateMap<CrearTransacción, Transacción>();
 
+            CreateMap<Cuenta, CuentaHandler>().ReverseMap();
+
+            CreateMap<CrearCuenta, Cuenta>();
+
+            CreateMap<EstadosCuenta, Cuenta>();
+
             #endregion REST Commands to Domain Models
 
             #region GRPc command to HTTP command
 
             CreateMap<CrearUsuarioRequest, CrearUsuario>();
-            CreateMap<CrearClienteRequest, CrearCliente>();
+            CreateMap<CrearClienteProto, CrearCliente>();
 
-            #endregion
+            #endregion GRPc command to HTTP command
 
             #region GRPc command to GRPc DTO
 
             CreateMap<CrearUsuarioRequest, CrearUsuarioProto>().ReverseMap();
-            CreateMap<CrearClienteRequest, ClienteACrearProto>().ReverseMap();
-            CreateMap<ClienteACrear, ClienteACrearProto>().ReverseMap();
 
-            #endregion
+            #endregion GRPc command to GRPc DTO
 
             #region GRPc DTO to Domain Model
 
             CreateMap<CrearUsuarioProto, Usuario>().ReverseMap();
-            CreateMap<ClienteACrearProto, Cliente>().ReverseMap();
-            CreateMap<ClienteACrear, Cliente>().ReverseMap();
+            CreateMap<CrearClienteProto, Cliente>().ReverseMap();
 
-            #endregion
+            #endregion GRPc DTO to Domain Model
 
             #region Domain Model to GRPc Model
 
             CreateMap<Usuario, UsuarioProto>();
             CreateMap<Cliente, ClienteProto>();
 
-            #endregion
+            #endregion Domain Model to GRPc Model
         }
     }
 }

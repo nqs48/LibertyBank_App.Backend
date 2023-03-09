@@ -10,13 +10,13 @@ message CrearUsuarioRequest {
   int32 rol = 2;
 }
 
-message CrearClienteRequest {
-  int32 tipoIdentificacion = 1;
-  string numeroIdentificacion = 2;
-  string nombres = 3;
-  string apellidos = 4;
-  string correoElectronico = 5;
-  string fechaNacimiento = 6;
+message CrearClienteProto {
+  int32 TipoIdentificacion = 1;
+  string NumeroIdentificacion = 2;
+  string Nombres = 3;
+  string Apellidos = 4;
+  string CorreoElectronico = 5;
+  string FechaNacimiento = 6;
 }
 
 // Responses
@@ -48,7 +48,7 @@ message ActualizacionProto {
   string fecha = 3;
 }
 
-message ClienteACrear {
+message ClienteCrearRequest {
   string idUsuario = 1;
   ClienteProto cliente = 2;
 }
@@ -56,5 +56,5 @@ message ClienteACrear {
 // Services
 service ClienteServices{
   rpc CrearUsuario(CrearUsuarioRequest) returns (UsuarioProto);
-  rpc CrearCliente(ClienteACrear) returns (ClienteProto);
+  rpc CrearCliente(ClienteCrearRequest) returns (ClienteProto);
 }

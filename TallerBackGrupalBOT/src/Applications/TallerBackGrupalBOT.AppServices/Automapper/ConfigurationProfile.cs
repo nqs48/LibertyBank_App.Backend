@@ -49,6 +49,12 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
 
             CreateMap<CrearTransacción, Transacción>();
 
+            CreateMap<Cuenta, CuentaHandler>().ReverseMap();
+
+            CreateMap<CrearCuenta, Cuenta>();
+
+            CreateMap<EstadosCuenta, Cuenta>();
+
             #endregion REST Commands to Domain Models
 
             #region GRPc command to HTTP command

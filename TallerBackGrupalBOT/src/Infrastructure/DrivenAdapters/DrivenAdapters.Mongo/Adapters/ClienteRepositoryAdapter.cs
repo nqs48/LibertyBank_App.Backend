@@ -82,7 +82,7 @@ namespace DrivenAdapters.Mongo.Adapters
         public async Task<Cliente> ObtenerPorNumeroIdentificacion(string numeroIdentificacion)
         {
             var cursor = await _collection.FindAsync<ClienteEntity>(
-                filtro.Eq(x => x.NumeroIdentificación, numeroIdentificacion));
+                filtro.Eq(x => x.NumeroIdentificacion, numeroIdentificacion));
             return _mapper.Map<Cliente>(cursor.FirstOrDefault());
         }
 

@@ -6,6 +6,7 @@ using DrivenAdapters.Mongo;
 using DrivenAdapters.Mongo.Adapters;
 using DrivenAdapters.Mongo.Entities;
 using EntryPoints.ReactiveWeb.Entities.Commands;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using MongoDB.Driver;
 using Moq;
 using System;
@@ -57,7 +58,7 @@ namespace DrivenAdapter.Mongo.Tests
                 .Returns(Task.FromResult(true)).Returns(Task.FromResult(false));
 
             // Configuración Mapper
-            MapperConfiguration mapperConfig = new MapperConfiguration(options => options.AddProfile<ConfigurationProfile>());
+            MapperConfiguration mapperConfig = new(options => options.AddProfile<ConfigurationProfile>());
             _mapper = mapperConfig.CreateMapper();
         }
 
@@ -70,6 +71,12 @@ namespace DrivenAdapter.Mongo.Tests
         public async Task CrearCliente_Correcto()
         {
             // Arrange
+            _mockCollectionUsuario.Setup(mongo => mongo.FindAsync(
+                It.IsAny<FilterDefinition<UsuarioEntity>>(),
+                It.IsAny<FindOptions<UsuarioEntity, UsuarioEntity>>(),
+                It.IsAny<CancellationToken>()
+                ));
+
             _mockCollectionCliente.Setup(mongo => mongo.InsertOneAsync(
                 It.IsAny<ClienteEntity>(),
                 It.IsAny<InsertOneOptions>(),
@@ -91,27 +98,52 @@ namespace DrivenAdapter.Mongo.Tests
             Assert.Equal(nuevoCliente.CorreoElectronico, result.CorreoElectronico);
         }
 
+        [Fact]
+        public async Task ObtenerClientePorId_Correcto()
+        {
+            // Arrange
+            _mockCollectionCliente.Setup(mongo => mongo.FindAsync(
+                It.IsAny<FilterDefinition<ClienteEntity>>(),
+                It.IsAny<FindOptions<ClienteEntity, ClienteEntity>>(),
+                It.IsAny<CancellationToken>()
+                ));
+
+            _mockContext.Setup(context => context.Clientes).Returns(_mockCollectionCliente.Object);
+            var repository = new ClienteRepositoryAdapter(_mockContext.Object, _mapper);
+
+            var clienteSeleccionado = CrearListaClientesTest()[0];
+
+            // Act
+            var result = await repository.ObtenerPorIdAsync(clienteSeleccionado.Id);
+
+            // Assert
+            Assert.Equal(clienteSeleccionado.CorreoElectronico, result.CorreoElectronico);
+        }
+
         #region Métodos privados
 
-        private IEnumerable<ClienteEntity> CrearListaClientesTest()
+        private List<ClienteEntity> CrearListaClientesTest()
         {
-            var list = new List<CrearCliente>();
-            list.Add(new CrearCliente(TipoIdentificación.CC, "123Identificacion", "Maria", "Hernandez", "maria@gmail.com",
-                new DateOnly(1993, 03, 02)));
-            list.Add(new CrearCliente(TipoIdentificación.CE, "345Identificacion", "Carlos", "Carmona", "carlos@gmail.com",
-                new DateOnly(1993, 05, 14)));
+            return new List<ClienteEntity>
+            {
+                _mapper.Map<ClienteEntity>(
+                new CrearCliente(TipoIdentificación.CC, "123Identificacion", "Maria", "Hernandez", "maria@gmail.com", new DateOnly(1993, 03, 02))),
 
-            return list.Select(c => _mapper.Map<ClienteEntity>(c));
+                _mapper.Map<ClienteEntity>(
+                new CrearCliente(TipoIdentificación.CE, "345Identificacion", "Carlos", "Carmona", "carlos@gmail.com", new DateOnly(1993, 05, 14)))
+            };
         }
 
         private List<UsuarioEntity> CrearListaUsuariosTest()
         {
             var list = new List<UsuarioEntity>();
-            list.Add(_mapper.Map<UsuarioEntity>(new UsuarioBuilder()
+
+            var usuarioE = _mapper.Map<UsuarioEntity>(new UsuarioBuilder()
                 .WithId("123id")
-                .WithNombreCompleto("Alberto Velazques")
-                .WithRol(Roles.Admin).Build())
-                );
+                .WithNombreCompleto("Alberto Velázquez")
+                .WithRol(Roles.Admin).Build());
+
+            list.Add(usuarioE);
 
             return list;
         }

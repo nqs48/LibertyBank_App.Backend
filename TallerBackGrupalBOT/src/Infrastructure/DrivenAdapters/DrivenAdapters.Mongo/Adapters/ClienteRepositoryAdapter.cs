@@ -69,8 +69,9 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<Cliente> ObtenerPorIdAsync(string IdCliente)
         {
-            var cursor = await _collection.FindAsync<ClienteEntity>(filtro.Eq(x => x.Id, IdCliente));
-            return _mapper.Map<Cliente>(cursor.FirstOrDefault());
+            var filtroMetodo = Builders<ClienteEntity>.Filter.Eq(x => x.Id, IdCliente);
+            var cursor = await _collection.Find(filtroMetodo).FirstOrDefaultAsync();
+            return _mapper.Map<Cliente>(cursor);
         }
 
         /// <summary>

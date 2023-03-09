@@ -12,6 +12,9 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
     /// </summary>
     public class CrearCliente
     {
+        /// <summary>
+        /// Constructor vació
+        /// </summary>
         public CrearCliente()
         {
         }
@@ -19,32 +22,32 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// <summary>
         /// Tipo de identificación
         /// </summary>
-        public TipoIdentificación TipoIdentificación { get; private set; }
+        public TipoIdentificación TipoIdentificación { get; set; }
 
         /// <summary>
         /// Numero de identificación
         /// </summary>
-        public string NumeroIdentificación { get; private set; }
+        public string NumeroIdentificación { get; set; }
 
         /// <summary>
         /// Nombres del cliente
         /// </summary>
-        public string Nombres { get; private set; }
+        public string Nombres { get; set; }
 
         /// <summary>
         /// Apellidos del cliente
         /// </summary>
-        public string Apellidos { get; private set; }
+        public string Apellidos { get; set; }
 
         /// <summary>
         /// Correo electrónico
         /// </summary>
-        public string CorreoElectronico { get; private set; }
+        public string CorreoElectronico { get; set; }
 
         /// <summary>
         /// Fecha de nacimiento
         /// </summary>
-        public DateOnly FechaNacimiento { get; private set; }
+        public DateOnly FechaNacimiento { get; set; }
 
         public CrearCliente(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
             string apellidos, string correoElectronico, DateOnly fechaNacimiento)

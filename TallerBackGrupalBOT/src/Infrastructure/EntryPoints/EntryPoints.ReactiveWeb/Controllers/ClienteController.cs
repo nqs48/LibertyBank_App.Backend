@@ -66,7 +66,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpPost]
         [Route("add/cliente/{idUsuario}")]
         public Task<IActionResult> AgregarCliente(string idUsuario, CrearCliente nuevoCliente) =>
-            HandleRequest(async () => _useCase.CrearCliente(idUsuario, _mapper.Map<Cliente>(nuevoCliente)), "");
+            HandleRequest(async () => await _useCase.CrearCliente(idUsuario, _mapper.Map<Cliente>(nuevoCliente)), "");
 
         /// <summary>
         /// <see cref="ClienteUseCase.DeshabilitarCliente(string)"/>
@@ -76,7 +76,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpDelete]
         [Route("del/{idCliente}")]
         public Task<IActionResult> DeshabilitarCliente(string idCliente) =>
-            HandleRequest(async () => _useCase.DeshabilitarCliente(idCliente), "");
+            HandleRequest(async () => await _useCase.DeshabilitarCliente(idCliente), "");
 
         /// <summary>
         /// <see cref="ClienteUseCase.DeshabilitarDeudaCliente(string)"/>
@@ -86,7 +86,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpDelete]
         [Route("del/deuda/{idCliente}")]
         public Task<IActionResult> DeshabilitarDeudaCliente(string idCliente) =>
-            HandleRequest(async () => _useCase.DeshabilitarDeudaCliente(idCliente), "");
+            HandleRequest(async () => await _useCase.DeshabilitarDeudaCliente(idCliente), "");
 
         /// <summary>
         /// <see cref="ClienteUseCase.HabilitarCliente(string)"/>
@@ -96,7 +96,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpPut]
         [Route("enable/{idCliente}")]
         public Task<IActionResult> HabilitarCliente(string idCliente) =>
-            HandleRequest(async () => _useCase.HabilitarCliente(idCliente), "");
+            HandleRequest(async () => await _useCase.HabilitarCliente(idCliente), "");
 
         /// <summary>
         /// <see cref="ClienteUseCase.HabilitarDeudaCliente(string)"/>
@@ -106,7 +106,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpPut]
         [Route("enable/deuda/{idCliente}")]
         public Task<IActionResult> HabilitarDeudaCliente(string idCliente) =>
-            HandleRequest(async () => _useCase.HabilitarDeudaCliente(idCliente), "");
+            HandleRequest(async () => await _useCase.HabilitarDeudaCliente(idCliente), "");
 
         /// <summary>
         /// <see cref="ClienteUseCase.ObtenerClientePorId(string)"/>
@@ -116,6 +116,6 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpGet]
         [Route("{idCliente}")]
         public Task<IActionResult> ObtenerClientePorId(string idCliente) =>
-                HandleRequest(async () => _useCase.ObtenerClientePorId(idCliente), "");
+                HandleRequest(async () => await _useCase.ObtenerClientePorId(idCliente), "");
     }
 }

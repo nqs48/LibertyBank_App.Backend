@@ -62,7 +62,6 @@ builder.Services
     .HabilitarVesionamiento()
     .ConfigurarSwaggerConVersiones(builder.Environment, PlatformServices.Default.Application.ApplicationBasePath,
         new string[] { "TallerBackGrupalBOT.AppServices.xml" });
-;
 
 builder.Services
     .AddHealthChecks()

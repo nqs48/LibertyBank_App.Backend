@@ -88,6 +88,8 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
 
             services.AddScoped<IUsuarioRepository, UsuarioRepositoryAdapter>();
 
+            services.AddScoped<ICuentaRepository, CuentaRepositoryAdapter>();
+
             services.AddScoped<IClienteRepository, ClienteRepositoryAdapter>();
 
             #endregion Adaptadores

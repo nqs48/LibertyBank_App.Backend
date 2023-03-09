@@ -14,7 +14,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Dtos" />
         <Folder Include="Protos" />
         <Protobuf Include="**/*.proto" OutputDir="%(RelativePath)Protos/" />
     </ItemGroup>
@@ -24,6 +23,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="RPCs\Clientes" />
+      <ProjectReference Include="..\..\..\Domain\Domain.Model\Domain.Model.csproj" />
+      <ProjectReference Include="..\..\..\Domain\Domain.UseCase\Domain.UseCase.csproj" />
     </ItemGroup>
 </Project>

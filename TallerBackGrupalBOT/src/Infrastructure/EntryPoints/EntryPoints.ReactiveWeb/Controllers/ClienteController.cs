@@ -64,7 +64,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="nuevoCliente"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("add/cliente/{idUsuario}")]
+        [Route("add/{idUsuario}")]
         public Task<IActionResult> AgregarCliente(string idUsuario, CrearCliente nuevoCliente) =>
             HandleRequest(async () => await _useCase.CrearCliente(idUsuario, _mapper.Map<Cliente>(nuevoCliente)), "");
 

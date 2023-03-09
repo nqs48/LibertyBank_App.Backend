@@ -69,8 +69,6 @@ namespace Domain.UseCase.Clientes
             if (clienteSeleccionado is null)
                 throw new BusinessException($"No existe cliente con el id {idCliente}", (int)TipoExcepcionNegocio.ClienteNoExiste);
 
-            await _gatewayCuenta.Crear(nuevaCuenta);
-
             clienteSeleccionado.AgregarIdProducto(nuevaCuenta.Id);
 
             return await _gatewayCliente.ActualizarAsync(idCliente, clienteSeleccionado);
@@ -88,6 +86,10 @@ namespace Domain.UseCase.Clientes
             var clienteVerificacion = await _gatewayCliente.ObtenerPorNumeroIdentificacion(nuevoCliente.NumeroIdentificación);
 
             Usuario usuarioSeleccionado = await _gatewayUsuario.ObtenerPorIdAsync(idUsuarioCreacion);
+
+            if (usuarioSeleccionado is null)
+                throw new BusinessException($"No se encontró un usuario para la creación",
+                    (int)TipoExcepcionNegocio.UsuarioNoValido);
 
             if (usuarioSeleccionado.Rol != Roles.Admin)
                 throw new BusinessException($"El usuario {usuarioSeleccionado.NombreCompleto} no puede crear nuevos clientes",
@@ -108,6 +110,8 @@ namespace Domain.UseCase.Clientes
             Actualización nuevaActualizacion = new(TipoActualización.Creación, usuarioSeleccionado);
 
             nuevoCliente.AgregarActualizacion(nuevaActualizacion);
+
+            nuevoCliente.Habilitar();
 
             return await _gatewayCliente.CrearAsync(usuarioSeleccionado.Id, nuevoCliente);
         }

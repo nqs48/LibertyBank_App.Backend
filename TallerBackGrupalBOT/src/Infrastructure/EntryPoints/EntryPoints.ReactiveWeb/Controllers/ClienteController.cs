@@ -42,8 +42,8 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="nuevoCorreo"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("update/email/{idCliente}")]
-        public Task<IActionResult> ActualizarCorreoCliente(string idCliente, [FromBody] string nuevoCorreo) =>
+        [Route("update/email/{idCliente}/{nuevoCorreo}")]
+        public Task<IActionResult> ActualizarCorreoCliente(string idCliente, string nuevoCorreo) =>
             HandleRequest(async () => await _useCase.ActualizarCorreoElectronico(idCliente, nuevoCorreo), "");
 
         /// <summary>

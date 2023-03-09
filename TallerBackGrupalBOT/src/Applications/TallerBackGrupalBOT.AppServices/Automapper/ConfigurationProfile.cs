@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Domain.Model.Entities.Transacciones;
 using Domain.Model.Entities.Clientes;
+using Domain.Model.Entities.Cuentas;
+using Domain.Model.Entities.Transacciones;
 using Domain.Model.Entities.Usuarios;
+using DrivenAdapters.Mongo.entities;
 using DrivenAdapters.Mongo.Entities;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
-using DrivenAdapters.Mongo.entities;
-using Domain.Model.Entities.Cuentas;
 
 namespace TallerBackGrupalBOT.AppServices.Automapper
 {
@@ -20,21 +20,34 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
         /// </summary>
         public ConfigurationProfile()
         {
-            CreateMap<Usuario, UsuarioEntity>().ReverseMap();
+            #region Domain Models to Mongo Documents
 
+            CreateMap<Usuario, UsuarioEntity>().ReverseMap();
             CreateMap<Transacción, TransacciónEntity>().ReverseMap();
+            CreateMap<Cliente, ClienteEntity>().ReverseMap();
+            CreateMap<Cuenta, CuentaEntity>().ReverseMap();
+
+            #endregion Domain Models to Mongo Documents
+
+            #region Domain Models To REST Handlers
 
             CreateMap<Usuario, UsuarioHandler>();
 
             CreateMap<Transacción, TransacciónHandler>();
 
-            CreateMap<CrearUsuario, Usuario>();
+            CreateMap<Cuenta, CuentaHandler>().ReverseMap();
 
-            CreateMap<ClienteEntity, Cliente>().ReverseMap();
+            #endregion Domain Models To REST Handlers
+
+            #region REST Commands to Domain Models
+
+            CreateMap<CrearUsuario, Usuario>();
 
             CreateMap<CrearCliente, Cliente>();
 
-            CreateMap<Cuenta, CuentaEntity>().ReverseMap();
+            CreateMap<CrearTransacción, Transacción>();
+
+            #endregion REST Commands to Domain Models
 
             CreateMap<Cuenta, CuentaHandler>().ReverseMap();
 

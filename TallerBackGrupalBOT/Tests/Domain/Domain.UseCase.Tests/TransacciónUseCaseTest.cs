@@ -60,7 +60,7 @@ namespace Domain.UseCase.Tests
             var transacciones = await _transacciónUseCase.ObtenerTransaccionesPorIdCuenta(It.IsAny<string>());
 
             Assert.NotNull(transacciones);
-            Assert.Equal(ObtenerListaTransacciónTest().Count(), transacciones.Count());
+            Assert.Equal(ObtenerListaTransacciónTest().Count, transacciones.Count);
             _mockTransacciónRepository.Verify(mock => mock.ObtenerPorIdCuenta((It.IsAny<string>())), Times.Once());
         }
 
@@ -340,53 +340,66 @@ namespace Domain.UseCase.Tests
                 .Build(),
         };
 
-        //TODO: Reemplazar con Builder de Cuenta
-        private Cuenta ObtenerCuentaNoExentaAhorrosTest() => new(
-            "1",
-            "123456789",
-            "4600000000",
-            TipoCuenta.Ahorros,
-            1000000,
-            996000,
-            false);
+        private Cuenta ObtenerCuentaNoExentaAhorrosTest() => new CuentaBuilderTest()
+            .WithId("1")
+            .WithIdCliente("123456789")
+            .WithNumeroDeCuenta("4600000000")
+            .WithTipoCuenta(TipoCuenta.Ahorros)
+            .WithEstadoCuenta(EstadoCuenta.Activa)
+            .WithSaldo(1000000)
+            .WithSaldoDisponible(996000)
+            .WithExenta(false)
+            .Build();
 
         private Cuenta ObtenerCuentaCanceladaTest()
         {
-            Cuenta cuenta = new("1", "123456789", "4600000000", TipoCuenta.Ahorros, 0, 0, false);
+            Cuenta cuenta = new CuentaBuilderTest()
+                .WithId("1")
+                .WithIdCliente("123456789")
+                .WithNumeroDeCuenta("4600000000")
+                .WithTipoCuenta(TipoCuenta.Ahorros)
+                .WithSaldo(0)
+                .WithSaldoDisponible(0)
+                .WithExenta(false)
+                .Build();
+
             cuenta.CancelarCuenta();
 
             return cuenta;
         }
 
-        //TODO: Reemplazar con Builder de Cuenta
-        private Cuenta ObtenerCuentaExentaAhorrosTest() => new(
-            "1",
-            "123456789",
-            "4600000000",
-            TipoCuenta.Ahorros,
-            1000000,
-            996000,
-            true);
+        private Cuenta ObtenerCuentaExentaAhorrosTest() => new CuentaBuilderTest()
+            .WithId("1")
+            .WithIdCliente("123456789")
+            .WithNumeroDeCuenta("4600000000")
+            .WithTipoCuenta(TipoCuenta.Ahorros)
+            .WithEstadoCuenta(EstadoCuenta.Activa)
+            .WithSaldo(1000000)
+            .WithSaldoDisponible(996000)
+            .WithExenta(true)
+            .Build();
 
-        //TODO: Reemplazar con Builder de Cuenta
-        private Cuenta ObtenerCuentaNoExentaCorrienteTest() => new(
-            "1",
-            "123456789",
-            "4600000000",
-            TipoCuenta.Corriente,
-            1000000,
-            996000,
-            false);
+        private Cuenta ObtenerCuentaNoExentaCorrienteTest() => new CuentaBuilderTest()
+            .WithId("1")
+            .WithIdCliente("123456789")
+            .WithNumeroDeCuenta("4600000000")
+            .WithTipoCuenta(TipoCuenta.Corriente)
+            .WithEstadoCuenta(EstadoCuenta.Activa)
+            .WithSaldo(1000000)
+            .WithSaldoDisponible(996000)
+            .WithExenta(false)
+            .Build();
 
-        //TODO: Reemplazar con Builder de Cuenta
-        private Cuenta ObtenerCuentaExentaCorrienteTest() => new(
-            "1",
-            "123456789",
-            "4600000000",
-            TipoCuenta.Corriente,
-            1000000,
-            996000,
-            true);
+        private Cuenta ObtenerCuentaExentaCorrienteTest() => new CuentaBuilderTest()
+            .WithId("1")
+            .WithIdCliente("123456789")
+            .WithNumeroDeCuenta("4600000000")
+            .WithTipoCuenta(TipoCuenta.Corriente)
+            .WithEstadoCuenta(EstadoCuenta.Activa)
+            .WithSaldo(1000000)
+            .WithSaldoDisponible(996000)
+            .WithExenta(true)
+            .Build();
 
         #endregion Private Methods
     }

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package clientes;
+
+option csharp_namespace = "EntryPoints.GRPc.Protos";
+
+// Requests
+message CrearUsuarioRequest {
+  string nombreCompleto = 1;
+  int32 rol = 2;
+}
+
+message CrearClienteRequest {
+  int32 tipoIdentificacion = 1;
+  string numeroIdentificacion = 2;
+  string nombres = 3;
+  string apellidos = 4;
+  string correoElectronico = 5;
+  string fechaNacimiento = 6;
+}
+
+// Responses
+message UsuarioProto {
+  string id = 1;
+  string nombreCompleto = 2;
+  int32 rol = 3;
+}
+
+message ClienteProto {
+  string fechaActual = 1;
+  string id = 2;
+  int32 tipoIdentificacion = 3;
+  string numeroIdentificacion = 4;
+  string nombres = 5;
+  string apellidos = 6;
+  string correoElectronico = 7;
+  string fechaNacimiento = 8;
+  string fechaCreacion = 9;
+  repeated ActualizacionProto historialActualizaciones= 10;
+  bool estaHabilitado = 11;
+  bool tieneDeudasActivas = 12;
+  repeated string productos = 13;
+}
+
+message ActualizacionProto {
+  int32 tipoActualizacion = 1;
+  UsuarioProto usuarioModificacion = 2;
+  string fecha = 3;
+}

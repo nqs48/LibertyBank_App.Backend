@@ -61,7 +61,7 @@ namespace Domain.UseCase.Transacciones
         {
             var cuenta = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
 
-            ValidarCuentaCancelada(cuenta);
+            ValidarEstadoCuenta(cuenta);
 
             transacción.AsignarTipoTransacción(TipoTransacción.Consignación);
             transacción.AsignarFechaMovimiento();
@@ -69,7 +69,8 @@ namespace Domain.UseCase.Transacciones
             transacción.AsignarSaldoFinalCredito(transacción.Valor);
             transacción.GenerarDescripción();
 
-            //TODO: Actualizar Saldo de la cuenta
+            cuenta.ActualizarSaldo(cuenta.SaldoDisponible + transacción.Valor);
+
             await _cuentaRepository.Actualizar(transacción.Id, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
@@ -84,14 +85,7 @@ namespace Domain.UseCase.Transacciones
             var cuenta = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuenta);
 
-            ValidarCuentaCancelada(cuenta);
-
-            //TODO: Validar Cuenta Inhabilitada con método clase cuenta
-
-            // if (cuenta.EstadoCuenta == EstadoCuenta.Inactiva)
-            // {
-            //     
-            // }
+            ValidarEstadoCuenta(cuenta);
 
             transacción.AsignarTipoTransacción(TipoTransacción.Retiro);
             transacción.AsignarFechaMovimiento();
@@ -99,10 +93,12 @@ namespace Domain.UseCase.Transacciones
             transacción.AsignarSaldoFinalDebito(valorRetiro);
             transacción.GenerarDescripción();
 
-            //TODO: Actualizar Saldo de la cuenta con método clase cuenta
+            cuenta.ActualizarSaldo(cuenta.SaldoDisponible - valorRetiro);
+
             await _cuentaRepository.Actualizar(transacción.Id, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
+
 
         /// <summary>
         /// Método de tipo <see cref="Transacción"/> que realiza una transferencia
@@ -115,10 +111,13 @@ namespace Domain.UseCase.Transacciones
             var cuentaOrigen = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var cuentaDestino = await _cuentaRepository.ObtenerPorId(idCuentaReceptor);
 
-            ValidarCuentaCancelada(cuentaOrigen);
-            ValidarCuentaCancelada(cuentaDestino);
+            ValidarEstadoCuenta(cuentaOrigen);
 
-            //TODO: Validar Cuenta Origen no este Inhabilitada con método clase cuenta
+            if (cuentaDestino.EstaCancelada())
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaCancelada.GetDescription(),
+                    (int)TipoExcepcionNegocio.EstadoCuentaCancelada);
+            }
 
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuentaOrigen);
 
@@ -130,7 +129,8 @@ namespace Domain.UseCase.Transacciones
 
             var transacciónReceptor = CrearTransacciónReceptor(transacción, cuentaDestino);
 
-            //TODO: Actualizar Saldo de las 2 cuentas con método clase cuenta
+            cuentaOrigen.ActualizarSaldo(cuentaOrigen.SaldoDisponible - valorRetiro);
+            cuentaDestino.ActualizarSaldo(cuentaDestino.SaldoDisponible + valorRetiro);
 
             await _cuentaRepository.Actualizar(transacción.Id, cuentaOrigen);
             await _cuentaRepository.Actualizar(idCuentaReceptor, cuentaDestino);
@@ -139,14 +139,21 @@ namespace Domain.UseCase.Transacciones
             return await _transacciónRepository.Crear(transacción);
         }
 
-        private static void ValidarCuentaCancelada(Cuenta cuenta)
+        private static void ValidarEstadoCuenta(Cuenta cuenta)
         {
-            if (cuenta.EstadoCuenta == EstadoCuenta.Cancelada)
+            if (cuenta.EstaCancelada())
             {
                 throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaCancelada.GetDescription(),
                     (int)TipoExcepcionNegocio.EstadoCuentaCancelada);
             }
+
+            if (cuenta.EstaInactiva())
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaInactiva.GetDescription(),
+                    (int)TipoExcepcionNegocio.EstadoCuentaInactiva);
+            }
         }
+
 
         private decimal ValidarValorRetiro(decimal valor, Cuenta cuenta)
         {

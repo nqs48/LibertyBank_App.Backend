@@ -2,29 +2,29 @@
 
 namespace Domain.Model.Tests;
 
-public class UsuarioBuilder
+public class UsuarioBuilderTest
 {
     private string _id = string.Empty;
     private string _nombreCompleto = string.Empty;
     private Roles _rol;
 
-    public UsuarioBuilder()
+    public UsuarioBuilderTest()
     {
     }
 
-    public UsuarioBuilder WithId(string id)
+    public UsuarioBuilderTest WithId(string id)
     {
         _id = id;
         return this;
     }
 
-    public UsuarioBuilder WithNombreCompleto(string nombreCompleto)
+    public UsuarioBuilderTest WithNombreCompleto(string nombreCompleto)
     {
         _nombreCompleto = nombreCompleto;
         return this;
     }
 
-    public UsuarioBuilder WithRol(Roles rol)
+    public UsuarioBuilderTest WithRol(Roles rol)
     {
         _rol = rol;
         return this;

@@ -173,11 +173,11 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
                                (int)TipoExcepcionNegocio.UsuarioNoExiste);
             }
-            //else if (cliente == null)
-            //{
-            //    throw new BusinessException(TipoExcepcionNegocio.ClienteNoExiste.GetDescription(),
-            //                   (int)TipoExcepcionNegocio.ClienteNoExiste);
-            //}
+            else if (cliente == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.ClienteNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.ClienteNoExiste);
+            }
             else if (usuario.Rol.Equals(Roles.Transaccional))
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),

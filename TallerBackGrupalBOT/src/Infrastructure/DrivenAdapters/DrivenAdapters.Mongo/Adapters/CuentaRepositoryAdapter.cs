@@ -21,7 +21,6 @@ namespace DrivenAdapters.Mongo.Adapters
     /// </summary>
     public class CuentaRepositoryAdapter : ICuentaRepository
     {
-
         private readonly IMongoCollection<CuentaEntity> _collectionCuenta;
 
         private readonly IOptions<ConfiguradorAppSettings> _options;
@@ -45,14 +44,14 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <summary>
         /// <see cref="ICuentaRepository.Actualizar(string, Cuenta)"/>
         /// </summary>
+        /// <param name="idCuenta"></param>
         /// <param name="cuenta"></param>
-        /// <param name="IdCuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> Actualizar(string IdCuenta, Cuenta cuenta)
+        public async Task<Cuenta> Actualizar(string idCuenta, Cuenta cuenta)
         {
             await _collectionCuenta.ReplaceOneAsync(
-                               filtro.Eq(x => x.Id, IdCuenta),
-                                           _mapper.Map<CuentaEntity>(cuenta));
+                filtro.Eq(x => x.Id, idCuenta),
+                _mapper.Map<CuentaEntity>(cuenta));
             return cuenta;
         }
 
@@ -75,11 +74,11 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <summary>
         /// <see cref="ICuentaRepository.ObtenerPorId"/>
         /// </summary>
-        /// <param name="IdCuenta"></param>
+        /// <param name="idCuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> ObtenerPorId(string IdCuenta)
+        public async Task<Cuenta> ObtenerPorId(string idCuenta)
         {
-            var filter = Builders<CuentaEntity>.Filter.Eq(usuario => usuario.Id, IdCuenta);
+            var filter = Builders<CuentaEntity>.Filter.Eq(usuario => usuario.Id, idCuenta);
             var result = await _collectionCuenta.Find(filter).FirstOrDefaultAsync();
             return result is null ? null : _mapper.Map<Cuenta>(result);
         }

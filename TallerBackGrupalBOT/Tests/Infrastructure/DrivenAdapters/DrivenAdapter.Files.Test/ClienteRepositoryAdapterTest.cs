@@ -107,7 +107,7 @@ namespace DrivenAdapter.Mongo.Tests
         private List<UsuarioEntity> CrearListaUsuariosTest()
         {
             var list = new List<UsuarioEntity>();
-            list.Add(_mapper.Map<UsuarioEntity>(new UsuarioBuilder()
+            list.Add(_mapper.Map<UsuarioEntity>(new UsuarioBuilderTest()
                 .WithId("123id")
                 .WithNombreCompleto("Alberto Velazques")
                 .WithRol(Roles.Admin).Build())

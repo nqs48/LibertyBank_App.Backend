@@ -5,37 +5,36 @@ using System.Threading.Tasks;
 namespace Domain.Model.Entities.Gateway
 {
     /// <summary>
-    /// Repositorio de la cuenta
+    /// Interfaz de repositorio de entidad <see cref="Cuenta"/>
     /// </summary>
     public interface ICuentaRepository
     {
         /// <summary>
-        /// Obtiene todos las cuentas
+        /// Método para obtener entidades de tipo <see cref="Cuenta"/>
         /// </summary>
         /// <returns></returns>
         Task<List<Cuenta>> ObtenerTodos();
 
         /// <summary>
-        /// Obtiene cuenta por Id
+        /// Método para obtener una entidad de tipo <see cref="Cuenta"/> por su Id
         /// </summary>
-        /// <param name="IdCuenta"></param>
+        /// <param name="idCuenta"></param>
         /// <returns></returns>
-        Task<Cuenta> ObtenerPorId(string IdCuenta);
+        Task<Cuenta> ObtenerPorId(string idCuenta);
 
         /// <summary>
-        /// Crea una nueva cuenta
+        /// Método para crear una entidad de tipo <see cref="Cuenta"/>
         /// </summary>
         /// <param name="cuenta"></param>
         /// <returns></returns>
         Task<Cuenta> Crear(Cuenta cuenta);
 
-
         /// <summary>
-        /// Actualiza datos de la cuenta
+        /// Método para actualizar una entidad de tipo <see cref="Cuenta"/> por su Id
         /// </summary>
-        /// <param name="IdCuenta"></param>
+        /// <param name="idCuenta"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
-        Task<Cuenta> Actualizar(string IdCuenta, Cuenta cuenta);
+        Task<Cuenta> Actualizar(string idCuenta, Cuenta cuenta);
     }
 }

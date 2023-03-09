@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Transacciones;
 using DrivenAdapters.Mongo.entities;
+using DrivenAdapters.Mongo.Entities;
 using MongoDB.Driver;
 
 namespace DrivenAdapters.Mongo.Adapters;
@@ -15,6 +16,7 @@ namespace DrivenAdapters.Mongo.Adapters;
 public class TransacciónRepositoryAdapter : ITransacciónRepository
 {
     private readonly IMongoCollection<TransacciónEntity> _mongoTransacciónCollection;
+    private readonly IMongoCollection<CuentaEntity> _mongoCuentaCollection;
     private readonly IMapper _mapper;
 
     /// <summary>
@@ -25,18 +27,19 @@ public class TransacciónRepositoryAdapter : ITransacciónRepository
     public TransacciónRepositoryAdapter(IContext mongoDb, IMapper mapper)
     {
         _mongoTransacciónCollection = mongoDb.Transacciones;
+        _mongoCuentaCollection = mongoDb.Cuentas;
         _mapper = mapper;
     }
 
     /// <summary>
     /// <see cref="ITransacciónRepository.ObtenerPorId"/>
     /// </summary>
-    /// <param name="IdTransacción"></param>
+    /// <param name="idTransacción"></param>
     /// <returns></returns>
-    public async Task<Transacción> ObtenerPorId(string IdTransacción)
+    public async Task<Transacción> ObtenerPorId(string idTransacción)
     {
         IAsyncCursor<TransacciónEntity> transacciónCursor =
-            await _mongoTransacciónCollection.FindAsync(transacción => transacción.Id == IdTransacción);
+            await _mongoTransacciónCollection.FindAsync(transacción => transacción.Id == idTransacción);
 
         var transacciónSeleccionada = transacciónCursor.FirstOrDefaultAsync();
 
@@ -46,12 +49,22 @@ public class TransacciónRepositoryAdapter : ITransacciónRepository
     /// <summary>
     /// <see cref="ITransacciónRepository.ObtenerPorIdCuenta"/>
     /// </summary>
-    /// <param name="IdCuenta"></param>
+    /// <param name="idCuenta"></param>
     /// <returns></returns>
-    public async Task<List<Transacción>> ObtenerPorIdCuenta(string IdCuenta)
+    public async Task<List<Transacción>> ObtenerPorIdCuenta(string idCuenta)
     {
-        // TODO: Falta CuentaEntity para poder realizar este método
-        throw new NotImplementedException();
+        IAsyncCursor<CuentaEntity> cuentaCursor =
+            await _mongoCuentaCollection.FindAsync(cuenta => cuenta.Id == idCuenta);
+
+        CuentaEntity cuentaEntity = await cuentaCursor.FirstOrDefaultAsync();
+
+        IAsyncCursor<TransacciónEntity> transacciónCursor =
+            await _mongoTransacciónCollection.FindAsync(transacción => transacción.IdCuenta == cuentaEntity.Id);
+
+        return transacciónCursor
+            .ToList()
+            .Select(transacción => _mapper.Map<Transacción>(transacción))
+            .ToList();
     }
 
     /// <summary>

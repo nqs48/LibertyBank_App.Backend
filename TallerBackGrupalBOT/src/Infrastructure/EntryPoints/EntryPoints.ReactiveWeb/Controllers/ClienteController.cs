@@ -64,7 +64,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="nuevoCliente"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("add/cliente/{idUsuario}")]
+        [Route("add/{idUsuario}")]
         public Task<IActionResult> AgregarCliente(string idUsuario, CrearCliente nuevoCliente) =>
             HandleRequest(async () => await _useCase.CrearCliente(idUsuario, _mapper.Map<Cliente>(nuevoCliente)), "");
 
@@ -117,5 +117,13 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [Route("{idCliente}")]
         public Task<IActionResult> ObtenerClientePorId(string idCliente) =>
                 HandleRequest(async () => await _useCase.ObtenerClientePorId(idCliente), "");
+
+        /// <summary>
+        /// <see cref="ClienteUseCase.ObtenerTodos()"/>
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public Task<IActionResult> ObtenerTodosClientes() =>
+            HandleRequest(async () => await _useCase.ObtenerTodos(), "");
     }
 }

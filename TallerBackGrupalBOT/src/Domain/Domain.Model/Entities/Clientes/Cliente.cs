@@ -47,7 +47,7 @@ namespace Domain.Model.Entities.Clientes
         /// <summary>
         /// Fecha de nacimiento
         /// </summary>
-        public DateOnly FechaNacimiento { get; private set; }
+        public DateTime FechaNacimiento { get; private set; }
 
         /// <summary>
         /// Fecha en que se creo el cliente
@@ -75,6 +75,13 @@ namespace Domain.Model.Entities.Clientes
         public List<string> Productos { get; private set; }
 
         /// <summary>
+        /// Constructor vació
+        /// </summary>
+        public Cliente()
+        {
+        }
+
+        /// <summary>
         /// Constructor cliente
         /// </summary>
         /// <param name="tipoIdentificación"></param>
@@ -84,12 +91,8 @@ namespace Domain.Model.Entities.Clientes
         /// <param name="correoElectronico"></param>
         /// <param name="fechaNacimiento"></param>
 
-        public Cliente()
-        {
-        }
-
         public Cliente(string id, TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
-            string apellidos, string correoElectronico, DateOnly fechaNacimiento)
+            string apellidos, string correoElectronico, DateTime fechaNacimiento)
         {
             Id = id;
             TipoIdentificación = tipoIdentificación;
@@ -98,7 +101,7 @@ namespace Domain.Model.Entities.Clientes
             Apellidos = apellidos;
             CorreoElectronico = correoElectronico;
             FechaNacimiento = fechaNacimiento;
-            FechaCreación = this.FechaActual;
+            FechaCreación = DateTime.Now;
             HistorialActualizaciones = null;
             EstaHabilitado = true;
             TieneDeudasActivas = false;

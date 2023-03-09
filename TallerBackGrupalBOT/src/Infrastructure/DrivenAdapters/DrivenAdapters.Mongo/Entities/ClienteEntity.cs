@@ -45,7 +45,7 @@ namespace DrivenAdapters.Mongo.Entities
         /// Fecha de nacimiento
         /// </summary>
         [BsonElement("fecha_nacimiento")]
-        public DateOnly FechaNacimiento { get; private set; }
+        public DateTime FechaNacimiento { get; private set; }
 
         /// <summary>
         /// Fecha en que se creo el cliente
@@ -78,7 +78,7 @@ namespace DrivenAdapters.Mongo.Entities
         public List<string> Productos { get; private set; }
 
         public ClienteEntity(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres, string apellidos,
-            string correoElectronico, DateOnly fechaNacimiento, DateTime fechaCreación,
+            string correoElectronico, DateTime fechaNacimiento, DateTime fechaCreación,
             List<Actualización> historialActualizaciones, bool estaHabilitado, bool tieneDeudasActivas, List<string> productos)
         {
             TipoIdentificación = tipoIdentificación;

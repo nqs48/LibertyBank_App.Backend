@@ -47,17 +47,6 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// <summary>
         /// Fecha de nacimiento
         /// </summary>
-        public DateOnly FechaNacimiento { get; set; }
-
-        public CrearCliente(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
-            string apellidos, string correoElectronico, DateOnly fechaNacimiento)
-        {
-            TipoIdentificación = tipoIdentificación;
-            NumeroIdentificación = numeroIdentificación;
-            Nombres = nombres;
-            Apellidos = apellidos;
-            CorreoElectronico = correoElectronico;
-            FechaNacimiento = fechaNacimiento;
-        }
+        public DateTime FechaNacimiento { get; set; }
     }
 }

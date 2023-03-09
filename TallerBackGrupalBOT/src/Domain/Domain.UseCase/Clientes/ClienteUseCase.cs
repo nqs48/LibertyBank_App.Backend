@@ -4,6 +4,7 @@ using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
 using Helpers.Commons.Exceptions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Clientes
@@ -192,9 +193,14 @@ namespace Domain.UseCase.Clientes
         /// </summary>
         /// <param name="idCliente"></param>
         /// <returns></returns>
-        public async Task<Cliente> ObtenerClientePorId(string idCliente)
-        {
-            return await _gatewayCliente.ObtenerPorIdAsync(idCliente);
-        }
+        public async Task<Cliente> ObtenerClientePorId(string idCliente) =>
+            await _gatewayCliente.ObtenerPorIdAsync(idCliente);
+
+        /// <summary>
+        /// <see cref="IClienteUseCase.ObtenerTodos"/>
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Cliente>> ObtenerTodos() =>
+            await _gatewayCliente.ObtenerTodosAsync();
     }
 }

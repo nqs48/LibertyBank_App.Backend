@@ -39,7 +39,8 @@ namespace Domain.Model.Tests.Entities
             var valor = 100000;
 
             var cuentaTest = new CuentaBuilderTest()
-                .WithIdCliente("1")
+                .WithId("01")
+                .WithIdCliente("001")
                 .WithNumeroDeCuenta("1")
                 .WithTipoCuenta(TipoCuenta.Ahorros)
                 .WithEstadoCuenta(EstadoCuenta.Activa)
@@ -79,6 +80,7 @@ namespace Domain.Model.Tests.Entities
                 .WithTipoCuenta(TipoCuenta.Ahorros)
                 .WithEstadoCuenta(EstadoCuenta.Activa)
                 .WithSaldo(1000000)
+                .WithSaldoDisponible(0)
                 .Build();
 
             cuentaTest.CalcularSaldoDisponible(valorGMF);

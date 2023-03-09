@@ -1,5 +1,6 @@
 ﻿using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Cuentas;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Clientes
@@ -67,5 +68,11 @@ namespace Domain.UseCase.Clientes
         /// <param name="idCliente"></param>
         /// <returns></returns>
         Task<bool> DeshabilitarDeudaCliente(string idCliente);
+
+        /// <summary>
+        /// Obtiene una lista de <see cref="Cliente"/>
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Cliente>> ObtenerTodos();
     }
 }

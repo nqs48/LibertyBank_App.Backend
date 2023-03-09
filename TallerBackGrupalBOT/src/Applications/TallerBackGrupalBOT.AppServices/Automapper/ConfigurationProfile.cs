@@ -5,8 +5,11 @@ using Domain.Model.Entities.Transacciones;
 using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.entities;
 using DrivenAdapters.Mongo.Entities;
+using EntryPoints.GRPc.Dtos;
+using EntryPoints.GRPc.Protos;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
+using ClienteACrear = EntryPoints.GRPc.Protos.ClienteACrear;
 
 namespace TallerBackGrupalBOT.AppServices.Automapper
 {
@@ -49,9 +52,35 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
 
             #endregion REST Commands to Domain Models
 
-            CreateMap<Cuenta, CuentaHandler>().ReverseMap();
+            #region GRPc command to HTTP command
 
-            CreateMap<CrearCliente, ClienteEntity>().ReverseMap();
+            CreateMap<CrearUsuarioRequest, CrearUsuario>();
+            CreateMap<CrearClienteRequest, CrearCliente>();
+
+            #endregion
+
+            #region GRPc command to GRPc DTO
+
+            CreateMap<CrearUsuarioRequest, CrearUsuarioProto>().ReverseMap();
+            CreateMap<CrearClienteRequest, ClienteACrearProto>().ReverseMap();
+            CreateMap<ClienteACrear, ClienteACrearProto>().ReverseMap();
+
+            #endregion
+
+            #region GRPc DTO to Domain Model
+
+            CreateMap<CrearUsuarioProto, Usuario>().ReverseMap();
+            CreateMap<ClienteACrearProto, Cliente>().ReverseMap();
+            CreateMap<ClienteACrear, Cliente>().ReverseMap();
+
+            #endregion
+
+            #region Domain Model to GRPc Model
+
+            CreateMap<Usuario, UsuarioProto>();
+            CreateMap<Cliente, ClienteProto>();
+
+            #endregion
         }
     }
 }

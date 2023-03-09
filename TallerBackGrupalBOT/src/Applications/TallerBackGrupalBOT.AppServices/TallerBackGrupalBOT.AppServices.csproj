@@ -75,6 +75,7 @@
   <ItemGroup>
   <ProjectReference Include="..\..\Domain\Domain.UseCase\Domain.UseCase.csproj" />
     <ProjectReference Include="..\..\Infrastructure\DrivenAdapters\DrivenAdapters.Mongo\DrivenAdapters.Mongo.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\EntryPoints\EntryPoints.GRPc\EntryPoints.GRPc.csproj" />
     <ProjectReference Include="..\..\Infrastructure\EntryPoints\EntryPoints.ReactiveWeb\EntryPoints.ReactiveWeb.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Helpers\Helpers.Commons\Helpers.Commons.csproj" />
   </ItemGroup>

@@ -36,7 +36,7 @@ message ClienteProto {
   string correoElectronico = 7;
   string fechaNacimiento = 8;
   string fechaCreacion = 9;
-  repeated ActualizacionProto historialActualizaciones= 10;
+  repeated ActualizacionProto historialActualizaciones = 10;
   bool estaHabilitado = 11;
   bool tieneDeudasActivas = 12;
   repeated string productos = 13;
@@ -46,4 +46,15 @@ message ActualizacionProto {
   int32 tipoActualizacion = 1;
   UsuarioProto usuarioModificacion = 2;
   string fecha = 3;
+}
+
+message ClienteACrear {
+  string idUsuario = 1;
+  ClienteProto cliente = 2;
+}
+
+// Services
+service ClienteServices{
+  rpc CrearUsuario(CrearUsuarioRequest) returns (UsuarioProto);
+  rpc CrearCliente(ClienteACrear) returns (ClienteProto);
 }

@@ -27,7 +27,7 @@ namespace Domain.UseCase.Tests
         public async Task ActualizarCorreoElectronico_Correctamente()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario@gmail.com";
 
@@ -46,7 +46,7 @@ namespace Domain.UseCase.Tests
         public async Task ActualizarCorreoElectronico_Error_CorreoNoValido()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
@@ -65,7 +65,7 @@ namespace Domain.UseCase.Tests
         public async Task ActualizarCorreoElectronico_Error_ClienteNoExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
@@ -83,7 +83,7 @@ namespace Domain.UseCase.Tests
         public async Task AgregarProductosAlCliente_correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
@@ -106,7 +106,7 @@ namespace Domain.UseCase.Tests
         public async Task AgregarProductosAlCliente_Error_ClienteNoExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
             string nuevoCorreo = "nuevo_correo_mario";
 
@@ -127,7 +127,7 @@ namespace Domain.UseCase.Tests
         public async Task CrearCliente_correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
 
             Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
@@ -147,7 +147,7 @@ namespace Domain.UseCase.Tests
         public async Task CrearCliente_Error_UsuarioNovalido()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
 
             Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Transaccional);
@@ -167,7 +167,7 @@ namespace Domain.UseCase.Tests
         public async Task CrearCliente_Error_ClienteYaExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
 
             Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
@@ -189,7 +189,7 @@ namespace Domain.UseCase.Tests
         public async Task CrearCliente_Error_NoEsMayorDeEdad()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(2015, 03, 23);
+            DateTime fechaNacimiento = new(2015, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mario@gmail.com", fechaNacimiento);
 
             Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
@@ -209,7 +209,7 @@ namespace Domain.UseCase.Tests
         public async Task CrearCliente_Error_CorreoNoValido()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
 
             Usuario usuario = new("123idusuario", "Jose Rosales", Roles.Admin);
@@ -229,7 +229,7 @@ namespace Domain.UseCase.Tests
         public async Task DeshabilitarCliente_Correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
 
             _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
@@ -247,7 +247,7 @@ namespace Domain.UseCase.Tests
         public async Task DeshabilitarCliente_Error_ClienteNoExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
 
             _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
@@ -264,7 +264,7 @@ namespace Domain.UseCase.Tests
         public async Task DeshabilitarDeuda_Correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
 
             _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);
@@ -282,7 +282,7 @@ namespace Domain.UseCase.Tests
         public async Task DeshabilitarDeuda_Error_ClienteNoExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
 
             _clienteMock.Setup(repo => repo.ActualizarAsync(cliente.Id, cliente)).ReturnsAsync(cliente);
@@ -299,7 +299,7 @@ namespace Domain.UseCase.Tests
         public async Task HabilitarCliente_Correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
             cliente.Deshabilitar();
 
@@ -318,7 +318,7 @@ namespace Domain.UseCase.Tests
         public async Task HabilitarCliente_Error_ClienteNoExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
             cliente.Deshabilitar();
 
@@ -336,7 +336,7 @@ namespace Domain.UseCase.Tests
         public async Task HabilitarDeuda_Correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
             cliente.DeshabilitarDeuda();
 
@@ -355,7 +355,7 @@ namespace Domain.UseCase.Tests
         public async Task HabilitarDeuda_Error_ClienteNoExiste()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
             cliente.DeshabilitarDeuda();
 
@@ -373,7 +373,7 @@ namespace Domain.UseCase.Tests
         public async Task ObtenerClientePorId_Correcto()
         {
             // Arrange
-            DateOnly fechaNacimiento = new(1993, 03, 23);
+            DateTime fechaNacimiento = new(1993, 03, 23);
             Cliente cliente = new("123id", TipoIdentificación.CC, "1234identificacion", "Mario", "Cardona", "mariogmail.com", fechaNacimiento);
 
             _clienteMock.Setup(repo => repo.ObtenerPorIdAsync(cliente.Id)).ReturnsAsync(cliente);

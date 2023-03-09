@@ -29,10 +29,10 @@ public class ClientesRpcServices : ClienteServices.ClienteServicesBase
         return _mapper.Map<UsuarioProto>(usuarioARetornar);
     }
 
-    public override async Task<ClienteProto> CrearCliente(ClienteACrear request, ServerCallContext context)
+    public override async Task<ClienteProto> CrearCliente(ClienteCrearRequest request, ServerCallContext context)
     {
-        var clienteDto = _mapper.Map<ClienteACrearProto>(request);
-        var clienteARetornar = await _clienteUseCase.CrearCliente(request.IdUsuario, _mapper.Map<Cliente>(clienteDto));
+        var clienteDto = _mapper.Map<Cliente>(request.Cliente);
+        var clienteARetornar = await _clienteUseCase.CrearCliente(request.IdUsuario, clienteDto);
         return _mapper.Map<ClienteProto>(clienteARetornar);
     }
 }

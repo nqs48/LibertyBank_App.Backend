@@ -167,7 +167,7 @@ namespace Domain.UseCase.Cuentas
         public async Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta)
         {
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
-            var cliente = await _usuarioRepository.ObtenerPorIdAsync(cuenta.Id);
+            var cliente = await _clienteRepository.ObtenerPorIdAsync(cuenta.IdCliente);
             if (usuario == null)
             {
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),

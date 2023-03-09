@@ -31,7 +31,7 @@ public class ClientesRpcServices : ClienteServices.ClienteServicesBase
 
     public override async Task<ClienteProto> CrearCliente(ClienteACrear request, ServerCallContext context)
     {
-        var clienteDto = _mapper.Map<CrearClienteProto>(request);
+        var clienteDto = _mapper.Map<ClienteACrearProto>(request);
         var clienteARetornar = await _clienteUseCase.CrearCliente(request.IdUsuario, _mapper.Map<Cliente>(clienteDto));
         return _mapper.Map<ClienteProto>(clienteARetornar);
     }

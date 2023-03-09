@@ -51,7 +51,7 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
             CreateMap<CrearTransacción, Transacción>();
 
             #endregion REST Commands to Domain Models
-            
+
             #region GRPc command to HTTP command
 
             CreateMap<CrearUsuarioRequest, CrearUsuario>();
@@ -62,14 +62,16 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
             #region GRPc command to GRPc DTO
 
             CreateMap<CrearUsuarioRequest, CrearUsuarioProto>().ReverseMap();
-            CreateMap<CrearClienteRequest, CrearClienteProto>().ReverseMap();
-            CreateMap<ClienteACrear, CrearClienteProto>().ReverseMap();
+            CreateMap<CrearClienteRequest, ClienteACrearProto>().ReverseMap();
+            CreateMap<ClienteACrear, ClienteACrearProto>().ReverseMap();
+
             #endregion
 
             #region GRPc DTO to Domain Model
 
             CreateMap<CrearUsuarioProto, Usuario>().ReverseMap();
-            CreateMap<CrearClienteProto, Cliente>().ReverseMap();
+            CreateMap<ClienteACrearProto, Cliente>().ReverseMap();
+            CreateMap<ClienteACrear, Cliente>().ReverseMap();
 
             #endregion
 

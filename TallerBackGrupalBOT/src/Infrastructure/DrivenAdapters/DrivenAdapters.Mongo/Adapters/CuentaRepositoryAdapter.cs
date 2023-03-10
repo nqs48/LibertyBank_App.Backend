@@ -7,6 +7,7 @@ using DrivenAdapters.Mongo.Entities;
 using Helpers.ObjectsUtils;
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -69,6 +70,21 @@ namespace DrivenAdapters.Mongo.Adapters
             var nuevaCuenta = _mapper.Map<CuentaEntity>(cuenta);
             await _collectionCuenta.InsertOneAsync(nuevaCuenta);
             return _mapper.Map<Cuenta>(nuevaCuenta);
+        }
+
+        /// <summary>
+        /// <see cref="ICuentaRepository.ObtenerPorCliente(string)"/>
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        public async Task<List<Cuenta>> ObtenerPorCliente(string idCliente)
+        {
+            IAsyncCursor<CuentaEntity> cursorCuentas = await _collectionCuenta.FindAsync(Builders<CuentaEntity>.Filter.Empty);
+
+            List<Cuenta> cuentasCliente = cursorCuentas.ToEnumerable().Select(cuentaEntity => _mapper.Map<Cuenta>(cuentaEntity)).ToList();
+            List<Cuenta> cuentasClienteFiltradas = cuentasCliente.Where(cuenta => cuenta.IdCliente == idCliente).ToList();
+
+            return cuentasCliente is null ? null : cuentasClienteFiltradas;
         }
 
         /// <summary>

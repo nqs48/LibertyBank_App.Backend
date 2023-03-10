@@ -36,5 +36,13 @@ namespace Domain.Model.Entities.Gateway
         /// <param name="cuenta"></param>
         /// <returns></returns>
         Task<Cuenta> Actualizar(string idCuenta, Cuenta cuenta);
+
+        /// <summary>
+        /// Método para obtener entidades de tipo <see cref="Cuenta"/> por Id de cliente
+        /// </summary>
+        /// <param name="idCliente"></param>
+        /// <returns></returns>
+        Task<List<Cuenta>> ObtenerPorCliente(string idCliente);
+        
     }
 }

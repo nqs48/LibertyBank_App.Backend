@@ -41,7 +41,7 @@ public class TransacciónRepositoryAdapter : ITransacciónRepository
         IAsyncCursor<TransacciónEntity> transacciónCursor =
             await _mongoTransacciónCollection.FindAsync(transacción => transacción.Id == idTransacción);
 
-        var transacciónSeleccionada = transacciónCursor.FirstOrDefaultAsync();
+        TransacciónEntity transacciónSeleccionada = await transacciónCursor.FirstOrDefaultAsync();
 
         return transacciónSeleccionada is null ? null : _mapper.Map<Transacción>(transacciónSeleccionada);
     }

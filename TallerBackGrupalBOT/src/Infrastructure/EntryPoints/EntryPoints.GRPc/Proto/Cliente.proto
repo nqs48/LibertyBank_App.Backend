@@ -27,19 +27,19 @@ message UsuarioProto {
 }
 
 message ClienteProto {
-  string fechaActual = 1;
-  string id = 2;
-  int32 tipoIdentificacion = 3;
-  string numeroIdentificacion = 4;
-  string nombres = 5;
-  string apellidos = 6;
-  string correoElectronico = 7;
-  string fechaNacimiento = 8;
-  string fechaCreacion = 9;
+  string FechaActual = 1;
+  string Id = 2;
+  int32 TipoIdentificacion = 3;
+  string NumeroIdentificacion = 4;
+  string Nombres = 5;
+  string Apellidos = 6;
+  string CorreoElectronico = 7;
+  string FechaNacimiento = 8;
+  string FechaCreacion = 9;
   repeated ActualizacionProto historialActualizaciones = 10;
-  bool estaHabilitado = 11;
-  bool tieneDeudasActivas = 12;
-  repeated string productos = 13;
+  bool EstaHabilitado = 11;
+  bool TieneDeudasActivas = 12;
+  repeated string Productos = 13;
 }
 
 message ActualizacionProto {

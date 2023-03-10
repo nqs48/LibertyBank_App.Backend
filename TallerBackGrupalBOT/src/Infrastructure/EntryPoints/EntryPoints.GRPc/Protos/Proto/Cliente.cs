@@ -31,14 +31,14 @@ namespace EntryPoints.GRPc.Protos {
             "ZXMYAyABKAkSEQoJQXBlbGxpZG9zGAQgASgJEhkKEUNvcnJlb0VsZWN0cm9u",
             "aWNvGAUgASgJEhcKD0ZlY2hhTmFjaW1pZW50bxgGIAEoCSI/CgxVc3Vhcmlv",
             "UHJvdG8SCgoCaWQYASABKAkSFgoObm9tYnJlQ29tcGxldG8YAiABKAkSCwoD",
-            "cm9sGAMgASgFIt8CCgxDbGllbnRlUHJvdG8SEwoLZmVjaGFBY3R1YWwYASAB",
-            "KAkSCgoCaWQYAiABKAkSGgoSdGlwb0lkZW50aWZpY2FjaW9uGAMgASgFEhwK",
-            "FG51bWVyb0lkZW50aWZpY2FjaW9uGAQgASgJEg8KB25vbWJyZXMYBSABKAkS",
-            "EQoJYXBlbGxpZG9zGAYgASgJEhkKEWNvcnJlb0VsZWN0cm9uaWNvGAcgASgJ",
-            "EhcKD2ZlY2hhTmFjaW1pZW50bxgIIAEoCRIVCg1mZWNoYUNyZWFjaW9uGAkg",
+            "cm9sGAMgASgFIt8CCgxDbGllbnRlUHJvdG8SEwoLRmVjaGFBY3R1YWwYASAB",
+            "KAkSCgoCSWQYAiABKAkSGgoSVGlwb0lkZW50aWZpY2FjaW9uGAMgASgFEhwK",
+            "FE51bWVyb0lkZW50aWZpY2FjaW9uGAQgASgJEg8KB05vbWJyZXMYBSABKAkS",
+            "EQoJQXBlbGxpZG9zGAYgASgJEhkKEUNvcnJlb0VsZWN0cm9uaWNvGAcgASgJ",
+            "EhcKD0ZlY2hhTmFjaW1pZW50bxgIIAEoCRIVCg1GZWNoYUNyZWFjaW9uGAkg",
             "ASgJEj4KGGhpc3RvcmlhbEFjdHVhbGl6YWNpb25lcxgKIAMoCzIcLmNsaWVu",
-            "dGVzLkFjdHVhbGl6YWNpb25Qcm90bxIWCg5lc3RhSGFiaWxpdGFkbxgLIAEo",
-            "CBIaChJ0aWVuZURldWRhc0FjdGl2YXMYDCABKAgSEQoJcHJvZHVjdG9zGA0g",
+            "dGVzLkFjdHVhbGl6YWNpb25Qcm90bxIWCg5Fc3RhSGFiaWxpdGFkbxgLIAEo",
+            "CBIaChJUaWVuZURldWRhc0FjdGl2YXMYDCABKAgSEQoJUHJvZHVjdG9zGA0g",
             "AygJInMKEkFjdHVhbGl6YWNpb25Qcm90bxIZChF0aXBvQWN0dWFsaXphY2lv",
             "bhgBIAEoBRIzChN1c3VhcmlvTW9kaWZpY2FjaW9uGAIgASgLMhYuY2xpZW50",
             "ZXMuVXN1YXJpb1Byb3RvEg0KBWZlY2hhGAMgASgJIlEKE0NsaWVudGVDcmVh",
@@ -923,7 +923,7 @@ namespace EntryPoints.GRPc.Protos {
       return new ClienteProto(this);
     }
 
-    /// <summary>Field number for the "fechaActual" field.</summary>
+    /// <summary>Field number for the "FechaActual" field.</summary>
     public const int FechaActualFieldNumber = 1;
     private string fechaActual_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -934,7 +934,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "id" field.</summary>
+    /// <summary>Field number for the "Id" field.</summary>
     public const int IdFieldNumber = 2;
     private string id_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -945,7 +945,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "tipoIdentificacion" field.</summary>
+    /// <summary>Field number for the "TipoIdentificacion" field.</summary>
     public const int TipoIdentificacionFieldNumber = 3;
     private int tipoIdentificacion_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -956,7 +956,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "numeroIdentificacion" field.</summary>
+    /// <summary>Field number for the "NumeroIdentificacion" field.</summary>
     public const int NumeroIdentificacionFieldNumber = 4;
     private string numeroIdentificacion_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -967,7 +967,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "nombres" field.</summary>
+    /// <summary>Field number for the "Nombres" field.</summary>
     public const int NombresFieldNumber = 5;
     private string nombres_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -978,7 +978,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "apellidos" field.</summary>
+    /// <summary>Field number for the "Apellidos" field.</summary>
     public const int ApellidosFieldNumber = 6;
     private string apellidos_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -989,7 +989,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "correoElectronico" field.</summary>
+    /// <summary>Field number for the "CorreoElectronico" field.</summary>
     public const int CorreoElectronicoFieldNumber = 7;
     private string correoElectronico_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1000,7 +1000,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "fechaNacimiento" field.</summary>
+    /// <summary>Field number for the "FechaNacimiento" field.</summary>
     public const int FechaNacimientoFieldNumber = 8;
     private string fechaNacimiento_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1011,7 +1011,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "fechaCreacion" field.</summary>
+    /// <summary>Field number for the "FechaCreacion" field.</summary>
     public const int FechaCreacionFieldNumber = 9;
     private string fechaCreacion_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1032,7 +1032,7 @@ namespace EntryPoints.GRPc.Protos {
       get { return historialActualizaciones_; }
     }
 
-    /// <summary>Field number for the "estaHabilitado" field.</summary>
+    /// <summary>Field number for the "EstaHabilitado" field.</summary>
     public const int EstaHabilitadoFieldNumber = 11;
     private bool estaHabilitado_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1043,7 +1043,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "tieneDeudasActivas" field.</summary>
+    /// <summary>Field number for the "TieneDeudasActivas" field.</summary>
     public const int TieneDeudasActivasFieldNumber = 12;
     private bool tieneDeudasActivas_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1054,7 +1054,7 @@ namespace EntryPoints.GRPc.Protos {
       }
     }
 
-    /// <summary>Field number for the "productos" field.</summary>
+    /// <summary>Field number for the "Productos" field.</summary>
     public const int ProductosFieldNumber = 13;
     private static readonly pb::FieldCodec<string> _repeated_productos_codec
         = pb::FieldCodec.ForString(106);

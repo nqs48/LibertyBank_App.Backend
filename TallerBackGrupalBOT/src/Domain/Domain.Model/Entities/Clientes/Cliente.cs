@@ -22,12 +22,12 @@ namespace Domain.Model.Entities.Clientes
         /// <summary>
         /// Tipo de identificación
         /// </summary>
-        public TipoIdentificación TipoIdentificación { get; private set; }
+        public TipoIdentificación TipoIdentificacion { get; private set; }
 
         /// <summary>
         /// Numero de identificación
         /// </summary>
-        public string NumeroIdentificación { get; private set; }
+        public string NumeroIdentificacion { get; private set; }
 
         /// <summary>
         /// Nombres del cliente
@@ -84,19 +84,19 @@ namespace Domain.Model.Entities.Clientes
         /// <summary>
         /// Constructor cliente
         /// </summary>
-        /// <param name="tipoIdentificación"></param>
-        /// <param name="numeroIdentificación"></param>
+        /// <param name="tipoIdentificacion"></param>
+        /// <param name="numeroIdentificacion"></param>
         /// <param name="nombres"></param>
         /// <param name="apellidos"></param>
         /// <param name="correoElectronico"></param>
         /// <param name="fechaNacimiento"></param>
 
-        public Cliente(string id, TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres,
+        public Cliente(string id, TipoIdentificación tipoIdentificacion, string numeroIdentificacion, string nombres,
             string apellidos, string correoElectronico, DateTime fechaNacimiento)
         {
             Id = id;
-            TipoIdentificación = tipoIdentificación;
-            NumeroIdentificación = numeroIdentificación;
+            TipoIdentificacion = tipoIdentificacion;
+            NumeroIdentificacion = numeroIdentificacion;
             Nombres = nombres;
             Apellidos = apellidos;
             CorreoElectronico = correoElectronico;

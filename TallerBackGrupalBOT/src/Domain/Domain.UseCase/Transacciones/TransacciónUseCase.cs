@@ -71,7 +71,7 @@ namespace Domain.UseCase.Transacciones
 
             cuenta.ActualizarSaldo(cuenta.SaldoDisponible + transacción.Valor);
 
-            await _cuentaRepository.Actualizar(transacción.Id, cuenta);
+            await _cuentaRepository.Actualizar(transacción.IdCuenta, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
 
@@ -95,7 +95,7 @@ namespace Domain.UseCase.Transacciones
 
             cuenta.ActualizarSaldo(cuenta.SaldoDisponible - valorRetiro);
 
-            await _cuentaRepository.Actualizar(transacción.Id, cuenta);
+            await _cuentaRepository.Actualizar(transacción.IdCuenta, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
 
@@ -132,7 +132,7 @@ namespace Domain.UseCase.Transacciones
             cuentaOrigen.ActualizarSaldo(cuentaOrigen.SaldoDisponible - valorRetiro);
             cuentaDestino.ActualizarSaldo(cuentaDestino.SaldoDisponible + valorRetiro);
 
-            await _cuentaRepository.Actualizar(transacción.Id, cuentaOrigen);
+            await _cuentaRepository.Actualizar(transacción.IdCuenta, cuentaOrigen);
             await _cuentaRepository.Actualizar(idCuentaReceptor, cuentaDestino);
 
             await _transacciónRepository.Crear(transacciónReceptor);

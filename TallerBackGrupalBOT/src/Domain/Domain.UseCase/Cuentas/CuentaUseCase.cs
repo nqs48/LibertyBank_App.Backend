@@ -1,10 +1,13 @@
 ﻿using credinet.exception.middleware.models;
+using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
 using Helpers.Commons.Exceptions;
+using Helpers.ObjectsUtils;
 using Helpers.ObjectsUtils.Extensions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,17 +25,21 @@ namespace Domain.UseCase.Cuentas
         private readonly IClienteRepository _clienteRepository;
         private readonly IUsuarioRepository _usuarioRepository;
 
+        private readonly IOptions<ConfiguradorAppSettings> _options;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CuentaUseCase"/> class.
         /// </summary>
         /// <param name="repositoryCuenta">The logger.</param>
         /// <param name="clienteRepository">The logger.</param>
         /// <param name="usuarioRepository">The logger.</param>
-        public CuentaUseCase( ICuentaRepository repositoryCuenta, IClienteRepository clienteRepository, IUsuarioRepository usuarioRepository)
+        public CuentaUseCase( ICuentaRepository repositoryCuenta, IClienteRepository clienteRepository, IUsuarioRepository usuarioRepository, IOptions<ConfiguradorAppSettings> options)
         {
             _repositoryCuenta = repositoryCuenta;
             _clienteRepository = clienteRepository;
             _usuarioRepository = usuarioRepository;
+
+            _options = options;
         }
 
         /// <summary>
@@ -168,6 +175,10 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta)
         {
+            if (!cuenta.Exenta) { cuenta.CalcularSaldoDisponible(_options.Value.GMF); }
+            else { cuenta.SaldoDisponible = cuenta.Saldo; }
+            cuenta.AsignarNumeroCuenta();
+
             var cuentasCliente = await _repositoryCuenta.ObtenerPorCliente(cuenta.IdCliente);
             var cuentasExentas = cuentasCliente.Where(x => x.Exenta).ToList();
 
@@ -193,8 +204,13 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.YaExisteUnaCuentaExenta.GetDescription(),
                                                   (int)TipoExcepcionNegocio.YaExisteUnaCuentaExenta);
             }
+            
             var nuevaModificacion = new Modificación(TipoModificación.Creación, usuario);
+            var nuevaActualizacion= new Actualización(TipoActualización.Actualización, usuario);
             cuenta.AgregarModificacion(nuevaModificacion);
+            cliente.AgregarIdProducto(cuenta.NumeroCuenta);
+            cliente.AgregarActualizacion(nuevaActualizacion);
+            await _clienteRepository.ActualizarAsync(cliente.Id, cliente);
             return await _repositoryCuenta.Crear(cuenta);
         }
 
@@ -213,6 +229,13 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<List<Cuenta>> ObtenerTodasPorCliente(string idCliente)
         {
+            var cliente = await _clienteRepository.ObtenerPorIdAsync(idCliente);
+            if (cliente == null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.ClienteNoExiste.GetDescription(),
+                               (int)TipoExcepcionNegocio.ClienteNoExiste);
+            }
+
             var cuentasCliente= await _repositoryCuenta.ObtenerPorCliente(idCliente);
             
             //Ordenar Cuentas por Saldo

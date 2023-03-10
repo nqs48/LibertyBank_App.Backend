@@ -47,17 +47,6 @@ namespace EntryPoints.ReactiveWeb.Controllers
             HandleRequest(async () => await _useCase.ActualizarCorreoElectronico(idCliente, nuevoCorreo), "");
 
         /// <summary>
-        /// <see cref="ClienteUseCase.AgregarProductosCliente(string, Cuenta)"/>
-        /// </summary>
-        /// <param name="idCliente"></param>
-        /// <param name="nuevaCuenta"></param>
-        /// <returns></returns>
-        [HttpPut]
-        [Route("add/products/{idCliente}/{idUsuario}")]
-        public Task<IActionResult> AgregarProductosACliente(string idCliente, [FromBody] Cuenta nuevaCuenta) =>
-            HandleRequest(async () => await _useCase.AgregarProductosCliente(idCliente, nuevaCuenta), "");
-
-        /// <summary>
         /// <see cref="ClienteUseCase.CrearCliente(string, Cliente)"/>
         /// </summary>
         /// <param name="idUsuario"></param>

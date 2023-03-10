@@ -72,6 +72,7 @@ namespace Domain.UseCase.Transacciones
             cuenta.ActualizarSaldo(cuenta.SaldoDisponible + transacción.Valor);
 
             await _cuentaRepository.Actualizar(transacción.Id, cuenta);
+
             return await _transacciónRepository.Crear(transacción);
         }
 

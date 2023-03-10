@@ -33,7 +33,7 @@ namespace Domain.UseCase.Cuentas
         /// <param name="repositoryCuenta">The logger.</param>
         /// <param name="clienteRepository">The logger.</param>
         /// <param name="usuarioRepository">The logger.</param>
-        public CuentaUseCase( ICuentaRepository repositoryCuenta, IClienteRepository clienteRepository, IUsuarioRepository usuarioRepository, IOptions<ConfiguradorAppSettings> options)
+        public CuentaUseCase(ICuentaRepository repositoryCuenta, IClienteRepository clienteRepository, IUsuarioRepository usuarioRepository, IOptions<ConfiguradorAppSettings> options)
         {
             _repositoryCuenta = repositoryCuenta;
             _clienteRepository = clienteRepository;
@@ -50,28 +50,26 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
-        
+
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
-            if (usuario == null)
-            {
+
+            if (usuario is null)
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioNoExiste.GetDescription(),
                                (int)TipoExcepcionNegocio.UsuarioNoExiste);
-            }
-            else if (cuentaEncontrada == null)
-            {
+
+            if (cuentaEncontrada is null)
                 throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
                                (int)TipoExcepcionNegocio.CuentaNoEncontrada);
-            }
-            else if (usuario.Rol.Equals(Roles.Transaccional))
-            {
+
+            if (usuario.Rol.Equals(Roles.Transaccional))
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
-            }else if (cuentaEncontrada.Saldo >= 1)
-            {
+
+            if (cuentaEncontrada.Saldo >= 1)
                 throw new BusinessException(TipoExcepcionNegocio.CuentaConSaldo.GetDescription(),
                                                    (int)TipoExcepcionNegocio.CuentaConSaldo);
-            }
+
             Modificación nuevaModificacion = new Modificación(TipoModificación.Cancelación, usuario);
             cuentaEncontrada.CancelarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
@@ -173,7 +171,7 @@ namespace Domain.UseCase.Cuentas
         /// <param name="idUsuarioModificacion"></param>
         /// <param name="cuenta"></param>
         /// <returns></returns>
-        public async Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta)
+        public async Task<Cuenta> Crear(string idUsuarioModificacion, Cuenta cuenta)
         {
             if (!cuenta.Exenta) { cuenta.CalcularSaldoDisponible(_options.Value.GMF); }
             else { cuenta.SaldoDisponible = cuenta.Saldo; }
@@ -204,9 +202,9 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.YaExisteUnaCuentaExenta.GetDescription(),
                                                   (int)TipoExcepcionNegocio.YaExisteUnaCuentaExenta);
             }
-            
+
             var nuevaModificacion = new Modificación(TipoModificación.Creación, usuario);
-            var nuevaActualizacion= new Actualización(TipoActualización.Actualización, usuario);
+            var nuevaActualizacion = new Actualización(TipoActualización.Actualización, usuario);
             cuenta.AgregarModificacion(nuevaModificacion);
             cliente.AgregarIdProducto(cuenta.NumeroCuenta);
             cliente.AgregarActualizacion(nuevaActualizacion);
@@ -236,8 +234,8 @@ namespace Domain.UseCase.Cuentas
                                (int)TipoExcepcionNegocio.ClienteNoExiste);
             }
 
-            var cuentasCliente= await _repositoryCuenta.ObtenerPorCliente(idCliente);
-            
+            var cuentasCliente = await _repositoryCuenta.ObtenerPorCliente(idCliente);
+
             //Ordenar Cuentas por Saldo
             return cuentasCliente.OrderByDescending(x => x.Saldo).ToList();
         }

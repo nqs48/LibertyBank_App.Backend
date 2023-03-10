@@ -44,11 +44,10 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("id")]
-        public Task<IActionResult> ObtenerId([FromQuery] string id) => HandleRequest(async () =>
-        {
-            return await _cuentaUseCase.ObtenerCuentaPorId(id);   
-        }, "");
+        [HttpGet]
+        [Route("{id}")]
+        public Task<IActionResult> ObtenerId(string id) => HandleRequest(async () =>
+            await _cuentaUseCase.ObtenerCuentaPorId(id), "");
 
 
         /// <summary>
@@ -58,12 +57,11 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Id")]
-        public Task<IActionResult> Crear(string idUsuario, CrearCuenta crearCuenta) => HandleRequest(async () =>
+        [Route("{idUsuario}")] 
+        public Task<IActionResult> Crear(string idUsuario, [FromBody] CrearCuenta crearCuenta) => HandleRequest(async () =>
         {
-
             Cuenta cuentaMapeada = _mapper.Map<Cuenta>(crearCuenta);
-            Cuenta cuenta = await _cuentaUseCase.Crear(idUsuario,cuentaMapeada);
+            Cuenta cuenta = await _cuentaUseCase.Crear(idUsuario, cuentaMapeada);
             return _mapper.Map<CuentaHandler>(cuenta);
         }, "");
 
@@ -74,10 +72,9 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("Id")]
-        public Task<IActionResult> Cancelar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
+        [Route("{idUsuario}")]
+        public Task<IActionResult> Cancelar(string idUsuario, [FromBody] EstadosCuenta estadoCuenta) => HandleRequest(async () =>
         {
-
             Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
             Cuenta cuenta = await _cuentaUseCase.CancelarCuenta(idUsuario, cuentaMapeada);
             return _mapper.Map<CuentaHandler>(cuenta);
@@ -90,10 +87,9 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("Id")]
-        public Task<IActionResult> Habilitar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
+        [Route("{idUsuario}")]
+        public Task<IActionResult> Habilitar(string idUsuario, [FromBody] EstadosCuenta estadoCuenta) => HandleRequest(async () =>
         {
-
             Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
             Cuenta cuenta = await _cuentaUseCase.HabilitarCuenta(idUsuario, cuentaMapeada);
             return _mapper.Map<CuentaHandler>(cuenta);
@@ -106,10 +102,9 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPut]
-        [Route("Id")]
-        public Task<IActionResult> Deshabilitar(string idUsuario, EstadosCuenta estadoCuenta) => HandleRequest(async () =>
+        [Route("{idUsuario}")]
+        public Task<IActionResult> Deshabilitar(string idUsuario, [FromBody] EstadosCuenta estadoCuenta) => HandleRequest(async () =>
         {
-
             Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
             Cuenta cuenta = await _cuentaUseCase.DeshabilitarCuenta(idUsuario, cuentaMapeada);
             return _mapper.Map<CuentaHandler>(cuenta);
@@ -128,13 +123,13 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <summary>
         /// Endpoint para obtener lista de entidades de tipo <see cref="Cuenta"/> por cliente
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="idCliente"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("id")]
-        public async Task<IActionResult> ObtenerClienteId([FromQuery] string id) => await HandleRequest(async () =>
+        [Route("{idCliente}")]
+        public async Task<IActionResult> ObtenerCuentasPorId(string idCliente) => await HandleRequest(async () =>
         {
-            return await _cuentaUseCase.ObtenerTodasPorCliente(id);
+            return await _cuentaUseCase.ObtenerTodasPorCliente(idCliente);
         }, "");
 
 

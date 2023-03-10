@@ -4,6 +4,7 @@ using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
 using Helpers.Commons.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -112,6 +113,7 @@ namespace Domain.UseCase.Clientes
             nuevoCliente.AgregarActualizacion(nuevaActualizacion);
 
             nuevoCliente.Habilitar();
+            nuevoCliente.FechaCreación = DateTime.Now;
 
             return await _gatewayCliente.CrearAsync(usuarioSeleccionado.Id, nuevoCliente);
         }
@@ -128,6 +130,10 @@ namespace Domain.UseCase.Clientes
 
             if (clienteSeleccionado is null)
                 throw new BusinessException($"No existe cliente con el id {idCliente}", (int)TipoExcepcionNegocio.ClienteNoExiste);
+
+            if (clienteSeleccionado.TieneDeudasActivas)
+                throw new BusinessException($"Cliente no es posible deshabilitar por deudas activas",
+                    (int)TipoExcepcionNegocio.ClienteTieneDeudasActivas);
 
             clienteSeleccionado.Deshabilitar();
             await _gatewayCliente.ActualizarAsync(idCliente, clienteSeleccionado);

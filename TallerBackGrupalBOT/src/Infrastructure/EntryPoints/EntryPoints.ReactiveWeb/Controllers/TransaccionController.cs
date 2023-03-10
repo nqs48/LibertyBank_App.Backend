@@ -18,18 +18,18 @@ namespace EntryPoints.ReactiveWeb.Controllers;
 [Produces("application/json")]
 [ApiVersion("1.0")]
 [Route("api/[controller]/[action]")]
-public class TransacciónController : AppControllerBase<TransacciónController>
+public class TransaccionController : AppControllerBase<TransaccionController>
 {
     private readonly ITransacciónUseCase _transacciónUseCase;
     private readonly IMapper _mapper;
 
     /// <summary>
-    /// Crea una instancia de <see cref="TransacciónController"/>
+    /// Crea una instancia de <see cref="TransaccionController"/>
     /// </summary>
     /// <param name="eventsService"></param>
     /// <param name="transacciónUseCase"></param>
     /// <param name="mapper"></param>
-    public TransacciónController(IManageEventsUseCase eventsService, ITransacciónUseCase transacciónUseCase,
+    public TransaccionController(IManageEventsUseCase eventsService, ITransacciónUseCase transacciónUseCase,
         IMapper mapper) : base(eventsService)
     {
         _transacciónUseCase = transacciónUseCase;

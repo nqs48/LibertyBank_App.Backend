@@ -7,6 +7,7 @@ using Helpers.ObjectsUtils.Extensions;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Cuentas
@@ -42,6 +43,7 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
+        
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
             if (usuario == null)
@@ -166,6 +168,9 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta)
         {
+            var cuentasCliente = await _repositoryCuenta.ObtenerPorCliente(cuenta.IdCliente);
+            var cuentasExentas = cuentasCliente.Where(x => x.Exenta).ToList();
+
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cliente = await _clienteRepository.ObtenerPorIdAsync(cuenta.IdCliente);
             if (usuario == null)
@@ -183,6 +188,11 @@ namespace Domain.UseCase.Cuentas
                 throw new BusinessException(TipoExcepcionNegocio.UsuarioSinPermisos.GetDescription(),
                                 (int)TipoExcepcionNegocio.UsuarioSinPermisos);
             }
+            else if (cuentasExentas.Count > 0 && cuenta.Exenta)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.YaExisteUnaCuentaExenta.GetDescription(),
+                                                  (int)TipoExcepcionNegocio.YaExisteUnaCuentaExenta);
+            }
             var nuevaModificacion = new Modificación(TipoModificación.Creación, usuario);
             cuenta.AgregarModificacion(nuevaModificacion);
             return await _repositoryCuenta.Crear(cuenta);
@@ -195,6 +205,18 @@ namespace Domain.UseCase.Cuentas
         public async Task<List<Cuenta>> ObtenerTodas()
         {
             return await _repositoryCuenta.ObtenerTodos();
+        }
+
+        /// <summary>
+        /// Método para obtener todas la cuentas por Cliente
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Cuenta>> ObtenerTodasPorCliente(string idCliente)
+        {
+            var cuentasCliente= await _repositoryCuenta.ObtenerPorCliente(idCliente);
+            
+            //Ordenar Cuentas por Saldo
+            return cuentasCliente.OrderByDescending(x => x.Saldo).ToList();
         }
     }
 }

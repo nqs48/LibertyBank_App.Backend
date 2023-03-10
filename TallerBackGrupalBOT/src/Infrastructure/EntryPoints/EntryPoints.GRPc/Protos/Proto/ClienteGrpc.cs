@@ -56,6 +56,10 @@ namespace EntryPoints.GRPc.Protos {
     static readonly grpc::Marshaller<global::EntryPoints.GRPc.Protos.ClienteCrearRequest> __Marshaller_clientes_ClienteCrearRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::EntryPoints.GRPc.Protos.ClienteCrearRequest.Parser));
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Marshaller<global::EntryPoints.GRPc.Protos.ClienteProto> __Marshaller_clientes_ClienteProto = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::EntryPoints.GRPc.Protos.ClienteProto.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::EntryPoints.GRPc.Protos.Empty> __Marshaller_clientes_Empty = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::EntryPoints.GRPc.Protos.Empty.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::EntryPoints.GRPc.Protos.RespuestaListaClientes> __Marshaller_clientes_RespuestaListaClientes = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::EntryPoints.GRPc.Protos.RespuestaListaClientes.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
     static readonly grpc::Method<global::EntryPoints.GRPc.Protos.CrearUsuarioRequest, global::EntryPoints.GRPc.Protos.UsuarioProto> __Method_CrearUsuario = new grpc::Method<global::EntryPoints.GRPc.Protos.CrearUsuarioRequest, global::EntryPoints.GRPc.Protos.UsuarioProto>(
@@ -72,6 +76,14 @@ namespace EntryPoints.GRPc.Protos {
         "CrearCliente",
         __Marshaller_clientes_ClienteCrearRequest,
         __Marshaller_clientes_ClienteProto);
+
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Method<global::EntryPoints.GRPc.Protos.Empty, global::EntryPoints.GRPc.Protos.RespuestaListaClientes> __Method_ObtenerTodosLosClientes = new grpc::Method<global::EntryPoints.GRPc.Protos.Empty, global::EntryPoints.GRPc.Protos.RespuestaListaClientes>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ObtenerTodosLosClientes",
+        __Marshaller_clientes_Empty,
+        __Marshaller_clientes_RespuestaListaClientes);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -91,6 +103,12 @@ namespace EntryPoints.GRPc.Protos {
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       public virtual global::System.Threading.Tasks.Task<global::EntryPoints.GRPc.Protos.ClienteProto> CrearCliente(global::EntryPoints.GRPc.Protos.ClienteCrearRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::System.Threading.Tasks.Task<global::EntryPoints.GRPc.Protos.RespuestaListaClientes> ObtenerTodosLosClientes(global::EntryPoints.GRPc.Protos.Empty request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -164,6 +182,26 @@ namespace EntryPoints.GRPc.Protos {
       {
         return CallInvoker.AsyncUnaryCall(__Method_CrearCliente, null, options, request);
       }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::EntryPoints.GRPc.Protos.RespuestaListaClientes ObtenerTodosLosClientes(global::EntryPoints.GRPc.Protos.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ObtenerTodosLosClientes(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual global::EntryPoints.GRPc.Protos.RespuestaListaClientes ObtenerTodosLosClientes(global::EntryPoints.GRPc.Protos.Empty request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ObtenerTodosLosClientes, null, options, request);
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::EntryPoints.GRPc.Protos.RespuestaListaClientes> ObtenerTodosLosClientesAsync(global::EntryPoints.GRPc.Protos.Empty request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return ObtenerTodosLosClientesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+      public virtual grpc::AsyncUnaryCall<global::EntryPoints.GRPc.Protos.RespuestaListaClientes> ObtenerTodosLosClientesAsync(global::EntryPoints.GRPc.Protos.Empty request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ObtenerTodosLosClientes, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
       protected override ClienteServicesClient NewInstance(ClientBaseConfiguration configuration)
@@ -179,7 +217,8 @@ namespace EntryPoints.GRPc.Protos {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_CrearUsuario, serviceImpl.CrearUsuario)
-          .AddMethod(__Method_CrearCliente, serviceImpl.CrearCliente).Build();
+          .AddMethod(__Method_CrearCliente, serviceImpl.CrearCliente)
+          .AddMethod(__Method_ObtenerTodosLosClientes, serviceImpl.ObtenerTodosLosClientes).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -191,6 +230,7 @@ namespace EntryPoints.GRPc.Protos {
     {
       serviceBinder.AddMethod(__Method_CrearUsuario, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::EntryPoints.GRPc.Protos.CrearUsuarioRequest, global::EntryPoints.GRPc.Protos.UsuarioProto>(serviceImpl.CrearUsuario));
       serviceBinder.AddMethod(__Method_CrearCliente, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::EntryPoints.GRPc.Protos.ClienteCrearRequest, global::EntryPoints.GRPc.Protos.ClienteProto>(serviceImpl.CrearCliente));
+      serviceBinder.AddMethod(__Method_ObtenerTodosLosClientes, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::EntryPoints.GRPc.Protos.Empty, global::EntryPoints.GRPc.Protos.RespuestaListaClientes>(serviceImpl.ObtenerTodosLosClientes));
     }
 
   }

@@ -26,38 +26,43 @@ namespace EntryPoints.GRPc.Protos {
           string.Concat(
             "ChNQcm90by9DbGllbnRlLnByb3RvEghjbGllbnRlcyI6ChNDcmVhclVzdWFy",
             "aW9SZXF1ZXN0EhYKDm5vbWJyZUNvbXBsZXRvGAEgASgJEgsKA3JvbBgCIAEo",
-            "BSI/CgxVc3VhcmlvUHJvdG8SCgoCaWQYASABKAkSFgoObm9tYnJlQ29tcGxl",
-            "dG8YAiABKAkSCwoDcm9sGAMgASgFIlYKE0NsaWVudGVDcmVhclJlcXVlc3QS",
-            "EQoJSWRVc3VhcmlvGAEgASgJEiwKB0NsaWVudGUYAiABKAsyGy5jbGllbnRl",
-            "cy5DcmVhckNsaWVudGVQcm90byLfAgoMQ2xpZW50ZVByb3RvEhMKC0ZlY2hh",
-            "QWN0dWFsGAEgASgJEgoKAklkGAIgASgJEhoKElRpcG9JZGVudGlmaWNhY2lv",
-            "bhgDIAEoBRIcChROdW1lcm9JZGVudGlmaWNhY2lvbhgEIAEoCRIPCgdOb21i",
-            "cmVzGAUgASgJEhEKCUFwZWxsaWRvcxgGIAEoCRIZChFDb3JyZW9FbGVjdHJv",
-            "bmljbxgHIAEoCRIXCg9GZWNoYU5hY2ltaWVudG8YCCABKAkSFQoNRmVjaGFD",
-            "cmVhY2lvbhgJIAEoCRI+ChhoaXN0b3JpYWxBY3R1YWxpemFjaW9uZXMYCiAD",
-            "KAsyHC5jbGllbnRlcy5BY3R1YWxpemFjaW9uUHJvdG8SFgoORXN0YUhhYmls",
-            "aXRhZG8YCyABKAgSGgoSVGllbmVEZXVkYXNBY3RpdmFzGAwgASgIEhEKCVBy",
-            "b2R1Y3RvcxgNIAMoCSKlAQoRQ3JlYXJDbGllbnRlUHJvdG8SGgoSVGlwb0lk",
-            "ZW50aWZpY2FjaW9uGAEgASgFEhwKFE51bWVyb0lkZW50aWZpY2FjaW9uGAIg",
-            "ASgJEg8KB05vbWJyZXMYAyABKAkSEQoJQXBlbGxpZG9zGAQgASgJEhkKEUNv",
-            "cnJlb0VsZWN0cm9uaWNvGAUgASgJEhcKD0ZlY2hhTmFjaW1pZW50bxgGIAEo",
-            "CSJzChJBY3R1YWxpemFjaW9uUHJvdG8SGQoRdGlwb0FjdHVhbGl6YWNpb24Y",
-            "ASABKAUSMwoTdXN1YXJpb01vZGlmaWNhY2lvbhgCIAEoCzIWLmNsaWVudGVz",
-            "LlVzdWFyaW9Qcm90bxINCgVmZWNoYRgDIAEoCTKfAQoPQ2xpZW50ZVNlcnZp",
-            "Y2VzEkUKDENyZWFyVXN1YXJpbxIdLmNsaWVudGVzLkNyZWFyVXN1YXJpb1Jl",
-            "cXVlc3QaFi5jbGllbnRlcy5Vc3VhcmlvUHJvdG8SRQoMQ3JlYXJDbGllbnRl",
-            "Eh0uY2xpZW50ZXMuQ2xpZW50ZUNyZWFyUmVxdWVzdBoWLmNsaWVudGVzLkNs",
-            "aWVudGVQcm90b0IaqgIXRW50cnlQb2ludHMuR1JQYy5Qcm90b3NiBnByb3Rv",
-            "Mw=="));
+            "BSKlAQoRQ3JlYXJDbGllbnRlUHJvdG8SGgoSVGlwb0lkZW50aWZpY2FjaW9u",
+            "GAEgASgFEhwKFE51bWVyb0lkZW50aWZpY2FjaW9uGAIgASgJEg8KB05vbWJy",
+            "ZXMYAyABKAkSEQoJQXBlbGxpZG9zGAQgASgJEhkKEUNvcnJlb0VsZWN0cm9u",
+            "aWNvGAUgASgJEhcKD0ZlY2hhTmFjaW1pZW50bxgGIAEoCSI/CgxVc3Vhcmlv",
+            "UHJvdG8SCgoCaWQYASABKAkSFgoObm9tYnJlQ29tcGxldG8YAiABKAkSCwoD",
+            "cm9sGAMgASgFIt8CCgxDbGllbnRlUHJvdG8SEwoLRmVjaGFBY3R1YWwYASAB",
+            "KAkSCgoCSWQYAiABKAkSGgoSVGlwb0lkZW50aWZpY2FjaW9uGAMgASgFEhwK",
+            "FE51bWVyb0lkZW50aWZpY2FjaW9uGAQgASgJEg8KB05vbWJyZXMYBSABKAkS",
+            "EQoJQXBlbGxpZG9zGAYgASgJEhkKEUNvcnJlb0VsZWN0cm9uaWNvGAcgASgJ",
+            "EhcKD0ZlY2hhTmFjaW1pZW50bxgIIAEoCRIVCg1GZWNoYUNyZWFjaW9uGAkg",
+            "ASgJEj4KGGhpc3RvcmlhbEFjdHVhbGl6YWNpb25lcxgKIAMoCzIcLmNsaWVu",
+            "dGVzLkFjdHVhbGl6YWNpb25Qcm90bxIWCg5Fc3RhSGFiaWxpdGFkbxgLIAEo",
+            "CBIaChJUaWVuZURldWRhc0FjdGl2YXMYDCABKAgSEQoJUHJvZHVjdG9zGA0g",
+            "AygJIgcKBUVtcHR5IkIKFlJlc3B1ZXN0YUxpc3RhQ2xpZW50ZXMSKAoIY2xp",
+            "ZW50ZXMYASADKAsyFi5jbGllbnRlcy5DbGllbnRlUHJvdG8icwoSQWN0dWFs",
+            "aXphY2lvblByb3RvEhkKEXRpcG9BY3R1YWxpemFjaW9uGAEgASgFEjMKE3Vz",
+            "dWFyaW9Nb2RpZmljYWNpb24YAiABKAsyFi5jbGllbnRlcy5Vc3VhcmlvUHJv",
+            "dG8SDQoFZmVjaGEYAyABKAkiUQoTQ2xpZW50ZUNyZWFyUmVxdWVzdBIRCglp",
+            "ZFVzdWFyaW8YASABKAkSJwoHY2xpZW50ZRgCIAEoCzIWLmNsaWVudGVzLkNs",
+            "aWVudGVQcm90bzLtAQoPQ2xpZW50ZVNlcnZpY2VzEkUKDENyZWFyVXN1YXJp",
+            "bxIdLmNsaWVudGVzLkNyZWFyVXN1YXJpb1JlcXVlc3QaFi5jbGllbnRlcy5V",
+            "c3VhcmlvUHJvdG8SRQoMQ3JlYXJDbGllbnRlEh0uY2xpZW50ZXMuQ2xpZW50",
+            "ZUNyZWFyUmVxdWVzdBoWLmNsaWVudGVzLkNsaWVudGVQcm90bxJMChdPYnRl",
+            "bmVyVG9kb3NMb3NDbGllbnRlcxIPLmNsaWVudGVzLkVtcHR5GiAuY2xpZW50",
+            "ZXMuUmVzcHVlc3RhTGlzdGFDbGllbnRlc0IaqgIXRW50cnlQb2ludHMuR1JQ",
+            "Yy5Qcm90b3NiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.CrearUsuarioRequest), global::EntryPoints.GRPc.Protos.CrearUsuarioRequest.Parser, new[]{ "NombreCompleto", "Rol" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.UsuarioProto), global::EntryPoints.GRPc.Protos.UsuarioProto.Parser, new[]{ "Id", "NombreCompleto", "Rol" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.ClienteCrearRequest), global::EntryPoints.GRPc.Protos.ClienteCrearRequest.Parser, new[]{ "IdUsuario", "Cliente" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.ClienteProto), global::EntryPoints.GRPc.Protos.ClienteProto.Parser, new[]{ "FechaActual", "Id", "TipoIdentificacion", "NumeroIdentificacion", "Nombres", "Apellidos", "CorreoElectronico", "FechaNacimiento", "FechaCreacion", "HistorialActualizaciones", "EstaHabilitado", "TieneDeudasActivas", "Productos" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.CrearClienteProto), global::EntryPoints.GRPc.Protos.CrearClienteProto.Parser, new[]{ "TipoIdentificacion", "NumeroIdentificacion", "Nombres", "Apellidos", "CorreoElectronico", "FechaNacimiento" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.ActualizacionProto), global::EntryPoints.GRPc.Protos.ActualizacionProto.Parser, new[]{ "TipoActualizacion", "UsuarioModificacion", "Fecha" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.UsuarioProto), global::EntryPoints.GRPc.Protos.UsuarioProto.Parser, new[]{ "Id", "NombreCompleto", "Rol" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.ClienteProto), global::EntryPoints.GRPc.Protos.ClienteProto.Parser, new[]{ "FechaActual", "Id", "TipoIdentificacion", "NumeroIdentificacion", "Nombres", "Apellidos", "CorreoElectronico", "FechaNacimiento", "FechaCreacion", "HistorialActualizaciones", "EstaHabilitado", "TieneDeudasActivas", "Productos" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.Empty), global::EntryPoints.GRPc.Protos.Empty.Parser, null, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.RespuestaListaClientes), global::EntryPoints.GRPc.Protos.RespuestaListaClientes.Parser, new[]{ "Clientes" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.ActualizacionProto), global::EntryPoints.GRPc.Protos.ActualizacionProto.Parser, new[]{ "TipoActualizacion", "UsuarioModificacion", "Fecha" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EntryPoints.GRPc.Protos.ClienteCrearRequest), global::EntryPoints.GRPc.Protos.ClienteCrearRequest.Parser, new[]{ "IdUsuario", "Cliente" }, null, null, null, null)
           }));
     }
     #endregion
@@ -275,6 +280,358 @@ namespace EntryPoints.GRPc.Protos {
 
   }
 
+  public sealed partial class CrearClienteProto : pb::IMessage<CrearClienteProto>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CrearClienteProto> _parser = new pb::MessageParser<CrearClienteProto>(() => new CrearClienteProto());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CrearClienteProto> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CrearClienteProto() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CrearClienteProto(CrearClienteProto other) : this() {
+      tipoIdentificacion_ = other.tipoIdentificacion_;
+      numeroIdentificacion_ = other.numeroIdentificacion_;
+      nombres_ = other.nombres_;
+      apellidos_ = other.apellidos_;
+      correoElectronico_ = other.correoElectronico_;
+      fechaNacimiento_ = other.fechaNacimiento_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CrearClienteProto Clone() {
+      return new CrearClienteProto(this);
+    }
+
+    /// <summary>Field number for the "TipoIdentificacion" field.</summary>
+    public const int TipoIdentificacionFieldNumber = 1;
+    private int tipoIdentificacion_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int TipoIdentificacion {
+      get { return tipoIdentificacion_; }
+      set {
+        tipoIdentificacion_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "NumeroIdentificacion" field.</summary>
+    public const int NumeroIdentificacionFieldNumber = 2;
+    private string numeroIdentificacion_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string NumeroIdentificacion {
+      get { return numeroIdentificacion_; }
+      set {
+        numeroIdentificacion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Nombres" field.</summary>
+    public const int NombresFieldNumber = 3;
+    private string nombres_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Nombres {
+      get { return nombres_; }
+      set {
+        nombres_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Apellidos" field.</summary>
+    public const int ApellidosFieldNumber = 4;
+    private string apellidos_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Apellidos {
+      get { return apellidos_; }
+      set {
+        apellidos_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "CorreoElectronico" field.</summary>
+    public const int CorreoElectronicoFieldNumber = 5;
+    private string correoElectronico_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string CorreoElectronico {
+      get { return correoElectronico_; }
+      set {
+        correoElectronico_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "FechaNacimiento" field.</summary>
+    public const int FechaNacimientoFieldNumber = 6;
+    private string fechaNacimiento_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string FechaNacimiento {
+      get { return fechaNacimiento_; }
+      set {
+        fechaNacimiento_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CrearClienteProto);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CrearClienteProto other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (TipoIdentificacion != other.TipoIdentificacion) return false;
+      if (NumeroIdentificacion != other.NumeroIdentificacion) return false;
+      if (Nombres != other.Nombres) return false;
+      if (Apellidos != other.Apellidos) return false;
+      if (CorreoElectronico != other.CorreoElectronico) return false;
+      if (FechaNacimiento != other.FechaNacimiento) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (TipoIdentificacion != 0) hash ^= TipoIdentificacion.GetHashCode();
+      if (NumeroIdentificacion.Length != 0) hash ^= NumeroIdentificacion.GetHashCode();
+      if (Nombres.Length != 0) hash ^= Nombres.GetHashCode();
+      if (Apellidos.Length != 0) hash ^= Apellidos.GetHashCode();
+      if (CorreoElectronico.Length != 0) hash ^= CorreoElectronico.GetHashCode();
+      if (FechaNacimiento.Length != 0) hash ^= FechaNacimiento.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (TipoIdentificacion != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(TipoIdentificacion);
+      }
+      if (NumeroIdentificacion.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(NumeroIdentificacion);
+      }
+      if (Nombres.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Nombres);
+      }
+      if (Apellidos.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Apellidos);
+      }
+      if (CorreoElectronico.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(CorreoElectronico);
+      }
+      if (FechaNacimiento.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(FechaNacimiento);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (TipoIdentificacion != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(TipoIdentificacion);
+      }
+      if (NumeroIdentificacion.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(NumeroIdentificacion);
+      }
+      if (Nombres.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Nombres);
+      }
+      if (Apellidos.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Apellidos);
+      }
+      if (CorreoElectronico.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(CorreoElectronico);
+      }
+      if (FechaNacimiento.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteString(FechaNacimiento);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (TipoIdentificacion != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TipoIdentificacion);
+      }
+      if (NumeroIdentificacion.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(NumeroIdentificacion);
+      }
+      if (Nombres.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Nombres);
+      }
+      if (Apellidos.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Apellidos);
+      }
+      if (CorreoElectronico.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(CorreoElectronico);
+      }
+      if (FechaNacimiento.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(FechaNacimiento);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CrearClienteProto other) {
+      if (other == null) {
+        return;
+      }
+      if (other.TipoIdentificacion != 0) {
+        TipoIdentificacion = other.TipoIdentificacion;
+      }
+      if (other.NumeroIdentificacion.Length != 0) {
+        NumeroIdentificacion = other.NumeroIdentificacion;
+      }
+      if (other.Nombres.Length != 0) {
+        Nombres = other.Nombres;
+      }
+      if (other.Apellidos.Length != 0) {
+        Apellidos = other.Apellidos;
+      }
+      if (other.CorreoElectronico.Length != 0) {
+        CorreoElectronico = other.CorreoElectronico;
+      }
+      if (other.FechaNacimiento.Length != 0) {
+        FechaNacimiento = other.FechaNacimiento;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            TipoIdentificacion = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            NumeroIdentificacion = input.ReadString();
+            break;
+          }
+          case 26: {
+            Nombres = input.ReadString();
+            break;
+          }
+          case 34: {
+            Apellidos = input.ReadString();
+            break;
+          }
+          case 42: {
+            CorreoElectronico = input.ReadString();
+            break;
+          }
+          case 50: {
+            FechaNacimiento = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            TipoIdentificacion = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            NumeroIdentificacion = input.ReadString();
+            break;
+          }
+          case 26: {
+            Nombres = input.ReadString();
+            break;
+          }
+          case 34: {
+            Apellidos = input.ReadString();
+            break;
+          }
+          case 42: {
+            CorreoElectronico = input.ReadString();
+            break;
+          }
+          case 50: {
+            FechaNacimiento = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
   /// <summary>
   /// Responses
   /// </summary>
@@ -290,7 +647,7 @@ namespace EntryPoints.GRPc.Protos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[1]; }
+      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -522,226 +879,6 @@ namespace EntryPoints.GRPc.Protos {
 
   }
 
-  public sealed partial class ClienteCrearRequest : pb::IMessage<ClienteCrearRequest>
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      , pb::IBufferMessage
-  #endif
-  {
-    private static readonly pb::MessageParser<ClienteCrearRequest> _parser = new pb::MessageParser<ClienteCrearRequest>(() => new ClienteCrearRequest());
-    private pb::UnknownFieldSet _unknownFields;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ClienteCrearRequest> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[2]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ClienteCrearRequest() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ClienteCrearRequest(ClienteCrearRequest other) : this() {
-      idUsuario_ = other.idUsuario_;
-      cliente_ = other.cliente_ != null ? other.cliente_.Clone() : null;
-      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ClienteCrearRequest Clone() {
-      return new ClienteCrearRequest(this);
-    }
-
-    /// <summary>Field number for the "IdUsuario" field.</summary>
-    public const int IdUsuarioFieldNumber = 1;
-    private string idUsuario_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string IdUsuario {
-      get { return idUsuario_; }
-      set {
-        idUsuario_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "Cliente" field.</summary>
-    public const int ClienteFieldNumber = 2;
-    private global::EntryPoints.GRPc.Protos.CrearClienteProto cliente_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::EntryPoints.GRPc.Protos.CrearClienteProto Cliente {
-      get { return cliente_; }
-      set {
-        cliente_ = value;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as ClienteCrearRequest);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ClienteCrearRequest other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      if (IdUsuario != other.IdUsuario) return false;
-      if (!object.Equals(Cliente, other.Cliente)) return false;
-      return Equals(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      if (IdUsuario.Length != 0) hash ^= IdUsuario.GetHashCode();
-      if (cliente_ != null) hash ^= Cliente.GetHashCode();
-      if (_unknownFields != null) {
-        hash ^= _unknownFields.GetHashCode();
-      }
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      output.WriteRawMessage(this);
-    #else
-      if (IdUsuario.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(IdUsuario);
-      }
-      if (cliente_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Cliente);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(output);
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (IdUsuario.Length != 0) {
-        output.WriteRawTag(10);
-        output.WriteString(IdUsuario);
-      }
-      if (cliente_ != null) {
-        output.WriteRawTag(18);
-        output.WriteMessage(Cliente);
-      }
-      if (_unknownFields != null) {
-        _unknownFields.WriteTo(ref output);
-      }
-    }
-    #endif
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      if (IdUsuario.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(IdUsuario);
-      }
-      if (cliente_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Cliente);
-      }
-      if (_unknownFields != null) {
-        size += _unknownFields.CalculateSize();
-      }
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ClienteCrearRequest other) {
-      if (other == null) {
-        return;
-      }
-      if (other.IdUsuario.Length != 0) {
-        IdUsuario = other.IdUsuario;
-      }
-      if (other.cliente_ != null) {
-        if (cliente_ == null) {
-          Cliente = new global::EntryPoints.GRPc.Protos.CrearClienteProto();
-        }
-        Cliente.MergeFrom(other.Cliente);
-      }
-      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-      input.ReadRawMessage(this);
-    #else
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-            break;
-          case 10: {
-            IdUsuario = input.ReadString();
-            break;
-          }
-          case 18: {
-            if (cliente_ == null) {
-              Cliente = new global::EntryPoints.GRPc.Protos.CrearClienteProto();
-            }
-            input.ReadMessage(Cliente);
-            break;
-          }
-        }
-      }
-    #endif
-    }
-
-    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-            break;
-          case 10: {
-            IdUsuario = input.ReadString();
-            break;
-          }
-          case 18: {
-            if (cliente_ == null) {
-              Cliente = new global::EntryPoints.GRPc.Protos.CrearClienteProto();
-            }
-            input.ReadMessage(Cliente);
-            break;
-          }
-        }
-      }
-    }
-    #endif
-
-  }
-
-  /// <summary>
-  /// Entidad de cliente
-  /// </summary>
   public sealed partial class ClienteProto : pb::IMessage<ClienteProto>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -1324,15 +1461,15 @@ namespace EntryPoints.GRPc.Protos {
 
   }
 
-  public sealed partial class CrearClienteProto : pb::IMessage<CrearClienteProto>
+  public sealed partial class Empty : pb::IMessage<Empty>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<CrearClienteProto> _parser = new pb::MessageParser<CrearClienteProto>(() => new CrearClienteProto());
+    private static readonly pb::MessageParser<Empty> _parser = new pb::MessageParser<Empty>(() => new Empty());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<CrearClienteProto> Parser { get { return _parser; } }
+    public static pb::MessageParser<Empty> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -1345,125 +1482,41 @@ namespace EntryPoints.GRPc.Protos {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CrearClienteProto() {
+    public Empty() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CrearClienteProto(CrearClienteProto other) : this() {
-      tipoIdentificacion_ = other.tipoIdentificacion_;
-      numeroIdentificacion_ = other.numeroIdentificacion_;
-      nombres_ = other.nombres_;
-      apellidos_ = other.apellidos_;
-      correoElectronico_ = other.correoElectronico_;
-      fechaNacimiento_ = other.fechaNacimiento_;
+    public Empty(Empty other) : this() {
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public CrearClienteProto Clone() {
-      return new CrearClienteProto(this);
-    }
-
-    /// <summary>Field number for the "TipoIdentificacion" field.</summary>
-    public const int TipoIdentificacionFieldNumber = 1;
-    private int tipoIdentificacion_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int TipoIdentificacion {
-      get { return tipoIdentificacion_; }
-      set {
-        tipoIdentificacion_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "NumeroIdentificacion" field.</summary>
-    public const int NumeroIdentificacionFieldNumber = 2;
-    private string numeroIdentificacion_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string NumeroIdentificacion {
-      get { return numeroIdentificacion_; }
-      set {
-        numeroIdentificacion_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "Nombres" field.</summary>
-    public const int NombresFieldNumber = 3;
-    private string nombres_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Nombres {
-      get { return nombres_; }
-      set {
-        nombres_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "Apellidos" field.</summary>
-    public const int ApellidosFieldNumber = 4;
-    private string apellidos_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string Apellidos {
-      get { return apellidos_; }
-      set {
-        apellidos_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "CorreoElectronico" field.</summary>
-    public const int CorreoElectronicoFieldNumber = 5;
-    private string correoElectronico_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string CorreoElectronico {
-      get { return correoElectronico_; }
-      set {
-        correoElectronico_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
-    /// <summary>Field number for the "FechaNacimiento" field.</summary>
-    public const int FechaNacimientoFieldNumber = 6;
-    private string fechaNacimiento_ = "";
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string FechaNacimiento {
-      get { return fechaNacimiento_; }
-      set {
-        fechaNacimiento_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
+    public Empty Clone() {
+      return new Empty(this);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as CrearClienteProto);
+      return Equals(other as Empty);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(CrearClienteProto other) {
+    public bool Equals(Empty other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (TipoIdentificacion != other.TipoIdentificacion) return false;
-      if (NumeroIdentificacion != other.NumeroIdentificacion) return false;
-      if (Nombres != other.Nombres) return false;
-      if (Apellidos != other.Apellidos) return false;
-      if (CorreoElectronico != other.CorreoElectronico) return false;
-      if (FechaNacimiento != other.FechaNacimiento) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (TipoIdentificacion != 0) hash ^= TipoIdentificacion.GetHashCode();
-      if (NumeroIdentificacion.Length != 0) hash ^= NumeroIdentificacion.GetHashCode();
-      if (Nombres.Length != 0) hash ^= Nombres.GetHashCode();
-      if (Apellidos.Length != 0) hash ^= Apellidos.GetHashCode();
-      if (CorreoElectronico.Length != 0) hash ^= CorreoElectronico.GetHashCode();
-      if (FechaNacimiento.Length != 0) hash ^= FechaNacimiento.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1480,30 +1533,6 @@ namespace EntryPoints.GRPc.Protos {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (TipoIdentificacion != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(TipoIdentificacion);
-      }
-      if (NumeroIdentificacion.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(NumeroIdentificacion);
-      }
-      if (Nombres.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Nombres);
-      }
-      if (Apellidos.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(Apellidos);
-      }
-      if (CorreoElectronico.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteString(CorreoElectronico);
-      }
-      if (FechaNacimiento.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteString(FechaNacimiento);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -1513,30 +1542,6 @@ namespace EntryPoints.GRPc.Protos {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (TipoIdentificacion != 0) {
-        output.WriteRawTag(8);
-        output.WriteInt32(TipoIdentificacion);
-      }
-      if (NumeroIdentificacion.Length != 0) {
-        output.WriteRawTag(18);
-        output.WriteString(NumeroIdentificacion);
-      }
-      if (Nombres.Length != 0) {
-        output.WriteRawTag(26);
-        output.WriteString(Nombres);
-      }
-      if (Apellidos.Length != 0) {
-        output.WriteRawTag(34);
-        output.WriteString(Apellidos);
-      }
-      if (CorreoElectronico.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteString(CorreoElectronico);
-      }
-      if (FechaNacimiento.Length != 0) {
-        output.WriteRawTag(50);
-        output.WriteString(FechaNacimiento);
-      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -1546,24 +1551,6 @@ namespace EntryPoints.GRPc.Protos {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (TipoIdentificacion != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(TipoIdentificacion);
-      }
-      if (NumeroIdentificacion.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(NumeroIdentificacion);
-      }
-      if (Nombres.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Nombres);
-      }
-      if (Apellidos.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(Apellidos);
-      }
-      if (CorreoElectronico.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(CorreoElectronico);
-      }
-      if (FechaNacimiento.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(FechaNacimiento);
-      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -1571,27 +1558,9 @@ namespace EntryPoints.GRPc.Protos {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(CrearClienteProto other) {
+    public void MergeFrom(Empty other) {
       if (other == null) {
         return;
-      }
-      if (other.TipoIdentificacion != 0) {
-        TipoIdentificacion = other.TipoIdentificacion;
-      }
-      if (other.NumeroIdentificacion.Length != 0) {
-        NumeroIdentificacion = other.NumeroIdentificacion;
-      }
-      if (other.Nombres.Length != 0) {
-        Nombres = other.Nombres;
-      }
-      if (other.Apellidos.Length != 0) {
-        Apellidos = other.Apellidos;
-      }
-      if (other.CorreoElectronico.Length != 0) {
-        CorreoElectronico = other.CorreoElectronico;
-      }
-      if (other.FechaNacimiento.Length != 0) {
-        FechaNacimiento = other.FechaNacimiento;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -1607,28 +1576,161 @@ namespace EntryPoints.GRPc.Protos {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 8: {
-            TipoIdentificacion = input.ReadInt32();
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          }
-          case 18: {
-            NumeroIdentificacion = input.ReadString();
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class RespuestaListaClientes : pb::IMessage<RespuestaListaClientes>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<RespuestaListaClientes> _parser = new pb::MessageParser<RespuestaListaClientes>(() => new RespuestaListaClientes());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<RespuestaListaClientes> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RespuestaListaClientes() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RespuestaListaClientes(RespuestaListaClientes other) : this() {
+      clientes_ = other.clientes_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public RespuestaListaClientes Clone() {
+      return new RespuestaListaClientes(this);
+    }
+
+    /// <summary>Field number for the "clientes" field.</summary>
+    public const int ClientesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::EntryPoints.GRPc.Protos.ClienteProto> _repeated_clientes_codec
+        = pb::FieldCodec.ForMessage(10, global::EntryPoints.GRPc.Protos.ClienteProto.Parser);
+    private readonly pbc::RepeatedField<global::EntryPoints.GRPc.Protos.ClienteProto> clientes_ = new pbc::RepeatedField<global::EntryPoints.GRPc.Protos.ClienteProto>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::EntryPoints.GRPc.Protos.ClienteProto> Clientes {
+      get { return clientes_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RespuestaListaClientes);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RespuestaListaClientes other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!clientes_.Equals(other.clientes_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= clientes_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      clientes_.WriteTo(output, _repeated_clientes_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      clientes_.WriteTo(ref output, _repeated_clientes_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += clientes_.CalculateSize(_repeated_clientes_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RespuestaListaClientes other) {
+      if (other == null) {
+        return;
+      }
+      clientes_.Add(other.clientes_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          }
-          case 26: {
-            Nombres = input.ReadString();
-            break;
-          }
-          case 34: {
-            Apellidos = input.ReadString();
-            break;
-          }
-          case 42: {
-            CorreoElectronico = input.ReadString();
-            break;
-          }
-          case 50: {
-            FechaNacimiento = input.ReadString();
+          case 10: {
+            clientes_.AddEntriesFrom(input, _repeated_clientes_codec);
             break;
           }
         }
@@ -1645,28 +1747,8 @@ namespace EntryPoints.GRPc.Protos {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
-          case 8: {
-            TipoIdentificacion = input.ReadInt32();
-            break;
-          }
-          case 18: {
-            NumeroIdentificacion = input.ReadString();
-            break;
-          }
-          case 26: {
-            Nombres = input.ReadString();
-            break;
-          }
-          case 34: {
-            Apellidos = input.ReadString();
-            break;
-          }
-          case 42: {
-            CorreoElectronico = input.ReadString();
-            break;
-          }
-          case 50: {
-            FechaNacimiento = input.ReadString();
+          case 10: {
+            clientes_.AddEntriesFrom(ref input, _repeated_clientes_codec);
             break;
           }
         }
@@ -1688,7 +1770,7 @@ namespace EntryPoints.GRPc.Protos {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[5]; }
+      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1920,6 +2002,223 @@ namespace EntryPoints.GRPc.Protos {
           }
           case 26: {
             Fecha = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  public sealed partial class ClienteCrearRequest : pb::IMessage<ClienteCrearRequest>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ClienteCrearRequest> _parser = new pb::MessageParser<ClienteCrearRequest>(() => new ClienteCrearRequest());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ClienteCrearRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EntryPoints.GRPc.Protos.ClienteReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ClienteCrearRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ClienteCrearRequest(ClienteCrearRequest other) : this() {
+      idUsuario_ = other.idUsuario_;
+      cliente_ = other.cliente_ != null ? other.cliente_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ClienteCrearRequest Clone() {
+      return new ClienteCrearRequest(this);
+    }
+
+    /// <summary>Field number for the "idUsuario" field.</summary>
+    public const int IdUsuarioFieldNumber = 1;
+    private string idUsuario_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string IdUsuario {
+      get { return idUsuario_; }
+      set {
+        idUsuario_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "cliente" field.</summary>
+    public const int ClienteFieldNumber = 2;
+    private global::EntryPoints.GRPc.Protos.ClienteProto cliente_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EntryPoints.GRPc.Protos.ClienteProto Cliente {
+      get { return cliente_; }
+      set {
+        cliente_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ClienteCrearRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ClienteCrearRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (IdUsuario != other.IdUsuario) return false;
+      if (!object.Equals(Cliente, other.Cliente)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (IdUsuario.Length != 0) hash ^= IdUsuario.GetHashCode();
+      if (cliente_ != null) hash ^= Cliente.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (IdUsuario.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(IdUsuario);
+      }
+      if (cliente_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Cliente);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (IdUsuario.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(IdUsuario);
+      }
+      if (cliente_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Cliente);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (IdUsuario.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(IdUsuario);
+      }
+      if (cliente_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Cliente);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ClienteCrearRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.IdUsuario.Length != 0) {
+        IdUsuario = other.IdUsuario;
+      }
+      if (other.cliente_ != null) {
+        if (cliente_ == null) {
+          Cliente = new global::EntryPoints.GRPc.Protos.ClienteProto();
+        }
+        Cliente.MergeFrom(other.Cliente);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            IdUsuario = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (cliente_ == null) {
+              Cliente = new global::EntryPoints.GRPc.Protos.ClienteProto();
+            }
+            input.ReadMessage(Cliente);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            IdUsuario = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (cliente_ == null) {
+              Cliente = new global::EntryPoints.GRPc.Protos.ClienteProto();
+            }
+            input.ReadMessage(Cliente);
             break;
           }
         }

@@ -10,6 +10,15 @@ message CrearUsuarioRequest {
   int32 rol = 2;
 }
 
+message CrearClienteProto {
+  int32 TipoIdentificacion = 1;
+  string NumeroIdentificacion = 2;
+  string Nombres = 3;
+  string Apellidos = 4;
+  string CorreoElectronico = 5;
+  string FechaNacimiento = 6;
+}
+
 // Responses
 message UsuarioProto {
   string id = 1;
@@ -17,13 +26,6 @@ message UsuarioProto {
   int32 rol = 3;
 }
 
-message ClienteCrearRequest {
-  string IdUsuario = 1;
-  CrearClienteProto Cliente = 2;
-}
-
-
-// Entidad de cliente
 message ClienteProto {
   string FechaActual = 1;
   string Id = 2;
@@ -40,13 +42,10 @@ message ClienteProto {
   repeated string Productos = 13;
 }
 
-message CrearClienteProto {
-  int32 TipoIdentificacion = 1;
-  string NumeroIdentificacion = 2;
-  string Nombres = 3;
-  string Apellidos = 4;
-  string CorreoElectronico = 5;
-  string FechaNacimiento = 6;
+message Empty {} 
+
+message RespuestaListaClientes {
+	repeated ClienteProto clientes = 1;
 }
 
 message ActualizacionProto {
@@ -55,8 +54,14 @@ message ActualizacionProto {
   string fecha = 3;
 }
 
+message ClienteCrearRequest {
+  string idUsuario = 1;
+  ClienteProto cliente = 2;
+}
+
 // Services
 service ClienteServices{
   rpc CrearUsuario(CrearUsuarioRequest) returns (UsuarioProto);
   rpc CrearCliente(ClienteCrearRequest) returns (ClienteProto);
+  rpc ObtenerTodosLosClientes(Empty) returns (RespuestaListaClientes);
 }

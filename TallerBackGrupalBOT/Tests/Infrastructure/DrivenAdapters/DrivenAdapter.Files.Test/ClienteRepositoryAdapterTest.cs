@@ -5,15 +5,8 @@ using Domain.Model.Tests;
 using DrivenAdapters.Mongo;
 using DrivenAdapters.Mongo.Adapters;
 using DrivenAdapters.Mongo.Entities;
-using EntryPoints.ReactiveWeb.Entities.Commands;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using MongoDB.Driver;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TallerBackGrupalBOT.AppServices.Automapper;
 using Xunit;
 

@@ -1,16 +1,12 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
-using Domain.Model.Entities.Clientes;
+﻿using AutoMapper;
 using Domain.Model.Entities.Cuentas;
-using Domain.Model.Entities.Transacciones;
-using Domain.Model.Entities.Usuarios;
-using Domain.UseCase.Clientes;
 using Domain.UseCase.Common;
 using Domain.UseCase.Cuentas;
 using EntryPoints.ReactiveWeb.Base;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Controllers
 {
@@ -22,10 +18,8 @@ namespace EntryPoints.ReactiveWeb.Controllers
     [Route("api/[controller]/[action]")]
     public class CuentaController : AppControllerBase<CuentaController>
     {
-
         private readonly ICuentaUseCase _cuentaUseCase;
         private readonly IMapper _mapper;
-
 
         /// <summary>
         /// Crea una instancia de <see cref="CuentaController"/>
@@ -47,8 +41,7 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpGet]
         [Route("{id}")]
         public Task<IActionResult> ObtenerId(string id) => HandleRequest(async () =>
-            await _cuentaUseCase.ObtenerCuentaPorId(id), "");
-
+                            await _cuentaUseCase.ObtenerCuentaPorId(id), "");
 
         /// <summary>
         /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
@@ -57,13 +50,13 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("{idUsuario}")] 
+        [Route("{idUsuario}")]
         public Task<IActionResult> Crear(string idUsuario, [FromBody] CrearCuenta crearCuenta) => HandleRequest(async () =>
-        {
-            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(crearCuenta);
-            Cuenta cuenta = await _cuentaUseCase.Crear(idUsuario, cuentaMapeada);
-            return _mapper.Map<CuentaHandler>(cuenta);
-        }, "");
+                        {
+                            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(crearCuenta);
+                            Cuenta cuenta = await _cuentaUseCase.Crear(idUsuario, cuentaMapeada);
+                            return _mapper.Map<CuentaHandler>(cuenta);
+                        }, "");
 
         /// <summary>
         /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
@@ -74,11 +67,11 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpPut]
         [Route("{idUsuario}")]
         public Task<IActionResult> Cancelar(string idUsuario, [FromBody] EstadosCuenta estadoCuenta) => HandleRequest(async () =>
-        {
-            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
-            Cuenta cuenta = await _cuentaUseCase.CancelarCuenta(idUsuario, cuentaMapeada);
-            return _mapper.Map<CuentaHandler>(cuenta);
-        }, "");
+                        {
+                            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
+                            Cuenta cuenta = await _cuentaUseCase.CancelarCuenta(idUsuario, cuentaMapeada);
+                            return _mapper.Map<CuentaHandler>(cuenta);
+                        }, "");
 
         /// <summary>
         /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
@@ -89,11 +82,11 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpPut]
         [Route("{idUsuario}")]
         public Task<IActionResult> Habilitar(string idUsuario, [FromBody] EstadosCuenta estadoCuenta) => HandleRequest(async () =>
-        {
-            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
-            Cuenta cuenta = await _cuentaUseCase.HabilitarCuenta(idUsuario, cuentaMapeada);
-            return _mapper.Map<CuentaHandler>(cuenta);
-        }, "");
+                        {
+                            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
+                            Cuenta cuenta = await _cuentaUseCase.HabilitarCuenta(idUsuario, cuentaMapeada);
+                            return _mapper.Map<CuentaHandler>(cuenta);
+                        }, "");
 
         /// <summary>
         /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
@@ -104,11 +97,11 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpPut]
         [Route("{idUsuario}")]
         public Task<IActionResult> Deshabilitar(string idUsuario, [FromBody] EstadosCuenta estadoCuenta) => HandleRequest(async () =>
-        {
-            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
-            Cuenta cuenta = await _cuentaUseCase.DeshabilitarCuenta(idUsuario, cuentaMapeada);
-            return _mapper.Map<CuentaHandler>(cuenta);
-        }, "");
+                        {
+                            Cuenta cuentaMapeada = _mapper.Map<Cuenta>(estadoCuenta);
+                            Cuenta cuenta = await _cuentaUseCase.DeshabilitarCuenta(idUsuario, cuentaMapeada);
+                            return _mapper.Map<CuentaHandler>(cuenta);
+                        }, "");
 
         /// <summary>
         /// Endpoint para obtener todas las entidades tipo <see cref="Cuenta"/>
@@ -116,9 +109,9 @@ namespace EntryPoints.ReactiveWeb.Controllers
         /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Obtener() => await HandleRequest(async () =>
-        {
-            return await _cuentaUseCase.ObtenerTodas();
-        }, "");
+                        {
+                            return await _cuentaUseCase.ObtenerTodas();
+                        }, "");
 
         /// <summary>
         /// Endpoint para obtener lista de entidades de tipo <see cref="Cuenta"/> por cliente
@@ -128,11 +121,8 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [HttpGet]
         [Route("{idCliente}")]
         public async Task<IActionResult> ObtenerCuentasPorId(string idCliente) => await HandleRequest(async () =>
-        {
-            return await _cuentaUseCase.ObtenerTodasPorCliente(idCliente);
-        }, "");
-
-
-
+                        {
+                            return await _cuentaUseCase.ObtenerTodasPorCliente(idCliente);
+                        }, "");
     }
 }

@@ -48,7 +48,6 @@ namespace Helpers.Commons.Exceptions
         [Description("Correo electrónico no es valido")]
         CorreoElectronicoNoValido = 566,
 
-
         /// <summary>
         /// Valor Retiro No Permitido
         /// </summary>

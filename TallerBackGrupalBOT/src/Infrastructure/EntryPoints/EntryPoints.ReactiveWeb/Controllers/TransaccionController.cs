@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Transacciones;
 using Domain.UseCase.Common;
@@ -9,6 +7,8 @@ using EntryPoints.ReactiveWeb.Base;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Controllers;
 
@@ -18,18 +18,18 @@ namespace EntryPoints.ReactiveWeb.Controllers;
 [Produces("application/json")]
 [ApiVersion("1.0")]
 [Route("api/[controller]/[action]")]
-public class TransacciónController : AppControllerBase<TransacciónController>
+public class TransaccionController : AppControllerBase<TransaccionController>
 {
     private readonly ITransacciónUseCase _transacciónUseCase;
     private readonly IMapper _mapper;
 
     /// <summary>
-    /// Crea una instancia de <see cref="TransacciónController"/>
+    /// Crea una instancia de <see cref="TransaccionController"/>
     /// </summary>
     /// <param name="eventsService"></param>
     /// <param name="transacciónUseCase"></param>
     /// <param name="mapper"></param>
-    public TransacciónController(IManageEventsUseCase eventsService, ITransacciónUseCase transacciónUseCase,
+    public TransaccionController(IManageEventsUseCase eventsService, ITransacciónUseCase transacciónUseCase,
         IMapper mapper) : base(eventsService)
     {
         _transacciónUseCase = transacciónUseCase;
@@ -42,7 +42,7 @@ public class TransacciónController : AppControllerBase<TransacciónController>
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("{id}")]
-    public Task<IActionResult> ObtenerTransacciónPorId([FromRoute] string id) =>
+    public Task<IActionResult> ObtenerTransaccionPorId([FromRoute] string id) =>
         HandleRequest(async () =>
         {
             Transacción transacción = await _transacciónUseCase.ObtenerTransacciónPorId(id);
@@ -50,7 +50,8 @@ public class TransacciónController : AppControllerBase<TransacciónController>
         }, "");
 
     /// <summary>
-    /// Endpoint que retorna una entidad de tipo <see cref="Transacción"/> por el Id de la entidad <see cref="Cuenta"/>
+    /// Endpoint que retorna una entidad de tipo <see cref="Transacción"/> por el Id de la entidad
+    /// <see cref="Cuenta"/>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -68,7 +69,7 @@ public class TransacciónController : AppControllerBase<TransacciónController>
     /// <param name="crearTransacción"></param>
     /// <returns></returns>
     [HttpPost]
-    public Task<IActionResult> RealizarConsignación([FromBody] CrearTransacción crearTransacción) =>
+    public Task<IActionResult> RealizarConsignacion([FromBody] CrearTransacción crearTransacción) =>
         HandleRequest(async () =>
         {
             Transacción transacción =
@@ -76,7 +77,7 @@ public class TransacciónController : AppControllerBase<TransacciónController>
 
             return _mapper.Map<TransacciónHandler>(transacción);
         }, "");
-    
+
     /// <summary>
     /// Endpoint para realizar un retiro
     /// </summary>
@@ -98,8 +99,8 @@ public class TransacciónController : AppControllerBase<TransacciónController>
     /// <param name="crearTransacción"></param>
     /// <param name="idCuentaReceptor"></param>
     /// <returns></returns>
-    [HttpPost]
-    public Task<IActionResult> RealizarTransferencia([FromBody] CrearTransacción crearTransacción, string idCuentaReceptor) =>
+    [HttpPost("{idCuentaReceptor}")]
+    public Task<IActionResult> RealizarTransferencia([FromBody] CrearTransacción crearTransacción, [FromRoute] string idCuentaReceptor) =>
         HandleRequest(async () =>
         {
             Transacción transacción =

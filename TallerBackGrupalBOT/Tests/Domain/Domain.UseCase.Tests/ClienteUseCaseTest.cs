@@ -6,11 +6,6 @@ using Domain.Model.Entities.Usuarios;
 using Domain.UseCase.Clientes;
 using Helpers.Commons.Exceptions;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Domain.UseCase.Tests
@@ -140,7 +135,7 @@ namespace Domain.UseCase.Tests
             var result = await clienteUseCase.CrearCliente(usuario.Id, cliente);
 
             // Assert
-            Assert.Equal(cliente.NumeroIdentificación, result.NumeroIdentificación);
+            Assert.Equal(cliente.NumeroIdentificacion, result.NumeroIdentificacion);
         }
 
         [Fact]
@@ -174,7 +169,7 @@ namespace Domain.UseCase.Tests
 
             _usuarioMock.Setup(repo => repo.ObtenerPorIdAsync(usuario.Id)).ReturnsAsync(usuario);
 
-            _clienteMock.Setup(repo => repo.ObtenerPorNumeroIdentificacion(cliente.NumeroIdentificación)).ReturnsAsync(cliente);
+            _clienteMock.Setup(repo => repo.ObtenerPorNumeroIdentificacion(cliente.NumeroIdentificacion)).ReturnsAsync(cliente);
             _clienteMock.Setup(repo => repo.CrearAsync(usuario.Id, cliente)).ReturnsAsync(cliente);
             var clienteUseCase = CrearCasoDeUso();
 

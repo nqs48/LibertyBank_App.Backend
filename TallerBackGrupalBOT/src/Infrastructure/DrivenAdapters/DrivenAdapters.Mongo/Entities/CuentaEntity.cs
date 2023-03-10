@@ -1,24 +1,18 @@
 ﻿using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Cuentas;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DrivenAdapters.Mongo.Entities.Base;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace DrivenAdapters.Mongo.Entities
 {
-
     /// <summary>
     /// DTO de entidad <see cref="Cuenta"/>
     /// </summary>
-    public class CuentaEntity  : EntityBase
+    public class CuentaEntity : EntityBase
     {
-
         /// <summary>
         /// Id de entidad <see cref="Cliente"/>
         /// </summary>
@@ -72,8 +66,5 @@ namespace DrivenAdapters.Mongo.Entities
         /// </summary>
         [BsonElement("historial_modificaciones")]
         public List<Modificación> HistorialModificaciones { get; private set; }
-
-
     }
-
 }

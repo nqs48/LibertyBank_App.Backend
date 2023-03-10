@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
 using Domain.Model.Tests;
@@ -9,6 +8,7 @@ using DrivenAdapters.Mongo.Entities;
 using FluentAssertions;
 using MongoDB.Driver;
 using Moq;
+using System.Collections.Immutable;
 using TallerBackGrupalBOT.AppServices.Automapper;
 using Xunit;
 
@@ -46,7 +46,6 @@ public class UsuarioRepositoryAdapterTest
 
         _usuarioRepository = new UsuarioRepositoryAdapter(mockDbContext.Object, mapper);
     }
-
 
     [Fact(DisplayName = "ObtenerTodosAsync debe retornar una lista de Usuarios")]
     public async Task ObtenerTodosAsync_RetornaTodosLosUsuarios_Exitoso()

@@ -1,18 +1,10 @@
 ﻿using AutoMapper;
-using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Gateway;
-using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
-using Helpers.ObjectsUtils;
-using Microsoft.Azure.ServiceBus;
-using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DrivenAdapters.Mongo.Adapters
@@ -98,11 +90,10 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<List<Cuenta>> ObtenerTodos()
         {
-
             IAsyncCursor<CuentaEntity> cursorCuentas = await _collectionCuenta.FindAsync(Builders<CuentaEntity>.Filter.Empty);
 
             List<Cuenta> cuentas = cursorCuentas.ToEnumerable().Select(cuentaEntity => _mapper.Map<Cuenta>(cuentaEntity)).ToList();
-            if(cuentas is null)
+            if (cuentas is null)
             {
                 return null;
             }

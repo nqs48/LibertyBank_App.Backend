@@ -1,7 +1,7 @@
-﻿using Domain.Model.Entities.Transacciones;
+﻿using Domain.Model.Entities.Cuentas;
+using Domain.Model.Entities.Transacciones;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain.Model.Entities.Cuentas;
 
 namespace Domain.Model.Entities.Gateway
 {

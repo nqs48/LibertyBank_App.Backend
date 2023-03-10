@@ -1,5 +1,4 @@
-﻿using System.Net;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Usuarios;
 using Domain.Model.Tests;
 using Domain.UseCase.Common;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Moq;
+using System.Net;
 using TallerBackGrupalBOT.AppServices.Automapper;
 using Xunit;
 

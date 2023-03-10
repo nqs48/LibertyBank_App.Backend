@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Model.Entities.Clientes
+﻿namespace Domain.Model.Entities.Clientes
 {
     /// <summary>
     /// grupo de edades legales en diferentes países

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Transacciones;
 using DrivenAdapters.Mongo.entities;
 using DrivenAdapters.Mongo.Entities;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DrivenAdapters.Mongo.Adapters;
 
@@ -41,7 +41,7 @@ public class TransacciónRepositoryAdapter : ITransacciónRepository
         IAsyncCursor<TransacciónEntity> transacciónCursor =
             await _mongoTransacciónCollection.FindAsync(transacción => transacción.Id == idTransacción);
 
-        var transacciónSeleccionada = transacciónCursor.FirstOrDefaultAsync();
+        TransacciónEntity transacciónSeleccionada = await transacciónCursor.FirstOrDefaultAsync();
 
         return transacciónSeleccionada is null ? null : _mapper.Map<Transacción>(transacciónSeleccionada);
     }

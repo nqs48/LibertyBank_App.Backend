@@ -1,5 +1,5 @@
-﻿using System;
-using Domain.Model.Entities.Cuentas;
+﻿using Domain.Model.Entities.Cuentas;
+using System;
 
 namespace Domain.Model.Entities.Transacciones
 {
@@ -17,7 +17,7 @@ namespace Domain.Model.Entities.Transacciones
         /// Id de entidad <see cref="Cuenta"/>
         /// </summary>
         public string IdCuenta { get; private set; }
-        
+
         /// <summary>
         /// Fecha en que se hizo el movimiento
         /// </summary>
@@ -49,7 +49,8 @@ namespace Domain.Model.Entities.Transacciones
         public string Descripción { get; private set; }
 
         /// <summary>
-        /// Crea una instancia de clase <see cref="Transacción"/> con los atributos id de entidad <see cref="Cuenta"/> y valor
+        /// Crea una instancia de clase <see cref="Transacción"/> con los atributos id de entidad
+        /// <see cref="Cuenta"/> y valor
         /// </summary>
         /// <param name="idCuenta"></param>
         /// <param name="valor"></param>
@@ -58,7 +59,7 @@ namespace Domain.Model.Entities.Transacciones
             IdCuenta = idCuenta;
             Valor = valor;
         }
-        
+
         /// <summary>
         /// Crea una instancia de la clase <see cref="Transacción"/> sin el Id
         /// </summary>

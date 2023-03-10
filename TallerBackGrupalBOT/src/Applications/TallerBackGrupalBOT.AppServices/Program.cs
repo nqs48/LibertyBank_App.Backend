@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using credinet.comun.api;
+﻿using credinet.comun.api;
 using credinet.comun.api.Swagger.Extensions;
 using credinet.exception.middleware;
 using EntryPoints.GRPc.RPCs;
@@ -15,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.PlatformAbstractions;
 using SC.Configuration.Provider.Mongo;
 using Serilog;
+using System.IO;
+using System.Linq;
 using TallerBackGrupalBOT.AppServices.Extensions;
 using TallerBackGrupalBOT.AppServices.Extensions.Health;
 

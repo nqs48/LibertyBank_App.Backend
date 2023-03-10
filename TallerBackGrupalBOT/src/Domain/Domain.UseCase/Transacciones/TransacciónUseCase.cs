@@ -41,16 +41,34 @@ namespace Domain.UseCase.Transacciones
         /// </summary>
         /// <param name="idTransacción"></param>
         /// <returns></returns>
-        public async Task<Transacción> ObtenerTransacciónPorId(string idTransacción) =>
-            await _transacciónRepository.ObtenerPorId(idTransacción);
+        public async Task<Transacción> ObtenerTransacciónPorId(string idTransacción)
+        {
+            Transacción transacción = await _transacciónRepository.ObtenerPorId(idTransacción);
+            if (transacción is null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                    (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+            }
+
+            return transacción;
+        }
 
         /// <summary>
-        /// Retorna las entidades de tipo <see cref="Transacción"/> asociadas por el Id de entidad de tipo <see cref="Cuenta"/>
+        /// Retorna las entidades de tipo <see cref="Transacción"/> asociadas por el Id de entidad
+        /// de tipo <see cref="Cuenta"/>
         /// </summary>
         /// <param name="idCuenta"></param>
         /// <returns></returns>
-        public async Task<List<Transacción>> ObtenerTransaccionesPorIdCuenta(string idCuenta) =>
-            await _transacciónRepository.ObtenerPorIdCuenta(idCuenta);
+        public async Task<List<Transacción>> ObtenerTransaccionesPorIdCuenta(string idCuenta)
+        {
+            Cuenta cuentaSeleccionada = await _cuentaRepository.ObtenerPorId(idCuenta);
+
+            if (cuentaSeleccionada is null)
+                throw new BusinessException(TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription(),
+                    (int)TipoExcepcionNegocio.CuentaNoEncontrada);
+
+            return await _transacciónRepository.ObtenerPorIdCuenta(idCuenta);
+        }
 
         /// <summary>
         /// Método de tipo <see cref="Transacción"/> que realiza una consignación
@@ -69,10 +87,11 @@ namespace Domain.UseCase.Transacciones
             transacción.AsignarSaldoFinalCredito(transacción.Valor);
             transacción.GenerarDescripción();
 
-            cuenta.ActualizarSaldo(cuenta.SaldoDisponible + transacción.Valor);
+            cuenta.ActualizarSaldo(cuenta.Saldo + transacción.Valor);
 
-            await _cuentaRepository.Actualizar(transacción.Id, cuenta);
+            ValidarNuevoSaldoDisponible(cuenta);
 
+            await _cuentaRepository.Actualizar(transacción.IdCuenta, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
 
@@ -94,12 +113,13 @@ namespace Domain.UseCase.Transacciones
             transacción.AsignarSaldoFinalDebito(valorRetiro);
             transacción.GenerarDescripción();
 
-            cuenta.ActualizarSaldo(cuenta.SaldoDisponible - valorRetiro);
+            cuenta.ActualizarSaldo(cuenta.Saldo - valorRetiro);
 
-            await _cuentaRepository.Actualizar(transacción.Id, cuenta);
+            ValidarNuevoSaldoDisponible(cuenta);
+
+            await _cuentaRepository.Actualizar(transacción.IdCuenta, cuenta);
             return await _transacciónRepository.Crear(transacción);
         }
-
 
         /// <summary>
         /// Método de tipo <see cref="Transacción"/> que realiza una transferencia
@@ -112,13 +132,15 @@ namespace Domain.UseCase.Transacciones
             var cuentaOrigen = await _cuentaRepository.ObtenerPorId(transacción.IdCuenta);
             var cuentaDestino = await _cuentaRepository.ObtenerPorId(idCuentaReceptor);
 
-            ValidarEstadoCuenta(cuentaOrigen);
+            if (cuentaDestino is null)
+                throw new BusinessException($"La cuenta de destino numero {idCuentaReceptor} no existe",
+                (int)TipoExcepcionNegocio.CuentaNoEncontrada);
 
             if (cuentaDestino.EstaCancelada())
-            {
                 throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaCancelada.GetDescription(),
                     (int)TipoExcepcionNegocio.EstadoCuentaCancelada);
-            }
+
+            ValidarEstadoCuenta(cuentaOrigen, transacción.IdCuenta);
 
             var valorRetiro = ValidarValorRetiro(transacción.Valor, cuentaOrigen);
 
@@ -130,31 +152,41 @@ namespace Domain.UseCase.Transacciones
 
             var transacciónReceptor = CrearTransacciónReceptor(transacción, cuentaDestino);
 
-            cuentaOrigen.ActualizarSaldo(cuentaOrigen.SaldoDisponible - valorRetiro);
-            cuentaDestino.ActualizarSaldo(cuentaDestino.SaldoDisponible + valorRetiro);
+            cuentaOrigen.ActualizarSaldo(cuentaOrigen.Saldo - valorRetiro);
+            cuentaDestino.ActualizarSaldo(cuentaDestino.Saldo + valorRetiro);
 
-            await _cuentaRepository.Actualizar(transacción.Id, cuentaOrigen);
+            ValidarNuevoSaldoDisponible(cuentaOrigen);
+            ValidarNuevoSaldoDisponible(cuentaDestino);
+
+            await _cuentaRepository.Actualizar(transacción.IdCuenta, cuentaOrigen);
             await _cuentaRepository.Actualizar(idCuentaReceptor, cuentaDestino);
 
             await _transacciónRepository.Crear(transacciónReceptor);
             return await _transacciónRepository.Crear(transacción);
         }
 
-        private static void ValidarEstadoCuenta(Cuenta cuenta)
+        private void ValidarNuevoSaldoDisponible(Cuenta cuenta)
         {
-            if (cuenta.EstaCancelada())
-            {
-                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaCancelada.GetDescription(),
-                    (int)TipoExcepcionNegocio.EstadoCuentaCancelada);
-            }
-
-            if (cuenta.EstaInactiva())
-            {
-                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaInactiva.GetDescription(),
-                    (int)TipoExcepcionNegocio.EstadoCuentaInactiva);
-            }
+            if (cuenta.Exenta) cuenta.SaldoDisponible = cuenta.Saldo;
+            else cuenta.CalcularSaldoDisponible(_options.Value.GMF);
         }
 
+        private static void ValidarEstadoCuenta(Cuenta cuenta, string idCuentaValidar = null)
+        {
+            if (cuenta is null)
+                throw new BusinessException(
+                    idCuentaValidar is null ? TipoExcepcionNegocio.CuentaNoEncontrada.GetDescription()
+                    : $"La cuenta de origen con Id {idCuentaValidar} no existe",
+                (int)TipoExcepcionNegocio.CuentaNoEncontrada);
+
+            if (cuenta.EstaCancelada())
+                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaCancelada.GetDescription(),
+                    (int)TipoExcepcionNegocio.EstadoCuentaCancelada);
+
+            if (cuenta.EstaInactiva())
+                throw new BusinessException(TipoExcepcionNegocio.EstadoCuentaInactiva.GetDescription(),
+                    (int)TipoExcepcionNegocio.EstadoCuentaInactiva);
+        }
 
         private decimal ValidarValorRetiro(decimal valor, Cuenta cuenta)
         {
@@ -166,13 +198,13 @@ namespace Domain.UseCase.Transacciones
                 if (cuenta.TipoCuenta == TipoCuenta.Ahorros && valor > cuenta.Saldo)
                 {
                     throw new BusinessException(TipoExcepcionNegocio.ValorRetiroNoPermitido.GetDescription(),
-                                (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
+                        (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
                 }
 
                 if (cuenta.TipoCuenta == TipoCuenta.Corriente && valor > saldoConSobregiro)
                 {
                     throw new BusinessException(TipoExcepcionNegocio.ValorRetiroNoPermitido.GetDescription(),
-                                (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
+                        (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
                 }
 
                 return valor;

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Model.Entities.Clientes;
-using Domain.Model.Entities.Cuentas;
 using Domain.UseCase.Clientes;
 using Domain.UseCase.Common;
 using EntryPoints.ReactiveWeb.Base;

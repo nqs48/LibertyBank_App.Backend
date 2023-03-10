@@ -1,6 +1,6 @@
-﻿using System;
-using Domain.Model.Entities.Cuentas;
+﻿using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Transacciones;
+using System;
 
 namespace EntryPoints.ReactiveWeb.Entities.Handlers;
 

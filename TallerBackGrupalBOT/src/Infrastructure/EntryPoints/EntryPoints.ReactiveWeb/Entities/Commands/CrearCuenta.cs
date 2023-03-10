@@ -1,9 +1,4 @@
 ﻿using Domain.Model.Entities.Cuentas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Entities.Commands
 {
@@ -16,21 +11,20 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// Id del cliente
         /// </summary>
         public string IdCliente { get; set; }
-              
+
         /// <summary>
         /// Tipo de cuenta
         /// </summary>
         public TipoCuenta TipoCuenta { get; set; }
-                                                
+
         /// <summary>
         /// Saldo de la cuenta
         /// </summary>
         public decimal Saldo { get; set; }
-                                                        
+
         /// <summary>
         /// Indica si la cuenta es exenta
         /// </summary>
         public bool Exenta { get; set; }
     }
-
 }

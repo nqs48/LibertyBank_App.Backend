@@ -35,7 +35,7 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
 
             CreateMap<Usuario, UsuarioHandler>();
 
-            CreateMap<Transacción, TransacciónHandler>();
+            CreateMap<Transacción, TransacciónHandler>().ReverseMap();
 
             CreateMap<Cuenta, CuentaHandler>().ReverseMap();
 
@@ -67,6 +67,7 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
             #region GRPc command to GRPc DTO
 
             CreateMap<CrearUsuarioRequest, CrearUsuarioProto>().ReverseMap();
+            CreateMap<Actualización, ActualizacionProto>().ReverseMap();
 
             #endregion GRPc command to GRPc DTO
 
@@ -79,8 +80,8 @@ namespace TallerBackGrupalBOT.AppServices.Automapper
 
             #region Domain Model to GRPc Model
 
-            CreateMap<Usuario, UsuarioProto>();
-            CreateMap<Cliente, ClienteProto>();
+            CreateMap<Usuario, UsuarioProto>().ReverseMap();
+            CreateMap<Cliente, ClienteProto>().ReverseMap();
 
             #endregion Domain Model to GRPc Model
         }

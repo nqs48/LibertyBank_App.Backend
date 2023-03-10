@@ -9,10 +9,12 @@
         /// Activa
         /// </summary>
         Activa,
+
         /// <summary>
         /// Inactiva
         /// </summary>
         Inactiva,
+
         /// <summary>
         /// Cancelada
         /// </summary>

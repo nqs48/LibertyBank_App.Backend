@@ -6,9 +6,7 @@ using Domain.Model.Entities.Usuarios;
 using Helpers.Commons.Exceptions;
 using Helpers.ObjectsUtils;
 using Helpers.ObjectsUtils.Extensions;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,7 +18,6 @@ namespace Domain.UseCase.Cuentas
     /// </summary>
     public class CuentaUseCase : ICuentaUseCase
     {
-
         private readonly ICuentaRepository _repositoryCuenta;
         private readonly IClienteRepository _clienteRepository;
         private readonly IUsuarioRepository _usuarioRepository;
@@ -50,7 +47,6 @@ namespace Domain.UseCase.Cuentas
         /// <returns></returns>
         public async Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta)
         {
-
             var usuario = await _usuarioRepository.ObtenerPorIdAsync(idUsuarioModificacion);
             var cuentaEncontrada = await _repositoryCuenta.ObtenerPorId(cuenta.Id);
 
@@ -74,7 +70,6 @@ namespace Domain.UseCase.Cuentas
             cuentaEncontrada.CancelarCuenta();
             cuentaEncontrada.AgregarModificacion(nuevaModificacion);
             return await _repositoryCuenta.Actualizar(cuentaEncontrada.Id, cuentaEncontrada);
-
         }
 
         /// <summary>

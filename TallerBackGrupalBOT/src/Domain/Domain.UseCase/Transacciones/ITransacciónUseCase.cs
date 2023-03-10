@@ -1,7 +1,7 @@
-﻿using Domain.Model.Entities.Transacciones;
+﻿using Domain.Model.Entities.Cuentas;
+using Domain.Model.Entities.Transacciones;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain.Model.Entities.Cuentas;
 
 namespace Domain.UseCase.Transacciones
 {
@@ -18,7 +18,8 @@ namespace Domain.UseCase.Transacciones
         Task<Transacción> ObtenerTransacciónPorId(string idTransacción);
 
         /// <summary>
-        /// Método para obtener una lista de entidad <see cref="Transacción"/> por el Id de tipo <see cref="Cuenta"/>
+        /// Método para obtener una lista de entidad <see cref="Transacción"/> por el Id de tipo
+        /// <see cref="Cuenta"/>
         /// </summary>
         /// <param name="idCuenta"></param>
         /// <returns></returns>

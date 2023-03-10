@@ -15,13 +15,13 @@ namespace DrivenAdapters.Mongo.Entities
         /// Tipo de identificación
         /// </summary>
         [BsonElement("tipo_identificacion")]
-        public TipoIdentificación TipoIdentificación { get; private set; }
+        public TipoIdentificación TipoIdentificacion { get; private set; }
 
         /// <summary>
         /// Numero de identificación
         /// </summary>
         [BsonElement("numero_identificacion")]
-        public string NumeroIdentificación { get; private set; }
+        public string NumeroIdentificacion { get; private set; }
 
         /// <summary>
         /// Nombres del cliente
@@ -77,12 +77,16 @@ namespace DrivenAdapters.Mongo.Entities
         [BsonElement("productos")]
         public List<string> Productos { get; private set; }
 
-        public ClienteEntity(TipoIdentificación tipoIdentificación, string numeroIdentificación, string nombres, string apellidos,
+        public ClienteEntity()
+        {
+        }
+
+        public ClienteEntity(TipoIdentificación tipoIdentificacion, string numeroIdentificacion, string nombres, string apellidos,
             string correoElectronico, DateTime fechaNacimiento, DateTime fechaCreación,
             List<Actualización> historialActualizaciones, bool estaHabilitado, bool tieneDeudasActivas, List<string> productos)
         {
-            TipoIdentificación = tipoIdentificación;
-            NumeroIdentificación = numeroIdentificación;
+            TipoIdentificacion = tipoIdentificacion;
+            NumeroIdentificacion = numeroIdentificacion;
             Nombres = nombres;
             Apellidos = apellidos;
             CorreoElectronico = correoElectronico;

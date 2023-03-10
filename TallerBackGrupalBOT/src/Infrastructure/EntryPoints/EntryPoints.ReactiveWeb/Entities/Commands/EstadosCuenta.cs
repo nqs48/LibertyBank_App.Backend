@@ -1,9 +1,4 @@
 ﻿using Domain.Model.Entities.Cuentas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Entities.Commands
 {
@@ -16,6 +11,5 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// Id
         /// </summary>
         public string Id { get; set; }
-
     }
 }

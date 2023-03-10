@@ -9,18 +9,22 @@
         /// Habilitación
         /// </summary>
         Habilitación,
+
         /// <summary>
         /// Inhabilitación
         /// </summary>
         Inhabilitación,
+
         /// <summary>
         /// Creación
         /// </summary>
         Creación,
+
         /// <summary>
         /// Activación
         /// </summary>
         Activación,
+
         /// <summary>
         /// Cancelación
         /// </summary>

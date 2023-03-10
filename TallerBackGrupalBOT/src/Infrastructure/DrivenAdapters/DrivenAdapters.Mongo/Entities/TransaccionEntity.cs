@@ -1,10 +1,10 @@
-﻿using System;
-using Domain.Model.Entities.Cuentas;
+﻿using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Transacciones;
 using DrivenAdapters.Mongo.Entities.Base;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Newtonsoft.Json;
+using System;
 
 namespace DrivenAdapters.Mongo.entities;
 

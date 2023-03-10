@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
 using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Gateway;
-using System;
+using DrivenAdapters.Mongo.Entities;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Driver;
-using DrivenAdapters.Mongo.Entities;
 
 namespace DrivenAdapters.Mongo.Adapters
 {
@@ -82,7 +80,7 @@ namespace DrivenAdapters.Mongo.Adapters
         public async Task<Cliente> ObtenerPorNumeroIdentificacion(string numeroIdentificacion)
         {
             var cursor = await _collection.FindAsync<ClienteEntity>(
-                filtro.Eq(x => x.NumeroIdentificación, numeroIdentificacion));
+                filtro.Eq(x => x.NumeroIdentificacion, numeroIdentificacion));
             return _mapper.Map<Cliente>(cursor.FirstOrDefault());
         }
 

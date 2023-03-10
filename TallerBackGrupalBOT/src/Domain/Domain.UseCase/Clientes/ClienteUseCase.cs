@@ -84,7 +84,7 @@ namespace Domain.UseCase.Clientes
         /// <exception cref="BusinessException"></exception>
         public async Task<Cliente> CrearCliente(string idUsuarioCreacion, Cliente nuevoCliente)
         {
-            var clienteVerificacion = await _gatewayCliente.ObtenerPorNumeroIdentificacion(nuevoCliente.NumeroIdentificación);
+            var clienteVerificacion = await _gatewayCliente.ObtenerPorNumeroIdentificacion(nuevoCliente.NumeroIdentificacion);
 
             Usuario usuarioSeleccionado = await _gatewayUsuario.ObtenerPorIdAsync(idUsuarioCreacion);
 
@@ -97,7 +97,7 @@ namespace Domain.UseCase.Clientes
                     (int)TipoExcepcionNegocio.UsuarioNoValido);
 
             if (clienteVerificacion is not null)
-                throw new BusinessException($"Cliente con numero de identificación {nuevoCliente.NumeroIdentificación} ya existe",
+                throw new BusinessException($"Cliente con numero de identificación {nuevoCliente.NumeroIdentificacion} ya existe",
                     (int)TipoExcepcionNegocio.IdentificacionDeClienteYaExiste);
 
             if (!nuevoCliente.VerificarEdadCliente(EdadLegal.col))

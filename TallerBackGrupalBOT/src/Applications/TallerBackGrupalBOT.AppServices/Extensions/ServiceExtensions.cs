@@ -11,6 +11,7 @@ using DrivenAdapters.Mongo.Adapters;
 using TallerBackGrupalBOT.AppServices.Automapper;
 using Domain.UseCase.Clientes;
 using Domain.UseCase.Cuentas;
+using Domain.UseCase.Transacciones;
 
 namespace TallerBackGrupalBOT.AppServices.Extensions
 {
@@ -87,13 +88,9 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
             #region Adaptadores
 
             services.AddScoped<IUsuarioRepository, UsuarioRepositoryAdapter>();
-
             services.AddScoped<ICuentaRepository, CuentaRepositoryAdapter>();
-
             services.AddScoped<IClienteRepository, ClienteRepositoryAdapter>();
-            services.AddScoped<ICuentaRepository, CuentaRepositoryAdapter>();
-
-            services.AddScoped<ICuentaRepository, CuentaRepositoryAdapter>();
+            services.AddScoped<ITransacciónRepository, TransacciónRepositoryAdapter>();
 
             #endregion Adaptadores
 
@@ -103,6 +100,7 @@ namespace TallerBackGrupalBOT.AppServices.Extensions
             services.AddScoped<IUsuarioUseCase, UsuarioUseCase>();
             services.AddScoped<ICuentaUseCase, CuentaUseCase>();
             services.AddScoped<IClienteUseCase, ClienteUseCase>();
+            services.AddScoped<ITransacciónUseCase, TransacciónUseCase>();
 
             #endregion UseCases
 

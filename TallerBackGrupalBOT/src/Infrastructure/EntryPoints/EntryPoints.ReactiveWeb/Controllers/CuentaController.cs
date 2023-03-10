@@ -116,15 +116,25 @@ namespace EntryPoints.ReactiveWeb.Controllers
         }, "");
 
         /// <summary>
-        /// Endpoint para crear entidad de tipo <see cref="Cuenta"/>
+        /// Endpoint para obtener todas las entidades tipo <see cref="Cuenta"/>
         /// </summary>
-        /// <param name="crearCuenta"></param>
-        /// <param name="idUsuario"></param>
         /// <returns></returns>
         [HttpGet]
         public async Task<IActionResult> Obtener() => await HandleRequest(async () =>
         {
             return await _cuentaUseCase.ObtenerTodas();
+        }, "");
+
+        /// <summary>
+        /// Endpoint para obtener lista de entidades de tipo <see cref="Cuenta"/> por cliente
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("id")]
+        public async Task<IActionResult> ObtenerClienteId([FromQuery] string id) => await HandleRequest(async () =>
+        {
+            return await _cuentaUseCase.ObtenerTodasPorCliente(id);
         }, "");
 
 

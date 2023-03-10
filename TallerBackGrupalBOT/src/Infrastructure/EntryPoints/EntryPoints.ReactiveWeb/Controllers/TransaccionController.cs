@@ -42,7 +42,7 @@ public class TransacciónController : AppControllerBase<TransacciónController>
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("{id}")]
-    public Task<IActionResult> ObtenerTransacciónPorId([FromRoute] string id) =>
+    public Task<IActionResult> ObtenerTransaccionPorId([FromRoute] string id) =>
         HandleRequest(async () =>
         {
             Transacción transacción = await _transacciónUseCase.ObtenerTransacciónPorId(id);
@@ -68,7 +68,7 @@ public class TransacciónController : AppControllerBase<TransacciónController>
     /// <param name="crearTransacción"></param>
     /// <returns></returns>
     [HttpPost]
-    public Task<IActionResult> RealizarConsignación([FromBody] CrearTransacción crearTransacción) =>
+    public Task<IActionResult> RealizarConsignacion([FromBody] CrearTransacción crearTransacción) =>
         HandleRequest(async () =>
         {
             Transacción transacción =

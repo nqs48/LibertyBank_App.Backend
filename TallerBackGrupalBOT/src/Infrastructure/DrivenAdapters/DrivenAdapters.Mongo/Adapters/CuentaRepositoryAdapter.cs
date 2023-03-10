@@ -24,8 +24,6 @@ namespace DrivenAdapters.Mongo.Adapters
     {
         private readonly IMongoCollection<CuentaEntity> _collectionCuenta;
 
-        private readonly IOptions<ConfiguradorAppSettings> _options;
-
         private readonly FilterDefinitionBuilder<CuentaEntity> filtro = Builders<CuentaEntity>.Filter;
 
         private readonly IMapper _mapper;
@@ -35,11 +33,10 @@ namespace DrivenAdapters.Mongo.Adapters
         /// </summary>
         /// <param name="context"></param>
         /// <param name="mapper"></param>
-        public CuentaRepositoryAdapter(IContext context, IMapper mapper, IOptions<ConfiguradorAppSettings> options)
+        public CuentaRepositoryAdapter(IContext context, IMapper mapper)
         {
             _collectionCuenta = context.Cuentas;
             _mapper = mapper;
-            _options = options;
         }
 
         /// <summary>
@@ -63,10 +60,6 @@ namespace DrivenAdapters.Mongo.Adapters
         /// <returns></returns>
         public async Task<Cuenta> Crear(Cuenta cuenta)
         {
-            if (!cuenta.Exenta) { cuenta.CalcularSaldoDisponible(_options.Value.GMF); }
-            else { cuenta.SaldoDisponible = cuenta.Saldo; }
-            cuenta.AsignarNumeroCuenta();
-
             var nuevaCuenta = _mapper.Map<CuentaEntity>(cuenta);
             await _collectionCuenta.InsertOneAsync(nuevaCuenta);
             return _mapper.Map<Cuenta>(nuevaCuenta);

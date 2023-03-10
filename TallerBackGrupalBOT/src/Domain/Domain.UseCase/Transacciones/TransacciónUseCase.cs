@@ -8,6 +8,7 @@ using Helpers.ObjectsUtils.Extensions;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Transacciones
@@ -41,8 +42,18 @@ namespace Domain.UseCase.Transacciones
         /// </summary>
         /// <param name="idTransacción"></param>
         /// <returns></returns>
-        public async Task<Transacción> ObtenerTransacciónPorId(string idTransacción) =>
-            await _transacciónRepository.ObtenerPorId(idTransacción);
+        public async Task<Transacción> ObtenerTransacciónPorId(string idTransacción)
+        {
+            Transacción transacción = await _transacciónRepository.ObtenerPorId(idTransacción);
+            if (transacción is null)
+            {
+                throw new BusinessException(TipoExcepcionNegocio.EntidadNoEncontrada.GetDescription(),
+                    (int)TipoExcepcionNegocio.EntidadNoEncontrada);
+            }
+
+            return transacción;
+        }
+
 
         /// <summary>
         /// Retorna las entidades de tipo <see cref="Transacción"/> asociadas por el Id de entidad de tipo <see cref="Cuenta"/>
@@ -165,13 +176,13 @@ namespace Domain.UseCase.Transacciones
                 if (cuenta.TipoCuenta == TipoCuenta.Ahorros && valor > cuenta.Saldo)
                 {
                     throw new BusinessException(TipoExcepcionNegocio.ValorRetiroNoPermitido.GetDescription(),
-                                (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
+                        (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
                 }
 
                 if (cuenta.TipoCuenta == TipoCuenta.Corriente && valor > saldoConSobregiro)
                 {
                     throw new BusinessException(TipoExcepcionNegocio.ValorRetiroNoPermitido.GetDescription(),
-                                (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
+                        (int)TipoExcepcionNegocio.ValorRetiroNoPermitido);
                 }
 
                 return valor;

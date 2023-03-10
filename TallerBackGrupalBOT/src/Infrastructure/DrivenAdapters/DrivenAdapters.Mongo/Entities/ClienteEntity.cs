@@ -76,8 +76,7 @@ namespace DrivenAdapters.Mongo.Entities
         /// </summary>
         [BsonElement("productos")]
         public List<string> Productos { get; private set; }
-        
-        
+
         public ClienteEntity()
         {
         }

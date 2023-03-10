@@ -1,10 +1,5 @@
 ﻿using Domain.Model.Entities.Cuentas;
-using Domain.Model.Entities.Transacciones;
-using Domain.Model.Entities.Usuarios;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.UseCase.Cuentas
@@ -15,32 +10,25 @@ namespace Domain.UseCase.Cuentas
     public interface ICuentaUseCase
     {
         /// <summary>
-        /// Cancelar una Cuenta.
-        /// <param name="idUsuarioModificacion"></param> 
-        /// <param name="cuenta"></param> 
+        /// Cancelar una Cuenta. <param name="idUsuarioModificacion"></param><param name="cuenta"></param>
         /// </summary>
         /// <returns></returns>
         Task<Cuenta> CancelarCuenta(string idUsuarioModificacion, Cuenta cuenta);
 
         /// <summary>
-        /// Habilitar una Cuenta
-        /// <param name="idUsuarioModificacion"></param> 
-        /// <param name="cuenta"></param>
+        /// Habilitar una Cuenta <param name="idUsuarioModificacion"></param><param name="cuenta"></param>
         /// </summary>
         /// <returns></returns>
         Task<Cuenta> HabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta);
 
         /// <summary>
-        /// Deshabilitar una Cuenta
-        /// <param name="idUsuarioModificacion"></param> 
-        /// <param name="cuenta"></param>
+        /// Deshabilitar una Cuenta <param name="idUsuarioModificacion"></param><param name="cuenta"></param>
         /// </summary>
         /// <returns></returns>
         Task<Cuenta> DeshabilitarCuenta(string idUsuarioModificacion, Cuenta cuenta);
 
         /// <summary>
-        /// Obtener una Cuenta por Id
-        /// <param name="idCuenta"></param> 
+        /// Obtener una Cuenta por Id <param name="idCuenta"></param>
         /// </summary>
         /// <returns></returns>
         Task<Cuenta> ObtenerCuentaPorId(string idCuenta);
@@ -51,7 +39,7 @@ namespace Domain.UseCase.Cuentas
         /// <param name="cuenta"></param>
         /// <param name="idUsuarioModificacion"></param>
         /// <returns></returns>
-        Task<Cuenta> Crear(string idUsuarioModificacion,Cuenta cuenta);
+        Task<Cuenta> Crear(string idUsuarioModificacion, Cuenta cuenta);
 
         /// <summary>
         /// Método para obtener todas las cuentas
@@ -60,11 +48,9 @@ namespace Domain.UseCase.Cuentas
         Task<List<Cuenta>> ObtenerTodas();
 
         /// <summary>
-        /// Método para obtener todas las cuentas de un cliente
-        /// <param name="idCliente"></param> 
+        /// Método para obtener todas las cuentas de un cliente <param name="idCliente"></param>
         /// </summary>
         /// <returns></returns>
         Task<List<Cuenta>> ObtenerTodasPorCliente(string idCliente);
-
     }
 }

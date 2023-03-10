@@ -48,7 +48,6 @@ namespace Helpers.Commons.Exceptions
         [Description("Correo electrónico no es valido")]
         CorreoElectronicoNoValido = 566,
 
-
         /// <summary>
         /// Valor Retiro No Permitido
         /// </summary>
@@ -104,9 +103,15 @@ namespace Helpers.Commons.Exceptions
         EstadoCuentaInactiva = 569,
 
         /// <summary>
-        /// Excepcion Ya hay una cuenta exenta de GMF
+        /// Excepción Ya hay una cuenta exenta de GMF
         /// </summary>
         [Description("Ya existe una cuenta exenta de GMF")]
         YaExisteUnaCuentaExenta = 576,
+
+        /// <summary>
+        /// Excepción Cliente tiene deudas activas
+        /// </summary>
+        [Description("Cliente tiene deudas activas")]
+        ClienteTieneDeudasActivas = 577,
     }
 }

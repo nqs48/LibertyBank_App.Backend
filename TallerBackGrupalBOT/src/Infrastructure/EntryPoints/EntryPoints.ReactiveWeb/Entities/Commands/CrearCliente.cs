@@ -1,9 +1,5 @@
 ﻿using Domain.Model.Entities.Clientes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Entities.Commands
 {
@@ -22,12 +18,12 @@ namespace EntryPoints.ReactiveWeb.Entities.Commands
         /// <summary>
         /// Tipo de identificación
         /// </summary>
-        public TipoIdentificación TipoIdentificación { get; set; }
+        public TipoIdentificación TipoIdentificacion { get; set; }
 
         /// <summary>
         /// Numero de identificación
         /// </summary>
-        public string NumeroIdentificación { get; set; }
+        public string NumeroIdentificacion { get; set; }
 
         /// <summary>
         /// Nombres del cliente

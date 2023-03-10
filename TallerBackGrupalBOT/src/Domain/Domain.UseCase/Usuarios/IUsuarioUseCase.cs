@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Domain.Model.Entities.Usuarios;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Domain.Model.Entities.Usuarios;
 
 namespace Domain.UseCase.Usuarios
 {

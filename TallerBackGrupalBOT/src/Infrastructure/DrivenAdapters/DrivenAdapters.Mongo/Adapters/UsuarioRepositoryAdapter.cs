@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
 using DrivenAdapters.Mongo.Entities;
 using MongoDB.Driver;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DrivenAdapters.Mongo.Adapters;
 

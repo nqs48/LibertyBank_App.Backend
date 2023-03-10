@@ -1,11 +1,6 @@
 ﻿using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Usuarios;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace Domain.Model.Tests.Entities
@@ -18,14 +13,14 @@ namespace Domain.Model.Tests.Entities
         {
             string id = "1";
             string idCliente = "001";
-            string numeroCuenta= "23121";
-            TipoCuenta tipoCuenta= TipoCuenta.Ahorros;
-            decimal saldo= 2000;
-            decimal saldoDisponible= 2000; 
-            bool exenta= true;
+            string numeroCuenta = "23121";
+            TipoCuenta tipoCuenta = TipoCuenta.Ahorros;
+            decimal saldo = 2000;
+            decimal saldoDisponible = 2000;
+            bool exenta = true;
 
             var cuentaId = new Cuenta("1");
-            var cuentaCrear= new Cuenta(idCliente,tipoCuenta,saldo,exenta);
+            var cuentaCrear = new Cuenta(idCliente, tipoCuenta, saldo, exenta);
             var cuentaActualizar = new Cuenta(id, idCliente, numeroCuenta, tipoCuenta, saldo, saldoDisponible, exenta);
 
             Assert.NotNull(cuentaId);
@@ -235,7 +230,6 @@ namespace Domain.Model.Tests.Entities
         [Fact]
         public void ActualizarSaldo_Exitoso()
         {
-            
             var cuentaTest = new CuentaBuilderTest()
                 .WithIdCliente("6")
                 .WithNumeroDeCuenta("1")
@@ -254,7 +248,6 @@ namespace Domain.Model.Tests.Entities
         [Fact]
         public void ActualizarSaldo_Failure()
         {
-
             var cuentaTest = new CuentaBuilderTest()
                 .WithIdCliente("6")
                 .WithNumeroDeCuenta("1")
@@ -323,7 +316,7 @@ namespace Domain.Model.Tests.Entities
 
             cuentaTest.HabilitarCuenta();
 
-            Assert.Equal(EstadoCuenta.Activa,cuentaTest.EstadoCuenta);
+            Assert.Equal(EstadoCuenta.Activa, cuentaTest.EstadoCuenta);
         }
 
         [Fact]
@@ -353,8 +346,5 @@ namespace Domain.Model.Tests.Entities
 
             Assert.Equal(EstadoCuenta.Cancelada, cuentaTest.EstadoCuenta);
         }
-
-
-
     }
 }

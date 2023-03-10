@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Model.Entities.Clientes;
-using Domain.Model.Entities.Cuentas;
 using Domain.UseCase.Clientes;
 using Domain.UseCase.Common;
 using EntryPoints.ReactiveWeb.Base;
@@ -45,17 +44,6 @@ namespace EntryPoints.ReactiveWeb.Controllers
         [Route("update/email/{idCliente}/{nuevoCorreo}")]
         public Task<IActionResult> ActualizarCorreoCliente(string idCliente, string nuevoCorreo) =>
             HandleRequest(async () => await _useCase.ActualizarCorreoElectronico(idCliente, nuevoCorreo), "");
-
-        /// <summary>
-        /// <see cref="ClienteUseCase.AgregarProductosCliente(string, Cuenta)"/>
-        /// </summary>
-        /// <param name="idCliente"></param>
-        /// <param name="nuevaCuenta"></param>
-        /// <returns></returns>
-        [HttpPut]
-        [Route("add/products/{idCliente}/{idUsuario}")]
-        public Task<IActionResult> AgregarProductosACliente(string idCliente, [FromBody] Cuenta nuevaCuenta) =>
-            HandleRequest(async () => await _useCase.AgregarProductosCliente(idCliente, nuevaCuenta), "");
 
         /// <summary>
         /// <see cref="ClienteUseCase.CrearCliente(string, Cliente)"/>

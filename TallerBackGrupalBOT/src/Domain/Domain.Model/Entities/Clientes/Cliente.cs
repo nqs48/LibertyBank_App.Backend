@@ -52,7 +52,7 @@ namespace Domain.Model.Entities.Clientes
         /// <summary>
         /// Fecha en que se creo el cliente
         /// </summary>
-        public DateTime FechaCreación { get; private set; }
+        public DateTime FechaCreación { get; set; }
 
         /// <summary>
         /// Historial de actualizaciones de datos del cliente

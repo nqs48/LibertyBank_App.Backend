@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
 using Domain.Model.Entities.Clientes;
 using Domain.Model.Entities.Gateway;
-using System;
+using DrivenAdapters.Mongo.Entities;
+using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using MongoDB.Driver;
-using DrivenAdapters.Mongo.Entities;
 
 namespace DrivenAdapters.Mongo.Adapters
 {

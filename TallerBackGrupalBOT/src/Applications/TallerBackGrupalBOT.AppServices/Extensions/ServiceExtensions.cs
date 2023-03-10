@@ -1,17 +1,17 @@
 ﻿using AutoMapper.Data;
 using credinet.comun.api;
+using Domain.Model.Entities.Gateway;
+using Domain.UseCase.Clientes;
 using Domain.UseCase.Common;
+using Domain.UseCase.Cuentas;
+using Domain.UseCase.Transacciones;
+using Domain.UseCase.Usuarios;
 using DrivenAdapters.Mongo;
+using DrivenAdapters.Mongo.Adapters;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 using System;
-using Domain.Model.Entities.Gateway;
-using Domain.UseCase.Usuarios;
-using DrivenAdapters.Mongo.Adapters;
 using TallerBackGrupalBOT.AppServices.Automapper;
-using Domain.UseCase.Clientes;
-using Domain.UseCase.Cuentas;
-using Domain.UseCase.Transacciones;
 
 namespace TallerBackGrupalBOT.AppServices.Extensions
 {

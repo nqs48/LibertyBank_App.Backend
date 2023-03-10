@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Cuentas;
 using Domain.Model.Entities.Transacciones;
 using Domain.UseCase.Common;
@@ -9,6 +7,8 @@ using EntryPoints.ReactiveWeb.Base;
 using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Controllers;
 
@@ -50,7 +50,8 @@ public class TransaccionController : AppControllerBase<TransaccionController>
         }, "");
 
     /// <summary>
-    /// Endpoint que retorna una entidad de tipo <see cref="Transacción"/> por el Id de la entidad <see cref="Cuenta"/>
+    /// Endpoint que retorna una entidad de tipo <see cref="Transacción"/> por el Id de la entidad
+    /// <see cref="Cuenta"/>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -76,7 +77,7 @@ public class TransaccionController : AppControllerBase<TransaccionController>
 
             return _mapper.Map<TransacciónHandler>(transacción);
         }, "");
-    
+
     /// <summary>
     /// Endpoint para realizar un retiro
     /// </summary>
@@ -98,8 +99,8 @@ public class TransaccionController : AppControllerBase<TransaccionController>
     /// <param name="crearTransacción"></param>
     /// <param name="idCuentaReceptor"></param>
     /// <returns></returns>
-    [HttpPost]
-    public Task<IActionResult> RealizarTransferencia([FromBody] CrearTransacción crearTransacción, string idCuentaReceptor) =>
+    [HttpPost("{idCuentaReceptor}")]
+    public Task<IActionResult> RealizarTransferencia([FromBody] CrearTransacción crearTransacción, [FromRoute] string idCuentaReceptor) =>
         HandleRequest(async () =>
         {
             Transacción transacción =

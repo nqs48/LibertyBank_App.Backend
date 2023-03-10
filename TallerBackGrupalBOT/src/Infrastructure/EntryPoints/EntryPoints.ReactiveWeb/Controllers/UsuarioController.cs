@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Model.Entities.Usuarios;
 using Domain.UseCase.Common;
 using Domain.UseCase.Usuarios;
@@ -9,13 +7,14 @@ using EntryPoints.ReactiveWeb.Entities.Commands;
 using EntryPoints.ReactiveWeb.Entities.Handlers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EntryPoints.ReactiveWeb.Controllers;
 
 /// <summary>
 /// Controller de entidad <see cref="Usuario"/>
 /// </summary>
-/// 
 [Produces("application/json")]
 [ApiVersion("1.0")]
 [Route("api/[controller]/[action]")]
@@ -67,9 +66,9 @@ public class UsuarioController : AppControllerBase<UsuarioController>
     /// <returns></returns>
     [HttpPost]
     public Task<IActionResult> Crear([FromBody] CrearUsuario crearUsuario) => HandleRequest(async () =>
-    {
-        Usuario usuarioCreado = await _usuarioUseCase.Crear(_mapper.Map<Usuario>(crearUsuario));
+            {
+                Usuario usuarioCreado = await _usuarioUseCase.Crear(_mapper.Map<Usuario>(crearUsuario));
 
-        return _mapper.Map<UsuarioHandler>(usuarioCreado);
-    }, "");
+                return _mapper.Map<UsuarioHandler>(usuarioCreado);
+            }, "");
 }

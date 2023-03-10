@@ -35,4 +35,15 @@ public class ClientesRpcServices : ClienteServices.ClienteServicesBase
         var clienteARetornar = await _clienteUseCase.CrearCliente(request.IdUsuario, clienteDto);
         return _mapper.Map<ClienteProto>(clienteARetornar);
     }
+
+    public override async Task<RespuestaListaClientes> ObtenerTodosLosClientes(Empty request, ServerCallContext context)
+    {
+        var respuesta = new RespuestaListaClientes();
+        var clientes = await _clienteUseCase.ObtenerTodos();
+        List<ClienteProto> clienteProtos = clientes.Select(cliente => _mapper.Map<ClienteProto>(cliente))
+            .ToList();
+        respuesta.Clientes.AddRange(clienteProtos);
+
+        return respuesta;
+    }
 }

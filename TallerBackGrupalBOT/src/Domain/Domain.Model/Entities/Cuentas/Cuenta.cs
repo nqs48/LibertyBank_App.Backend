@@ -1,7 +1,5 @@
-﻿using Domain.Model.Entities.Clientes;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 
 namespace Domain.Model.Entities.Cuentas
 {
@@ -64,7 +62,6 @@ namespace Domain.Model.Entities.Cuentas
             Id = id;
         }
 
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -88,8 +85,6 @@ namespace Domain.Model.Entities.Cuentas
             HistorialModificaciones = new List<Modificación>();
         }
 
-        
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -97,7 +92,7 @@ namespace Domain.Model.Entities.Cuentas
         /// <param name="tipoCuenta"></param>
         /// <param name="saldo"></param>
         /// <param name="exenta"></param>
-        public Cuenta(string idCliente,TipoCuenta tipoCuenta, decimal saldo, bool exenta)
+        public Cuenta(string idCliente, TipoCuenta tipoCuenta, decimal saldo, bool exenta)
         {
             IdCliente = idCliente;
             TipoCuenta = tipoCuenta;
@@ -186,11 +181,5 @@ namespace Domain.Model.Entities.Cuentas
         /// Cancelar una Cuenta.
         /// </summary>
         public void CancelarCuenta() => EstadoCuenta = EstadoCuenta.Cancelada;
-
-        
-            
-        
-
-
     }
 }

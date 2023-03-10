@@ -43,6 +43,5 @@ namespace Domain.Model.Entities.Gateway
         /// <param name="idCliente"></param>
         /// <returns></returns>
         Task<List<Cuenta>> ObtenerPorCliente(string idCliente);
-        
     }
 }

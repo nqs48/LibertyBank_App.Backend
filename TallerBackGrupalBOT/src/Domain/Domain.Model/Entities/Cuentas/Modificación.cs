@@ -12,10 +12,12 @@ namespace Domain.Model.Entities.Cuentas
         /// TipoModificación
         /// </summary>
         public TipoModificación TipoModificación { get; set; }
+
         /// <summary>
         /// UsuarioModificación
         /// </summary>
         public Usuario UsuarioModificación { get; set; }
+
         /// <summary>
         /// FechaModificación
         /// </summary>

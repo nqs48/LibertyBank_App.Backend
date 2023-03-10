@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using credinet.exception.middleware.models;
+﻿using credinet.exception.middleware.models;
 using Domain.Model.Entities.Gateway;
 using Domain.Model.Entities.Usuarios;
 using Helpers.Commons.Exceptions;
 using Helpers.ObjectsUtils.Extensions;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Domain.UseCase.Usuarios
 {

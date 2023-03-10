@@ -42,6 +42,12 @@ message ClienteProto {
   repeated string Productos = 13;
 }
 
+message Empty {} 
+
+message RespuestaListaClientes {
+	repeated ClienteProto clientes = 1;
+}
+
 message ActualizacionProto {
   int32 tipoActualizacion = 1;
   UsuarioProto usuarioModificacion = 2;
@@ -57,4 +63,5 @@ message ClienteCrearRequest {
 service ClienteServices{
   rpc CrearUsuario(CrearUsuarioRequest) returns (UsuarioProto);
   rpc CrearCliente(ClienteCrearRequest) returns (ClienteProto);
+  rpc ObtenerTodosLosClientes(Empty) returns (RespuestaListaClientes);
 }

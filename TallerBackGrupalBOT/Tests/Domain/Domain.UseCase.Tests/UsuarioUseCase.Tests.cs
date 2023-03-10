@@ -48,7 +48,6 @@ public class UsuarioUseCaseTest
         _mockUsuarioRepository.Verify(mock => mock.ObtenerTodosAsync(), Times.Once);
     }
 
-
     [Fact]
     public async Task ObtenerUsuarioPorId_Exitoso()
     {
@@ -120,5 +119,5 @@ public class UsuarioUseCaseTest
             .Build()
     };
 
-    #endregion
+    #endregion Private Methods
 }

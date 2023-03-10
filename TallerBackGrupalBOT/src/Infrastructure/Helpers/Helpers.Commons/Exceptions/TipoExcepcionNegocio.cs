@@ -101,6 +101,12 @@ namespace Helpers.Commons.Exceptions
         /// La cuenta esta inactiva
         /// </summary>
         [Description("La cuenta se encuentra inactiva")]
-        EstadoCuentaInactiva = 569
+        EstadoCuentaInactiva = 569,
+
+        /// <summary>
+        /// Excepcion Ya hay una cuenta exenta de GMF
+        /// </summary>
+        [Description("Ya existe una cuenta exenta de GMF")]
+        YaExisteUnaCuentaExenta = 576,
     }
 }

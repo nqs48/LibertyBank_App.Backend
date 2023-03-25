@@ -1,6 +1,7 @@
 ﻿using credinet.comun.api;
 using credinet.comun.api.Swagger.Extensions;
 using credinet.exception.middleware;
+using EntryPoints.GRPc.RPCs;
 using Helpers.ObjectsUtils;
 using Helpers.ObjectsUtils.Setting;
 using Microsoft.AspNetCore.Builder;
@@ -29,13 +30,15 @@ builder.Configuration
 //builder.Configuration.AddKeyVaultProvider();
 
 builder.Host.UseSerilog((ctx, lc) => lc
-       .WriteTo.Console()
-       .ReadFrom.Configuration(ctx.Configuration));
+    .WriteTo.Console()
+    .ReadFrom.Configuration(ctx.Configuration));
 
 #endregion Host Configuration
 
-builder.Services.Configure<ConfiguradorAppSettings>(builder.Configuration.GetRequiredSection(nameof(ConfiguradorAppSettings)));
-ConfiguradorAppSettings appSettings = builder.Configuration.GetSection(nameof(ConfiguradorAppSettings)).Get<ConfiguradorAppSettings>();
+builder.Services.Configure<ConfiguradorAppSettings>(
+    builder.Configuration.GetRequiredSection(nameof(ConfiguradorAppSettings)));
+ConfiguradorAppSettings appSettings =
+    builder.Configuration.GetSection(nameof(ConfiguradorAppSettings)).Get<ConfiguradorAppSettings>();
 //HACK: Para usar fuera de Siste.
 //Secrets secrets = builder.Configuration.ResolveSecrets<Secrets>();
 Secrets secrets = builder.Configuration.GetSection(nameof(Secrets)).Get<Secrets>();
@@ -62,13 +65,20 @@ builder.Services
     .HabilitarVesionamiento()
     .ConfigurarSwaggerConVersiones(builder.Environment, PlatformServices.Default.Application.ApplicationBasePath,
         new string[] { "TallerBackGrupalBOT.AppServices.xml" });
-;
 
 builder.Services
     .AddHealthChecks()
     .AddMongoDb(secrets.MongoConnection, name: "MongoDB");
 
 #endregion Service Configuration
+
+builder.Services.AddGrpc();
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenLocalhost(5000, x => x.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1);
+    options.ListenLocalhost(5001, x => x.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
+});
 
 WebApplication app = builder.Build();
 
@@ -81,7 +91,10 @@ if (!app.Environment.IsProduction())
     app.UseDeveloperExceptionPage();
     app.UseSwagger((c) =>
     {
-        c.PreSerializeFilters.Add((swaggerDoc, httpRequest) => { swaggerDoc.Info.Description = httpRequest.Host.Value; });
+        c.PreSerializeFilters.Add((swaggerDoc, httpRequest) =>
+        {
+            swaggerDoc.Info.Description = httpRequest.Host.Value;
+        });
     });
     app.UseSwaggerUI(options =>
     {
@@ -89,6 +102,7 @@ if (!app.Environment.IsProduction())
         {
             options.SwaggerEndpoint($"../swagger/{description}/swagger.json", description.ToUpperInvariant());
         }
+
         options.InjectStylesheet($"../swagger.{app.Environment.EnvironmentName}.css");
     });
 }
@@ -104,4 +118,5 @@ app.UseHttpsRedirection();
 app.UseAmbienteHeaderMiddleware();
 app.UseOrigenHeaderMiddleware();
 app.MapControllers();
+app.MapGrpcService<ClientesRpcServices>();
 app.Run();

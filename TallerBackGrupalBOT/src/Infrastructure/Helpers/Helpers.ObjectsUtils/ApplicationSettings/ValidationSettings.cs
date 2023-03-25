@@ -1,8 +1,11 @@
-﻿namespace Helpers.ObjectsUtils.ApplicationSettings
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Helpers.ObjectsUtils.ApplicationSettings
 {
     /// <summary>
     /// ValidationSettings
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ValidationSettings
     {
         /// <summary>

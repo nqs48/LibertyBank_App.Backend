@@ -1,10 +1,12 @@
 ﻿using Helpers.ObjectsUtils.ApplicationSettings;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Helpers.ObjectsUtils
 {
     /// <summary>
     /// ConfiguradorAppSettings
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class ConfiguradorAppSettings
     {
         /// <summary>
@@ -67,5 +69,17 @@ namespace Helpers.ObjectsUtils
         /// </summary>
         /// <value>The instancias redis.</value>
         public SettingInstanciaRedis InstanciasRedis { get; set; }
+
+        /// <summary>
+        /// Gravamen al movimiento financiero Colombia
+        /// </summary>
+        /// <value>The instancias redis.</value>
+        public decimal GMF { get; set; }
+
+        /// <summary>
+        /// Valor Máximo permitido sobregiro
+        /// </summary>
+        /// <value>The instancias redis.</value>
+        public decimal ValorSobregiro { get; set; }
     }
 }

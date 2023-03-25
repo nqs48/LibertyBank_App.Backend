@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Configurador.AppServices.Tests", "TallerBackGrupalBOT\Tests\Configurador.AppServices.Tests\Configurador.AppServices.Tests.csproj", "{30C2D570-428A-4A21-8DDD-A58F3F4DA9BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntryPoints.GRPc", "TallerBackGrupalBOT\src\Infrastructure\EntryPoints\EntryPoints.GRPc\EntryPoints.GRPc.csproj", "{F53DC594-A427-47EA-988B-60D02F3C187B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{30C2D570-428A-4A21-8DDD-A58F3F4DA9BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C2D570-428A-4A21-8DDD-A58F3F4DA9BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C2D570-428A-4A21-8DDD-A58F3F4DA9BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F53DC594-A427-47EA-988B-60D02F3C187B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F53DC594-A427-47EA-988B-60D02F3C187B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F53DC594-A427-47EA-988B-60D02F3C187B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F53DC594-A427-47EA-988B-60D02F3C187B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -152,6 +158,7 @@ Global
 		{2D81F075-CCDB-41D2-A13C-931668C968E0} = {F3AF5F01-D9DF-4764-BB20-E3B624316449}
 		{D135C856-D311-4454-A32B-0FFC28BF71F2} = {01208C3F-8E68-45D6-B9EF-2EC77EB54316}
 		{30C2D570-428A-4A21-8DDD-A58F3F4DA9BE} = {D135C856-D311-4454-A32B-0FFC28BF71F2}
+		{F53DC594-A427-47EA-988B-60D02F3C187B} = {8BCCC811-EA30-4F69-8A5B-1CB2176BE34C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E122021-30A4-479C-BC54-7246D8C9F43C}

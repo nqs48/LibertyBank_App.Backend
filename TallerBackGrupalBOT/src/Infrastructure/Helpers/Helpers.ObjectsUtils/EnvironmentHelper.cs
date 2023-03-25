@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Helpers.ObjectsUtils
 {
     /// <summary>
     /// EnvironmentHelper
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class EnvironmentHelper
     {
         /// <summary>
